@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>
+        Reaction Rush — Free Reflex Game | GameVault
+    </title>
+
+    <meta
+        name="description"
+        content="Play Reaction Rush on GameVault. Catch falling objects, build combos and survive as the speed slowly increases."
+    >
+
+    <meta
+        name="author"
+        content="GameVault"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    >
+
+    <link
+        rel="canonical"
+        href="https://gamevault-no18.onrender.com/games/reaction"
+    >
+
+    <!-- Open Graph -->
+
+    <meta
+        property="og:title"
+        content="Reaction Rush — Free Reflex Game | GameVault"
+    >
+
+    <meta
+        property="og:description"
+        content="Catch falling objects, build combos and survive the increasing speed in Reaction Rush."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="https://gamevault-no18.onrender.com/games/reaction"
+    >
+
+    <meta
+        property="og:site_name"
+        content="GameVault"
+    >
+
+    <!-- Twitter -->
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Reaction Rush — GameVault"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Catch falling objects and test your reflexes in this endless reaction game."
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/reaction.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="game-page">
+
+        <!-- HEADER -->
+
+        <header class="game-header">
+
+            <a
+                href="/"
+                class="back-btn"
+            >
+                ← GameVault
+            </a>
+
+
+            <div class="game-title">
+
+                <span class="title-icon">
+                    ⚡
+                </span>
+
+                <h1>
+                    REACTION RUSH
+                </h1>
+
+            </div>
+
+
+            <button
+                id="soundBtn"
+                class="sound-btn"
+                type="button"
+                aria-label="Toggle sound"
+            >
+                🔊
+            </button>
+
+        </header>
+
+
+        <!-- START SCREEN -->
+
+        <section
+            id="startScreen"
+            class="screen start-screen"
+        >
+
+            <div class="start-panel">
+
+                <div class="hero-icon">
+                    ⚡
+                </div>
+
+                <h2>
+                    REACTION RUSH
+                </h2>
+
+                <p class="hero-text">
+                    Catch the falling objects before they hit the floor.
+                    Survive as long as you can.
+                </p>
+
+
+                <div class="how-to">
+
+                    <div class="instruction">
+
+                        <span>
+                            👆
+                        </span>
+
+                        <div>
+                            <strong>
+                                TAP / CLICK
+                            </strong>
+
+                            <small>
+                                Catch falling objects
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="instruction">
+
+                        <span>
+                            💰
+                        </span>
+
+                        <div>
+                            <strong>
+                                SCORE
+                            </strong>
+
+                            <small>
+                                Different objects give different points
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="instruction">
+
+                        <span>
+                            📈
+                        </span>
+
+                        <div>
+                            <strong>
+                                SURVIVE
+                            </strong>
+
+                            <small>
+                                The speed slowly increases
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DIFFICULTY -->
+
+                <div class="difficulty-section">
+
+                    <h3>
+                        SELECT DIFFICULTY
+                    </h3>
+
+
+                    <div class="difficulty-grid">
+
+                        <button
+                            class="difficulty-btn selected"
+                            data-difficulty="easy"
+                            type="button"
+                        >
+
+                            <span class="difficulty-icon">
+                                🟢
+                            </span>
+
+                            <span>
+                                EASY
+                            </span>
+
+                            <small>
+                                Relaxed
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="difficulty-btn"
+                            data-difficulty="normal"
+                            type="button"
+                        >
+
+                            <span class="difficulty-icon">
+                                🔵
+                            </span>
+
+                            <span>
+                                NORMAL
+                            </span>
+
+                            <small>
+                                Balanced
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="difficulty-btn"
+                            data-difficulty="hard"
+                            type="button"
+                        >
+
+                            <span class="difficulty-icon">
+                                🟠
+                            </span>
+
+                            <span>
+                                HARD
+                            </span>
+
+                            <small>
+                                Fast
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="difficulty-btn"
+                            data-difficulty="insane"
+                            type="button"
+                        >
+
+                            <span class="difficulty-icon">
+                                🔴
+                            </span>
+
+                            <span>
+                                INSANE
+                            </span>
+
+                            <small>
+                                Extreme
+                            </small>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="startBtn"
+                    class="start-btn"
+                    type="button"
+                >
+                    ⚡ START RUSH
+                </button>
+
+
+                <div class="best-preview">
+
+                    BEST SCORE
+
+                    <strong id="startBest">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GAME SCREEN -->
+
+        <section
+            id="gameScreen"
+            class="screen game-screen hidden"
+        >
+
+            <!-- GAME STATS -->
+
+            <div class="stats-bar">
+
+                <div class="stat-box">
+
+                    <span>
+                        SCORE
+                    </span>
+
+                    <strong id="score">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <span>
+                        COMBO
+                    </span>
+
+                    <strong id="combo">
+                        x0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <span>
+                        CAUGHT
+                    </span>
+
+                    <strong id="caught">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <span>
+                        LEVEL
+                    </span>
+
+                    <strong id="level">
+                        1
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- GAME AREA -->
+
+            <div
+                id="gameArea"
+                class="game-area"
+            >
+
+                <div class="game-background-grid"></div>
+
+                <div
+                    id="objectsLayer"
+                    class="objects-layer"
+                ></div>
+
+
+                <!-- FLOOR -->
+
+                <div class="game-floor">
+
+                    <span>
+                        DANGER ZONE
+                    </span>
+
+                </div>
+
+
+                <!-- PAUSE -->
+
+                <button
+                    id="pauseBtn"
+                    class="pause-btn"
+                    type="button"
+                >
+                    ❚❚
+                </button>
+
+
+                <!-- LEVEL MESSAGE -->
+
+                <div
+                    id="levelMessage"
+                    class="level-message"
+                >
+                    LEVEL 1
+                </div>
+
+
+                <!-- COMBO POPUP -->
+
+                <div
+                    id="comboPopup"
+                    class="combo-popup"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- BOTTOM INFO -->
+
+            <div class="rush-info">
+
+                <div class="speed-info">
+
+                    <span>
+                        SPEED
+                    </span>
+
+                    <div class="speed-bar">
+
+                        <div
+                            id="speedFill"
+                            class="speed-fill"
+                        ></div>
+
+                    </div>
+
+                    <span id="speedText">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="quitBtn"
+                    class="quit-btn"
+                    type="button"
+                >
+                    ✕ QUIT
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- PAUSE OVERLAY -->
+
+        <div
+            id="pauseOverlay"
+            class="pause-overlay hidden"
+        >
+
+            <div class="pause-panel">
+
+                <div class="pause-icon">
+                    ⏸
+                </div>
+
+                <h2>
+                    GAME PAUSED
+                </h2>
+
+                <button
+                    id="resumeBtn"
+                    class="start-btn"
+                    type="button"
+                >
+                    ▶ RESUME
+                </button>
+
+                <button
+                    id="pauseQuitBtn"
+                    class="secondary-btn"
+                    type="button"
+                >
+                    QUIT GAME
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT SCREEN -->
+
+        <section
+            id="resultScreen"
+            class="screen result-screen hidden"
+        >
+
+            <div class="result-panel">
+
+                <div class="result-icon">
+                    💀
+                </div>
+
+                <div class="result-label">
+                    RUSH OVER
+                </div>
+
+                <h2>
+                    GAME OVER
+                </h2>
+
+
+                <div class="final-score">
+
+                    <span>
+                        SCORE
+                    </span>
+
+                    <strong id="finalScore">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div
+                    id="newRecord"
+                    class="new-record hidden"
+                >
+                    🏆 NEW RECORD!
+                </div>
+
+
+                <div class="result-stats">
+
+                    <div>
+                        <span>
+                            BEST SCORE
+                        </span>
+
+                        <strong id="finalBest">
+                            0
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            BEST COMBO
+                        </span>
+
+                        <strong id="finalCombo">
+                            x0
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            OBJECTS CAUGHT
+                        </span>
+
+                        <strong id="finalCaught">
+                            0
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            LEVEL REACHED
+                        </span>
+
+                        <strong id="finalLevel">
+                            1
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            SURVIVAL TIME
+                        </span>
+
+                        <strong id="finalTime">
+                            0s
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            DIFFICULTY
+                        </span>
+
+                        <strong id="finalDifficulty">
+                            EASY
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="result-buttons">
+
+                    <button
+                        id="playAgainBtn"
+                        class="start-btn"
+                        type="button"
+                    >
+                        ⚡ PLAY AGAIN
+                    </button>
+
+
+                    <a
+                        href="/"
+                        class="secondary-btn"
+                    >
+                        🏠 GAMEVAULT
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/reaction.js') }}"
+    ></script>
+
+</body>
+
+</html>

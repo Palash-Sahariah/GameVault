@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Memory Rush — Free Memory Matching Game | GameVault</title>
+
+    <meta
+        name="description"
+        content="Play Memory Rush on GameVault. Match hidden pairs, build combos, beat the clock and set your highest score in this fast-paced free browser memory game."
+    >
+
+    <meta name="author" content="GameVault">
+
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    >
+
+    <link
+        rel="canonical"
+        href="https://gamevault-no18.onrender.com/games/memory"
+    >
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Memory Rush — Free Memory Matching Game">
+    <meta
+        property="og:description"
+        content="Match the hidden pairs, build combos and beat the clock in Memory Rush on GameVault."
+    >
+    <meta property="og:type" content="website">
+    <meta
+        property="og:url"
+        content="https://gamevault-no18.onrender.com/games/memory"
+    >
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Memory Rush — GameVault">
+    <meta
+        name="twitter:description"
+        content="A fast-paced memory matching game from GameVault."
+    >
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/memory.css') }}">
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <header class="game-header">
+
+        <a href="/" class="back-button">
+            ← GameVault
+        </a>
+
+        <div class="header-title">
+            <span class="title-icon">🧠</span>
+            <h1>MEMORY <span>RUSH</span></h1>
+        </div>
+
+        <button id="soundBtn" class="sound-button" type="button">
+            🔊
+        </button>
+
+    </header>
+
+
+    <main class="game-container">
+
+        <!-- START SCREEN -->
+        <section id="startScreen" class="screen active">
+
+            <div class="hero-card">
+
+                <div class="hero-icon">🧠</div>
+
+                <p class="eyebrow">GAMEVAULT CHALLENGE</p>
+
+                <h2>MEMORY <span>RUSH</span></h2>
+
+                <p class="hero-description">
+                    Match every hidden pair before time runs out.
+                    Build your combo, move fast and beat your best score.
+                </p>
+
+                <div class="difficulty-grid">
+
+                    <button class="difficulty-card selected" data-level="easy">
+                        <strong>EASY</strong>
+                        <span>4 × 4</span>
+                        <small>60 seconds</small>
+                    </button>
+
+                    <button class="difficulty-card" data-level="normal">
+                        <strong>NORMAL</strong>
+                        <span>4 × 5</span>
+                        <small>50 seconds</small>
+                    </button>
+
+                    <button class="difficulty-card" data-level="hard">
+                        <strong>HARD</strong>
+                        <span>5 × 6</span>
+                        <small>40 seconds</small>
+                    </button>
+
+                    <button class="difficulty-card" data-level="insane">
+                        <strong>INSANE</strong>
+                        <span>6 × 6</span>
+                        <small>30 seconds</small>
+                    </button>
+
+                </div>
+
+                <button id="startBtn" class="main-button">
+                    START MEMORY RUSH
+                </button>
+
+                <div class="instructions">
+                    <span>🖱️ Click / Tap</span>
+                    <span>🧠 Find matching pairs</span>
+                    <span>⚡ Build combos</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GAME SCREEN -->
+        <section id="gameScreen" class="screen">
+
+            <div class="game-topbar">
+
+                <div class="stat-box">
+                    <small>LEVEL</small>
+                    <strong id="levelDisplay">EASY</strong>
+                </div>
+
+                <div class="stat-box">
+                    <small>SCORE</small>
+                    <strong id="scoreDisplay">0</strong>
+                </div>
+
+                <div class="stat-box timer-box">
+                    <small>TIME</small>
+                    <strong id="timerDisplay">60</strong>
+                </div>
+
+                <div class="stat-box">
+                    <small>COMBO</small>
+                    <strong id="comboDisplay">×0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="progress-wrapper">
+
+                <div class="progress-info">
+                    <span>PAIRS</span>
+                    <span>
+                        <strong id="pairsDisplay">0</strong>
+                        /
+                        <strong id="totalPairsDisplay">8</strong>
+                    </span>
+                </div>
+
+                <div class="progress-track">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+
+            </div>
+
+
+            <div id="gameBoard" class="game-board"></div>
+
+
+            <div class="game-controls">
+
+                <button id="restartBtn" class="control-button">
+                    ↻ Restart
+                </button>
+
+                <button id="quitBtn" class="control-button danger">
+                    ✕ Quit
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULT SCREEN -->
+        <section id="resultScreen" class="screen">
+
+            <div class="result-card">
+
+                <div id="resultIcon" class="result-icon">
+                    🏆
+                </div>
+
+                <p id="resultStatus" class="eyebrow">
+                    CHALLENGE COMPLETE
+                </p>
+
+                <h2 id="resultTitle">
+                    MEMORY MASTER
+                </h2>
+
+                <div class="final-score">
+                    <small>FINAL SCORE</small>
+                    <strong id="finalScore">0</strong>
+                </div>
+
+                <div id="newBest" class="new-best">
+                    🏆 NEW BEST SCORE!
+                </div>
+
+                <div class="result-stats">
+
+                    <div>
+                        <span>⏱️ TIME</span>
+                        <strong id="finalTime">0s</strong>
+                    </div>
+
+                    <div>
+                        <span>🎯 ACCURACY</span>
+                        <strong id="finalAccuracy">0%</strong>
+                    </div>
+
+                    <div>
+                        <span>⚡ MAX COMBO</span>
+                        <strong id="finalCombo">×0</strong>
+                    </div>
+
+                    <div>
+                        <span>🧠 PAIRS</span>
+                        <strong id="finalPairs">0/0</strong>
+                    </div>
+
+                </div>
+
+                <div class="result-buttons">
+
+                    <button id="playAgainBtn" class="main-button">
+                        PLAY AGAIN
+                    </button>
+
+                    <button id="homeBtn" class="secondary-button">
+                        GAMEVAULT
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='js/memory.js') }}"></script>
+
+</body>
+</html>

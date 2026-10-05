@@ -124,6 +124,16 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/games/memory")
+def memory():
+    return render_template("games/memory.html")
+
+
+@app.route("/games/reaction")
+def reaction():
+    return render_template("games/reaction.html")
+
+
 # =========================
 # SEO
 # =========================
