@@ -94,16 +94,14 @@ body {
 
 .typing-page {
     position: relative;
+
     z-index: 1;
 
     width: min(1200px, 94%);
 
     margin: 0 auto;
 
-    padding:
-        24px
-        0
-        50px;
+    padding: 24px 0 50px;
 }
 
 
@@ -136,23 +134,19 @@ body {
 
     border-radius: 12px;
 
-    background:
-        rgba(8, 13, 26, 0.75);
+    background: rgba(8, 13, 26, 0.75);
 
     color: #dcb76b;
 
     text-decoration: none;
 
     font-size: 0.85rem;
+
     font-weight: 800;
 
     letter-spacing: 0.08em;
 
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .back-btn:hover {
@@ -224,7 +218,7 @@ body {
 
 
 /* =========================================================
-   GLASS PANELS
+   PANELS
    ========================================================= */
 
 .mode-panel,
@@ -249,7 +243,7 @@ body {
 
 
 /* =========================================================
-   MODE PANEL
+   MODE
    ========================================================= */
 
 .mode-panel {
@@ -264,7 +258,8 @@ body {
     border-radius: 17px;
 
     position: relative;
-    z-index: 60;
+
+    z-index: 200;
 }
 
 .mode-btn {
@@ -282,15 +277,17 @@ body {
 
     cursor: pointer;
 
-    font-weight: 800;
+    font: inherit;
 
     font-size: 0.9rem;
 
-    transition:
-        0.2s ease;
+    font-weight: 800;
 
     position: relative;
-    z-index: 61;
+
+    z-index: 201;
+
+    transition: 0.2s ease;
 }
 
 .mode-btn:hover {
@@ -310,9 +307,6 @@ body {
             rgba(220, 183, 107, 0.12),
             rgba(56, 91, 166, 0.12)
         );
-
-    box-shadow:
-        inset 0 0 25px rgba(220, 183, 107, 0.04);
 }
 
 
@@ -332,7 +326,8 @@ body {
     border-radius: 15px;
 
     position: relative;
-    z-index: 60;
+
+    z-index: 200;
 }
 
 .difficulty-btn {
@@ -350,16 +345,19 @@ body {
 
     cursor: pointer;
 
+    font: inherit;
+
     font-size: 0.72rem;
 
     font-weight: 900;
 
     letter-spacing: 0.08em;
 
-    transition: 0.2s ease;
-
     position: relative;
-    z-index: 61;
+
+    z-index: 201;
+
+    transition: 0.2s ease;
 }
 
 .difficulty-btn:hover {
@@ -384,8 +382,7 @@ body {
 .stats-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 
     gap: 8px;
 
@@ -530,8 +527,7 @@ body {
             transparent 1px
         );
 
-    background-size:
-        42px 42px;
+    background-size: 42px 42px;
 
     pointer-events: none;
 }
@@ -543,8 +539,7 @@ body {
 
     top: 20px;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     z-index: 3;
 
@@ -631,16 +626,13 @@ body {
 
     color: #f4f7ff;
 
-    font-family:
-        inherit;
+    font: inherit;
 
     font-size: 1rem;
 
     line-height: 1.55;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .typing-input:focus {
@@ -693,6 +685,8 @@ body {
     letter-spacing: 0.015em;
 
     user-select: none;
+
+    white-space: pre-wrap;
 }
 
 .paragraph-display .correct {
@@ -702,22 +696,12 @@ body {
 .paragraph-display .current {
     color: #f5d47e;
 
-    text-decoration:
-        underline;
+    text-decoration: underline;
 
     text-decoration-color:
         rgba(245, 212, 126, 0.8);
 
     text-underline-offset: 5px;
-}
-
-.paragraph-display .incorrect {
-    color: #ff7676;
-
-    background:
-        rgba(255, 70, 70, 0.08);
-
-    border-radius: 3px;
 }
 
 .paragraph-progress {
@@ -758,8 +742,7 @@ body {
             #dcb76b
         );
 
-    transition:
-        width 0.15s linear;
+    transition: width 0.15s linear;
 }
 
 #paragraphProgressText {
@@ -791,7 +774,8 @@ body {
     border-radius: 15px;
 
     position: relative;
-    z-index: 60;
+
+    z-index: 200;
 }
 
 .control-btn {
@@ -810,17 +794,15 @@ body {
 
     cursor: pointer;
 
+    font: inherit;
+
     font-size: 0.82rem;
 
     font-weight: 900;
 
     letter-spacing: 0.04em;
 
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .control-btn:hover {
@@ -846,16 +828,6 @@ body {
         );
 
     color: #f1d07d;
-
-    box-shadow:
-        0 0 20px rgba(220, 183, 107, 0.05);
-}
-
-.primary-btn:hover {
-    border-color: #e8c979;
-
-    box-shadow:
-        0 0 25px rgba(220, 183, 107, 0.12);
 }
 
 .record-line {
@@ -866,8 +838,6 @@ body {
     text-align: center;
 
     font-size: 0.72rem;
-
-    letter-spacing: 0.03em;
 }
 
 
@@ -880,7 +850,7 @@ body {
 
     inset: 0;
 
-    z-index: 50;
+    z-index: 100;
 
     display: flex;
 
@@ -896,14 +866,14 @@ body {
 
     /*
        IMPORTANT:
-       The overlay itself must NOT block clicks on
-       Mode and Difficulty controls underneath it.
+       Overlay does NOT capture clicks.
+       The mode/difficulty controls remain usable.
     */
     pointer-events: none;
 }
 
-.overlay.hidden {
-    display: none;
+.overlay[hidden] {
+    display: none !important;
 }
 
 .overlay-card {
@@ -928,13 +898,7 @@ body {
         0 30px 100px rgba(0, 0, 0, 0.55),
         0 0 40px rgba(52, 92, 175, 0.08);
 
-    /*
-       The card itself MUST remain clickable.
-    */
     pointer-events: auto;
-
-    position: relative;
-    z-index: 51;
 }
 
 .overlay-icon,
@@ -966,6 +930,8 @@ body {
     display: flex;
 
     justify-content: center;
+
+    flex-wrap: wrap;
 
     gap: 8px;
 
@@ -1019,8 +985,7 @@ body {
 .results-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 8px;
 
@@ -1068,23 +1033,13 @@ body {
 
 
 /* =========================================================
-   HIDDEN
-   ========================================================= */
-
-[hidden] {
-    display: none !important;
-}
-
-
-/* =========================================================
    RESPONSIVE
    ========================================================= */
 
 @media (max-width: 850px) {
 
     .stats-grid {
-        grid-template-columns:
-            repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .section-heading {
@@ -1098,7 +1053,6 @@ body {
     .section-heading p {
         text-align: left;
     }
-
 }
 
 
@@ -1154,13 +1108,11 @@ body {
     .difficulty-panel {
         display: grid;
 
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .stats-grid {
-        grid-template-columns:
-            repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .stat-card {
@@ -1200,13 +1152,7 @@ body {
     .controls {
         display: grid;
 
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .controls .primary-btn {
-        grid-column:
-            1 / -1;
+        grid-template-columns: 1fr 1fr;
     }
 
     .overlay-card {
@@ -1214,10 +1160,8 @@ body {
     }
 
     .results-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
 
@@ -1244,5 +1188,4 @@ body {
     .typing-input {
         font-size: 0.92rem;
     }
-
 }

@@ -42,36 +42,6 @@ const paragraphProgress =
 const paragraphProgressText =
     document.getElementById("paragraphProgressText");
 
-const startBtn =
-    document.getElementById("startBtn");
-
-const restartBtn =
-    document.getElementById("restartBtn");
-
-const newGameBtn =
-    document.getElementById("newGameBtn");
-
-const overlayStartBtn =
-    document.getElementById("overlayStartBtn");
-
-const resultRestartBtn =
-    document.getElementById("resultRestartBtn");
-
-const startOverlay =
-    document.getElementById("startOverlay");
-
-const resultsOverlay =
-    document.getElementById("resultsOverlay");
-
-const startDescription =
-    document.getElementById("startDescription");
-
-const overlayMode =
-    document.getElementById("overlayMode");
-
-const overlayDifficulty =
-    document.getElementById("overlayDifficulty");
-
 const timeValue =
     document.getElementById("timeValue");
 
@@ -93,11 +63,38 @@ const bestValue =
 const recordText =
     document.getElementById("recordText");
 
+const restartBtn =
+    document.getElementById("restartBtn");
+
+const newGameBtn =
+    document.getElementById("newGameBtn");
+
+const startOverlay =
+    document.getElementById("startOverlay");
+
+const resultsOverlay =
+    document.getElementById("resultsOverlay");
+
+const startBtn =
+    document.getElementById("startBtn");
+
+const playAgainBtn =
+    document.getElementById("playAgainBtn");
+
+const startModeText =
+    document.getElementById("startModeText");
+
+const startDifficultyText =
+    document.getElementById("startDifficultyText");
+
+const resultIcon =
+    document.getElementById("resultIcon");
+
 const resultTitle =
     document.getElementById("resultTitle");
 
-const resultSubtitle =
-    document.getElementById("resultSubtitle");
+const resultMessage =
+    document.getElementById("resultMessage");
 
 const resultTime =
     document.getElementById("resultTime");
@@ -122,41 +119,37 @@ const resultExtra =
 
 
 /* =========================================================
-   CONFIG
+   DIFFICULTY
    ========================================================= */
 
 const difficultyConfig = {
 
     easy: {
-        label: "EASY",
-        fallingSpeed: 0.055,
-        acceleration: 0.000008,
-        maxSpeed: 0.11,
-        wordScore: 10
+        fallSpeed: 42,
+        acceleration: 1.2,
+        maxSpeed: 75,
+        words: 20
     },
 
     normal: {
-        label: "NORMAL",
-        fallingSpeed: 0.075,
-        acceleration: 0.000012,
-        maxSpeed: 0.145,
-        wordScore: 15
+        fallSpeed: 58,
+        acceleration: 1.7,
+        maxSpeed: 105,
+        words: 30
     },
 
     hard: {
-        label: "HARD",
-        fallingSpeed: 0.1,
-        acceleration: 0.000017,
-        maxSpeed: 0.19,
-        wordScore: 22
+        fallSpeed: 78,
+        acceleration: 2.2,
+        maxSpeed: 140,
+        words: 45
     },
 
     insane: {
-        label: "INSANE",
-        fallingSpeed: 0.135,
-        acceleration: 0.000022,
-        maxSpeed: 0.24,
-        wordScore: 32
+        fallSpeed: 105,
+        acceleration: 3.0,
+        maxSpeed: 185,
+        words: 65
     }
 
 };
@@ -169,130 +162,207 @@ const difficultyConfig = {
 const wordBank = {
 
     easy: [
-        "apple", "water", "house", "green", "light",
-        "music", "happy", "river", "cloud", "plant",
-        "school", "friend", "world", "dream", "game",
-        "star", "book", "chair", "phone", "smile",
-        "winter", "summer", "ocean", "forest", "animal",
-        "family", "morning", "garden", "coffee", "travel",
-        "window", "planet", "flower", "orange", "silver",
-        "yellow"
+        "apple",
+        "river",
+        "cloud",
+        "house",
+        "green",
+        "water",
+        "light",
+        "music",
+        "happy",
+        "plant",
+        "world",
+        "dream",
+        "stone",
+        "tiger",
+        "ocean",
+        "space",
+        "phone",
+        "chair",
+        "school",
+        "friend",
+        "game",
+        "train",
+        "summer",
+        "winter",
+        "forest",
+        "sunny",
+        "river",
+        "garden",
+        "orange",
+        "silver"
     ],
 
     normal: [
-        "adventure", "computer", "creative", "mountain",
-        "beautiful", "freedom", "journey", "picture",
-        "science", "future", "energy", "language",
-        "digital", "building", "curious", "country",
-        "imagine", "discover", "balance", "natural",
-        "progress", "knowledge", "problem", "project",
-        "success", "technology", "history", "explore",
-        "universe", "library", "weather", "engine",
-        "network", "student", "learning", "challenge"
+        "adventure",
+        "computer",
+        "mountain",
+        "creative",
+        "journey",
+        "freedom",
+        "science",
+        "future",
+        "planet",
+        "digital",
+        "courage",
+        "explore",
+        "picture",
+        "energy",
+        "weather",
+        "library",
+        "project",
+        "machine",
+        "success",
+        "history",
+        "morning",
+        "country",
+        "language",
+        "building",
+        "discover",
+        "message",
+        "student",
+        "balance",
+        "technology",
+        "village"
     ],
 
     hard: [
-        "architecture", "determination", "extraordinary",
-        "development", "environment", "communication",
-        "opportunity", "responsibility", "imagination",
-        "engineering", "programming", "electricity",
-        "civilization", "experiment", "information",
-        "creativity", "motivation", "understanding",
-        "achievement", "exploration", "perspective",
-        "technology", "innovation", "concentration",
-        "independent", "experience", "organization",
-        "intelligence", "relationship", "possibility",
-        "adventure"
+        "architecture",
+        "extraordinary",
+        "determination",
+        "communication",
+        "environment",
+        "imagination",
+        "responsibility",
+        "development",
+        "opportunity",
+        "independent",
+        "civilization",
+        "engineering",
+        "photography",
+        "achievement",
+        "information",
+        "experiment",
+        "electricity",
+        "understanding",
+        "intelligence",
+        "observation",
+        "innovation",
+        "relationship",
+        "competition",
+        "programming",
+        "motivation",
+        "experience",
+        "leadership",
+        "confidence",
+        "creativity",
+        "knowledge"
     ],
 
     insane: [
-        "misunderstanding", "characterization",
-        "internationalization", "electromagnetism",
-        "entrepreneurship", "transformation",
-        "synchronization", "extraordinary",
-        "interdisciplinary", "cryptocurrency",
-        "biotechnology", "infrastructure",
-        "configuration", "implementation",
-        "philosophical", "unpredictable",
-        "congratulations", "professionalism",
-        "experimentation", "responsiveness",
-        "accessibility", "comprehensive",
-        "determination", "communication",
-        "responsibility", "computational",
-        "environmental", "civilization",
-        "characteristic", "administration"
+        "characterization",
+        "misunderstanding",
+        "internationalization",
+        "transformation",
+        "extraordinary",
+        "unpredictability",
+        "responsibilities",
+        "interdisciplinary",
+        "electromagnetism",
+        "implementation",
+        "entrepreneurship",
+        "experimentation",
+        "communication",
+        "environmental",
+        "technological",
+        "professionalism",
+        "configuration",
+        "concentration",
+        "determination",
+        "infrastructure",
+        "synchronization",
+        "mathematical",
+        "philosophical",
+        "psychological",
+        "documentation",
+        "authentication",
+        "optimization",
+        "visualization",
+        "programming",
+        "architecture"
     ]
 
 };
 
 
 /* =========================================================
-   PARAGRAPH BANK
+   PARAGRAPHS
    ========================================================= */
 
 const paragraphBank = {
 
     easy: [
 
-        "Every great journey begins with a small step. When we stay patient and keep practicing, difficult things slowly become easier. The most important part is to continue moving forward even when progress feels slow.",
+        "Every great journey begins with a small step. Keep moving forward, stay curious, and learn something new every day.",
 
-        "A quiet morning can be the perfect time to think about new ideas. The world feels different when there is less noise around us. A few peaceful minutes can help us plan the day with a clear and positive mind.",
+        "The morning sky was bright and clear. Birds moved between the trees while the quiet streets slowly became busy.",
 
-        "Learning something new takes time, but every mistake can teach us something useful. Instead of being afraid of mistakes, we can use them as clues that show us what needs more practice.",
+        "Learning takes time, but every mistake can teach us something useful. Practice patiently and keep trying.",
 
-        "Nature reminds us that growth does not happen instantly. A small seed needs water, sunlight, and time before it becomes a strong plant. People also need patience and consistent effort to grow.",
+        "A good idea becomes powerful when someone works patiently to turn it into reality. Small efforts can create big results.",
 
-        "Friends can make ordinary days more enjoyable. A simple conversation, a shared joke, or a helpful moment can create memories that remain valuable for many years.",
+        "Technology can make everyday tasks easier, but creativity and human thinking are still important for solving problems.",
 
-        "Books allow us to explore places and ideas without leaving our room. A good story can introduce new characters, cultures, questions, and possibilities that change the way we see the world."
+        "The world is full of interesting places, people, animals, and ideas. Exploring them can make learning much more exciting."
 
     ],
 
     normal: [
 
-        "Technology has changed the way people learn, communicate, and solve problems. A student can now explore subjects through videos, simulations, interactive tools, and digital libraries. However, technology becomes truly useful only when it is combined with curiosity and disciplined learning.",
+        "A successful project rarely appears perfect on the first attempt. People test their ideas, discover problems, make improvements, and continue until the result becomes stronger.",
 
-        "The night sky has inspired people for thousands of years. Stars that appear as tiny points of light are actually enormous objects separated from Earth by unimaginable distances. Studying them helps scientists understand the history and structure of the universe.",
+        "The internet has changed the way people learn and communicate. Information can now travel across the world within seconds, giving students access to knowledge from many different sources.",
 
-        "Success rarely comes from one perfect decision. It usually develops through many small choices made consistently over time. People who are willing to learn from failure often become stronger because every setback gives them another opportunity to improve.",
+        "Building a useful skill requires consistency rather than sudden bursts of effort. A person who practices a little every day can eventually achieve results that once seemed impossible.",
 
-        "A city is more than a collection of buildings and roads. It is a constantly changing network of people, ideas, businesses, cultures, and stories. The character of a city is created by the millions of small interactions that happen every day.",
+        "Modern technology connects people in remarkable ways, but it also requires responsibility. Understanding how digital systems work helps us use them more safely and intelligently.",
 
-        "Good communication requires more than speaking clearly. It also requires listening carefully and trying to understand another person's point of view. When people communicate with patience and respect, disagreements can often become opportunities for better understanding.",
+        "Exploration has always encouraged people to ask difficult questions. From studying distant planets to examining tiny cells, curiosity continues to push human knowledge forward.",
 
-        "Scientific discoveries often begin with simple questions. A person notices something unusual, becomes curious about it, and starts searching for an explanation. Over time, careful observation and repeated experiments can turn a small question into important knowledge."
+        "A creative mind does not always search for the easiest answer. Sometimes the most interesting solutions appear when a person looks at an ordinary problem from an entirely different perspective."
 
     ],
 
     hard: [
 
-        "Modern engineering combines mathematics, physics, computer science, and creative problem solving to design systems that can operate reliably in complicated environments. Engineers must consider efficiency, safety, cost, sustainability, and the needs of the people who will eventually use their creations.",
+        "Scientific progress depends on observation, experimentation, and careful reasoning. Researchers may spend years investigating a question before discovering evidence that changes the way an entire field understands a problem.",
 
-        "Artificial intelligence is developing rapidly, but understanding its possibilities requires more than simply using sophisticated software. Researchers must consider data quality, computational resources, reliability, transparency, and the consequences of deploying intelligent systems in real-world situations.",
+        "Artificial intelligence is becoming increasingly useful in education, medicine, engineering, and communication. However, powerful technology must be developed thoughtfully so that its benefits are balanced with reliability, privacy, and responsible use.",
 
-        "Exploration has always been driven by a mixture of curiosity and practical necessity. From mapping distant oceans to studying planets beyond Earth, explorers expand the boundaries of human knowledge. Each discovery also creates new questions that future generations may attempt to answer.",
+        "The development of modern cities has created remarkable opportunities for transportation, education, business, and entertainment. At the same time, growing populations require careful planning to protect resources and maintain a healthy environment.",
 
-        "A successful project depends on coordination between many different tasks. Planning establishes a direction, experimentation reveals what works, and careful testing exposes weaknesses before they become serious problems. The final result is usually shaped by hundreds of small decisions rather than one dramatic moment.",
+        "History demonstrates that major changes rarely happen because of one simple event. Economic conditions, technological discoveries, cultural movements, individual decisions, and unexpected circumstances often interact in complicated ways.",
 
-        "Environmental challenges cannot be solved by a single invention or organization. They require cooperation between scientists, governments, businesses, communities, and individuals. Long-term progress depends on developing useful technologies while also changing the habits that create unnecessary waste.",
+        "Learning to program teaches more than the ability to write instructions for a computer. It encourages logical thinking, patience, experimentation, and the confidence to break complicated problems into smaller and more manageable pieces.",
 
-        "The history of computing demonstrates how quickly an idea can transform society. Machines that once occupied entire rooms can now fit inside devices carried in a pocket. This extraordinary progress has created opportunities that earlier generations could hardly have imagined."
+        "Exploring the natural world can reveal relationships that are easy to overlook. A forest, for example, is not simply a collection of trees, but a complex system in which plants, animals, soil, water, and climate constantly influence one another."
 
     ],
 
     insane: [
 
-        "Computational science has become an essential bridge between theoretical knowledge and practical experimentation. Instead of relying exclusively on physical measurements, researchers can construct detailed simulations, analyze enormous datasets, and test complicated hypotheses with algorithms that would be impossible to execute manually.",
+        "The relationship between technological progress and society is extraordinarily complex because every major invention can create opportunities while simultaneously introducing unfamiliar challenges. Understanding these changes requires technical knowledge, historical awareness, ethical reasoning, and the ability to consider consequences that may not become obvious for many years.",
 
-        "The development of sophisticated autonomous systems presents an unusual combination of engineering and philosophical challenges. A machine may be capable of processing information extremely quickly, yet its usefulness still depends on how accurately its designers define objectives, measure uncertainty, handle unexpected circumstances, and evaluate the consequences of its decisions.",
+        "Scientific discovery often begins with uncertainty rather than confidence. Researchers formulate hypotheses, design experiments, analyze imperfect evidence, question unexpected results, and repeatedly revise their explanations. This process demonstrates why genuine knowledge is rarely produced by accepting the first convenient answer.",
 
-        "Interdisciplinary research frequently produces discoveries that would remain invisible inside a single academic field. When biologists collaborate with engineers, computer scientists, physicists, and mathematicians, completely different methods of reasoning can be combined to investigate problems that involve several layers of complexity.",
+        "As artificial intelligence becomes integrated into increasingly sophisticated systems, developers must consider questions involving reliability, transparency, security, privacy, and human responsibility. Creating a capable system is only part of the challenge; ensuring that people can understand and use that system responsibly is equally important.",
 
-        "Human civilization has repeatedly demonstrated an extraordinary ability to adapt to technological transformation. Nevertheless, rapid innovation can create new responsibilities alongside new opportunities. Understanding how technologies influence economies, education, communication, privacy, and individual decision-making is therefore becoming increasingly important.",
+        "The future of exploration may depend on technologies capable of operating far beyond the environments in which humans can comfortably survive. Autonomous machines, advanced robotics, improved communication systems, and increasingly efficient energy sources could allow researchers to investigate places that are currently extremely difficult to reach.",
 
-        "Building a reliable software system requires considerably more than writing code that works under ideal conditions. Developers must anticipate invalid input, unexpected failures, changing requirements, security concerns, performance limitations, and differences between devices. Careful architecture and extensive testing are essential when reliability matters.",
+        "Complex problems often appear impossible when viewed as a single enormous challenge. Engineers, scientists, programmers, and researchers frequently make progress by dividing such problems into smaller components, testing each component independently, measuring the results, and gradually combining successful solutions into a larger system.",
 
-        "Scientific progress is rarely a perfectly predictable sequence of successful experiments. Researchers frequently encounter unexpected results, incomplete measurements, contradictory evidence, or hypotheses that fail under closer examination. These setbacks are valuable because they force scientists to reconsider assumptions and construct explanations that survive stronger tests."
+        "Human creativity is difficult to measure because it can appear in mathematics, music, engineering, literature, architecture, scientific research, and countless ordinary activities. Creativity does not necessarily mean producing something completely unprecedented; it can also mean combining familiar ideas in a surprisingly useful or meaningful way."
 
     ]
 
@@ -300,44 +370,45 @@ const paragraphBank = {
 
 
 /* =========================================================
-   STATE
+   GAME STATE
    ========================================================= */
 
 let currentMode = "falling";
+
 let currentDifficulty = "easy";
 
 let gameRunning = false;
+
+let gameFinished = false;
+
 let startTime = 0;
+
 let elapsedSeconds = 0;
 
 let timerInterval = null;
+
 let animationFrame = null;
-let lastFrameTime = 0;
-
-
-/* FALLING */
 
 let currentWord = "";
-let typedWord = "";
-let wordY = 20;
-let fallingSpeed = 0;
-let wordsCompleted = 0;
-
-
-/* PARAGRAPH */
 
 let currentParagraph = "";
-let paragraphCorrectCharacters = 0;
 
+let wordPosition = 20;
 
-/* STATS */
+let fallSpeed = 42;
 
-let totalCorrectCharacters = 0;
-let totalAttempts = 0;
+let wordsCompleted = 0;
+
+let charactersTyped = 0;
+
+let correctCharacters = 0;
+
 let mistakes = 0;
+
 let score = 0;
 
 let previousWord = "";
+
 let previousParagraph = "";
 
 
@@ -345,43 +416,36 @@ let previousParagraph = "";
    LOCAL STORAGE
    ========================================================= */
 
-function getBestKey() {
-
-    return `gamevault_typing_best_${currentMode}_${currentDifficulty}`;
-
-}
+const bestKeys = {
+    falling: "gamevault_typing_falling_best",
+    paragraph: "gamevault_typing_paragraph_best"
+};
 
 
 function getBestScore() {
 
-    return Number(
-        localStorage.getItem(getBestKey()) || 0
-    );
+    const value =
+        Number(
+            localStorage.getItem(
+                bestKeys[currentMode]
+            )
+        );
 
+    return Number.isFinite(value) ? value : 0;
 }
 
 
 function saveBestScore(value) {
 
-    const oldBest = getBestScore();
-
-    if (value > oldBest) {
-
-        localStorage.setItem(
-            getBestKey(),
-            String(value)
-        );
-
-        return value;
-    }
-
-    return oldBest;
-
+    localStorage.setItem(
+        bestKeys[currentMode],
+        String(value)
+    );
 }
 
 
 /* =========================================================
-   RANDOM
+   RANDOM HELPERS
    ========================================================= */
 
 function randomItem(array) {
@@ -391,7 +455,6 @@ function randomItem(array) {
             Math.random() * array.length
         )
     ];
-
 }
 
 
@@ -400,21 +463,31 @@ function getNewWord() {
     const list =
         wordBank[currentDifficulty];
 
-    let word;
+    let word = randomItem(list);
 
-    do {
+    /*
+       Prevent the same word from appearing
+       immediately twice.
+    */
 
-        word = randomItem(list);
+    if (list.length > 1) {
 
-    } while (
-        list.length > 1 &&
-        word === previousWord
-    );
+        let attempts = 0;
+
+        while (
+            word === previousWord &&
+            attempts < 20
+        ) {
+
+            word = randomItem(list);
+
+            attempts++;
+        }
+    }
 
     previousWord = word;
 
     return word;
-
 }
 
 
@@ -423,433 +496,335 @@ function getNewParagraph() {
     const list =
         paragraphBank[currentDifficulty];
 
-    let paragraph;
+    let paragraph = randomItem(list);
 
-    do {
+    /*
+       Prevent immediate paragraph repetition.
+    */
 
-        paragraph = randomItem(list);
+    if (list.length > 1) {
 
-    } while (
-        list.length > 1 &&
-        paragraph === previousParagraph
-    );
+        let attempts = 0;
+
+        while (
+            paragraph === previousParagraph &&
+            attempts < 20
+        ) {
+
+            paragraph = randomItem(list);
+
+            attempts++;
+        }
+    }
 
     previousParagraph = paragraph;
 
     return paragraph;
-
 }
 
 
 /* =========================================================
-   MODE DISPLAY
+   UI HELPERS
    ========================================================= */
 
-function setModeDisplay() {
-
-    const isFalling =
-        currentMode === "falling";
-
-    /*
-     * Control BOTH the hidden attribute and
-     * the active class so CSS cannot leave
-     * the wrong game visible.
-     */
-
-    fallingMode.hidden = !isFalling;
-    paragraphMode.hidden = isFalling;
-
-    fallingMode.classList.toggle(
-        "active-section",
-        isFalling
-    );
-
-    paragraphMode.classList.toggle(
-        "active-section",
-        !isFalling
-    );
-
-    if (isFalling) {
-
-        fallingMode.style.display = "";
-        paragraphMode.style.display = "none";
-
-        startDescription.textContent =
-            "Type the falling word before it reaches the ground.";
-
-        overlayMode.textContent =
-            "🍎 Falling Words";
-
-    } else {
-
-        fallingMode.style.display = "none";
-        paragraphMode.style.display = "";
-
-        startDescription.textContent =
-            "Type the complete paragraph accurately.";
-
-        overlayMode.textContent =
-            "📖 Paragraph Challenge";
-
-    }
-
-    bestValue.textContent =
-        getBestScore();
-
-}
-
-
-function setDifficultyDisplay() {
-
-    difficultyButtons.forEach(button => {
-
-        button.classList.toggle(
-            "active",
-            button.dataset.difficulty ===
-            currentDifficulty
-        );
-
-    });
-
-    overlayDifficulty.textContent =
-        difficultyConfig[currentDifficulty].label;
-
-    bestValue.textContent =
-        getBestScore();
-
-}
-
-
-/* =========================================================
-   BUTTON STATE
-   ========================================================= */
-
-function updateButtonStates() {
+function updateModeButtons() {
 
     modeButtons.forEach(button => {
 
         button.classList.toggle(
             "active",
-            button.dataset.mode ===
-            currentMode
+            button.dataset.mode === currentMode
         );
 
     });
+}
 
-    setDifficultyDisplay();
+
+function updateDifficultyButtons() {
+
+    difficultyButtons.forEach(button => {
+
+        button.classList.toggle(
+            "active",
+            button.dataset.difficulty === currentDifficulty
+        );
+
+    });
+}
+
+
+function updateModeText() {
+
+    startModeText.textContent =
+        currentMode === "falling"
+            ? "🍎 Falling Words"
+            : "📖 Paragraph Challenge";
+
+    startDifficultyText.textContent =
+        currentDifficulty.toUpperCase();
+}
+
+
+function showMode() {
+
+    const falling =
+        currentMode === "falling";
+
+    fallingMode.hidden = !falling;
+
+    paragraphMode.hidden = falling;
+
+    if (falling) {
+
+        fallingInput.disabled = !gameRunning;
+
+        paragraphInput.disabled = true;
+
+    } else {
+
+        fallingInput.disabled = true;
+
+        paragraphInput.disabled = !gameRunning;
+
+    }
+
+}
+
+
+function showStartOverlay() {
+
+    startOverlay.hidden = false;
+
+}
+
+
+function hideStartOverlay() {
+
+    startOverlay.hidden = true;
+
+}
+
+
+function showResultsOverlay() {
+
+    resultsOverlay.hidden = false;
+
+}
+
+
+function hideResultsOverlay() {
+
+    resultsOverlay.hidden = true;
 
 }
 
 
 /* =========================================================
-   RESET STATS
+   PREPARE GAME
    ========================================================= */
 
-function resetStats() {
+function prepareGame() {
+
+    stopLoops();
+
+    gameRunning = false;
+
+    gameFinished = false;
+
+    startTime = 0;
 
     elapsedSeconds = 0;
 
-    totalCorrectCharacters = 0;
+    wordsCompleted = 0;
 
-    totalAttempts = 0;
+    charactersTyped = 0;
+
+    correctCharacters = 0;
 
     mistakes = 0;
 
     score = 0;
 
-    wordsCompleted = 0;
-
-    paragraphCorrectCharacters = 0;
-
-    updateStats();
-
-}
-
-
-/* =========================================================
-   PREPARE NEW GAME
-   ========================================================= */
-
-function prepareNewGame() {
-
-    stopGameLoops();
-
-    gameRunning = false;
-
-    resetStats();
-
-    typedWord = "";
+    fallSpeed =
+        difficultyConfig[
+            currentDifficulty
+        ].fallSpeed;
 
     fallingInput.value = "";
 
     paragraphInput.value = "";
 
-    fallingInput.disabled = true;
-    paragraphInput.disabled = true;
-
-    wordY = 20;
-
-    fallingSpeed = 0;
-
-    fallingWordElement.style.top =
-        `${wordY}px`;
-
-    /*
-     * Do NOT reset previousWord or
-     * previousParagraph here.
-     *
-     * This guarantees a new game doesn't
-     * immediately repeat the previous item.
-     */
-
-    currentWord =
-        getNewWord();
-
     fallingWordElement.textContent =
-        currentWord;
+        currentMode === "falling"
+            ? "READY"
+            : "";
 
-    currentParagraph =
-        getNewParagraph();
+    wordPosition = 20;
 
-    renderParagraph();
+    currentWord = "";
 
-    updateParagraphDisplay();
+    currentParagraph = "";
 
-    updateParagraphProgress();
+    paragraphProgress.style.width = "0%";
 
-    recordText.textContent =
-        `${difficultyConfig[currentDifficulty].label} • Ready`;
-
-    startBtn.textContent =
-        "▶ START";
-
-    updateButtonStates();
+    paragraphProgressText.textContent = "0%";
 
     updateStats();
+
+    updateModeText();
+
+    showMode();
 
 }
 
 
 /* =========================================================
-   MODE SWITCH
-   ========================================================= */
-
-modeButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const selectedMode =
-            button.dataset.mode;
-
-        if (
-            selectedMode !== currentMode &&
-            gameRunning
-        ) {
-
-            stopGameLoops();
-            gameRunning = false;
-
-        }
-
-        currentMode =
-            selectedMode;
-
-        closeResultsOverlay();
-
-        prepareNewGame();
-
-        setModeDisplay();
-
-        updateButtonStates();
-
-        showStartOverlay();
-
-    });
-
-});
-
-
-/* =========================================================
-   DIFFICULTY SWITCH
-   ========================================================= */
-
-difficultyButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const selectedDifficulty =
-            button.dataset.difficulty;
-
-        if (
-            selectedDifficulty !==
-            currentDifficulty &&
-            gameRunning
-        ) {
-
-            stopGameLoops();
-            gameRunning = false;
-
-        }
-
-        currentDifficulty =
-            selectedDifficulty;
-
-        closeResultsOverlay();
-
-        prepareNewGame();
-
-        setDifficultyDisplay();
-
-        showStartOverlay();
-
-    });
-
-});
-
-
-/* =========================================================
-   START GAME
+   START
    ========================================================= */
 
 function startGame() {
 
-    if (gameRunning) {
-        return;
-    }
+    hideStartOverlay();
 
-    closeStartOverlay();
-    closeResultsOverlay();
+    hideResultsOverlay();
 
-    /*
-     * Generate the actual game content here.
-     */
-
-    if (currentMode === "falling") {
-
-        currentWord =
-            getNewWord();
-
-        typedWord = "";
-
-        fallingInput.value = "";
-
-        wordY = 20;
-
-        fallingSpeed =
-            difficultyConfig[currentDifficulty]
-                .fallingSpeed;
-
-        fallingWordElement.textContent =
-            currentWord;
-
-        fallingWordElement.style.top =
-            `${wordY}px`;
-
-    } else {
-
-        currentParagraph =
-            getNewParagraph();
-
-        paragraphInput.value = "";
-
-        paragraphCorrectCharacters = 0;
-
-        renderParagraph();
-
-        updateParagraphDisplay();
-
-        updateParagraphProgress();
-
-    }
-
-    resetStats();
+    prepareGame();
 
     gameRunning = true;
 
-    startTime =
-        performance.now();
+    startTime = performance.now();
 
-    fallingInput.disabled =
-        currentMode !== "falling";
-
-    paragraphInput.disabled =
-        currentMode !== "paragraph";
-
-    if (currentMode === "falling") {
-
-        startFallingGame();
-
-    } else {
-
-        startParagraphGame();
-
-    }
+    updateInputs();
 
     startTimer();
 
-    updateStats();
+    if (currentMode === "falling") {
 
-    startBtn.textContent =
-        "⏺ RUNNING";
+        startFallingMode();
 
-    recordText.textContent =
-        `${difficultyConfig[currentDifficulty].label} • Game running`;
+    } else {
+
+        startParagraphMode();
+
+    }
 
 }
 
 
 /* =========================================================
-   FALLING GAME
+   INPUT ENABLE/DISABLE
    ========================================================= */
 
-function startFallingGame() {
+function updateInputs() {
 
-    lastFrameTime =
-        performance.now();
+    fallingInput.disabled =
+        !gameRunning ||
+        currentMode !== "falling";
+
+    paragraphInput.disabled =
+        !gameRunning ||
+        currentMode !== "paragraph";
+
+}
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
+
+function startTimer() {
+
+    clearInterval(timerInterval);
+
+    timerInterval =
+        setInterval(() => {
+
+            if (!gameRunning) return;
+
+            elapsedSeconds =
+                (performance.now() - startTime) / 1000;
+
+            updateStats();
+
+        }, 100);
+
+}
+
+
+function stopTimer() {
+
+    clearInterval(timerInterval);
+
+    timerInterval = null;
+
+}
+
+
+/* =========================================================
+   FALLING WORDS
+   ========================================================= */
+
+function startFallingMode() {
+
+    currentWord = getNewWord();
+
+    fallingInput.value = "";
+
+    wordPosition = 20;
+
+    fallSpeed =
+        difficultyConfig[
+            currentDifficulty
+        ].fallSpeed;
+
+    fallingWordElement.textContent =
+        currentWord;
+
+    fallingWordElement.style.top =
+        `${wordPosition}px`;
 
     fallingInput.focus();
 
     animationFrame =
-        requestAnimationFrame(
-            fallingLoop
-        );
+        requestAnimationFrame(fallingLoop);
 
 }
 
 
 function fallingLoop(timestamp) {
 
-    if (
-        !gameRunning ||
-        currentMode !== "falling"
-    ) {
-        return;
-    }
+    if (!gameRunning) return;
 
     const delta =
-        Math.min(
-            timestamp - lastFrameTime,
-            40
-        );
+        fallingLoop.lastTimestamp
+            ? timestamp - fallingLoop.lastTimestamp
+            : 16;
 
-    lastFrameTime =
-        timestamp;
+    fallingLoop.lastTimestamp = timestamp;
 
-    const config =
-        difficultyConfig[currentDifficulty];
-
-    wordY +=
-        fallingSpeed * delta;
-
-    fallingSpeed =
-        Math.min(
-            fallingSpeed +
-            config.acceleration * delta,
-            config.maxSpeed
-        );
+    wordPosition +=
+        fallSpeed * (delta / 1000);
 
     fallingWordElement.style.top =
-        `${wordY}px`;
+        `${wordPosition}px`;
+
+    /*
+       Gradually increase speed.
+    */
+
+    const config =
+        difficultyConfig[
+            currentDifficulty
+        ];
+
+    fallSpeed = Math.min(
+        fallSpeed +
+            config.acceleration *
+            (delta / 1000),
+
+        config.maxSpeed
+    );
+
 
     const boardHeight =
         fallingBoard.clientHeight;
@@ -857,27 +832,32 @@ function fallingLoop(timestamp) {
     const wordHeight =
         fallingWordElement.offsetHeight;
 
-    const groundHeight = 12;
+    const groundPosition =
+        boardHeight -
+        wordHeight -
+        7;
 
-    if (
-        wordY + wordHeight >=
-        boardHeight - groundHeight
-    ) {
 
-        gameOver(
-            "The word reached the ground."
-        );
+    if (wordPosition >= groundPosition) {
+
+        endGame("The word reached the ground.");
 
         return;
-
     }
 
+
     animationFrame =
-        requestAnimationFrame(
-            fallingLoop
-        );
+        requestAnimationFrame(fallingLoop);
 
 }
+
+
+/*
+   Reset the timestamp when starting another
+   falling word.
+*/
+
+fallingLoop.lastTimestamp = 0;
 
 
 /* =========================================================
@@ -886,151 +866,124 @@ function fallingLoop(timestamp) {
 
 fallingInput.addEventListener(
     "input",
-    () => {
+    function () {
 
-        if (
-            !gameRunning ||
-            currentMode !== "falling"
-        ) {
-            return;
-        }
+        if (!gameRunning) return;
 
-        const expected =
-            currentWord.toLowerCase();
+        if (currentMode !== "falling") return;
 
-        const value =
-            fallingInput.value.toLowerCase();
+        let typed =
+            fallingInput.value;
 
         /*
-         * Wrong input is rejected immediately.
-         */
+           Ignore leading/trailing accidental
+           whitespace for normal keyboard input.
+        */
 
         if (
-            value.length <= expected.length &&
-            expected.startsWith(value)
+            typed.length <= currentWord.length &&
+            currentWord.startsWith(typed)
         ) {
 
-            if (
-                value.length >
-                typedWord.length
-            ) {
+            correctCharacters =
+                Math.min(
+                    correctCharacters + 1,
+                    currentWord.length
+                );
 
-                const added =
-                    value.length -
-                    typedWord.length;
+            charactersTyped++;
 
-                totalCorrectCharacters +=
-                    added;
+            if (typed === currentWord) {
 
-                totalAttempts +=
-                    added;
+                wordsCompleted++;
+
+                score +=
+                    currentWord.length *
+                    difficultyScoreMultiplier();
+
+                startNextWord();
 
             }
 
-            typedWord = value;
-
         } else {
 
-            mistakes++;
-            totalAttempts++;
+            /*
+               Wrong character:
+               remove only the newest character.
+               The player must enter the correct
+               character before progressing.
+            */
 
             fallingInput.value =
-                typedWord;
+                typed.slice(
+                    0,
+                    Math.max(0, typed.length - 1)
+                );
 
-            flashInputError(
-                fallingInput
-            );
+            mistakes++;
 
+            charactersTyped++;
+
+            updateStats();
         }
-
-        if (
-            typedWord === expected
-        ) {
-
-            completeWord();
-
-        }
-
-        updateStats();
 
     }
 );
 
 
 /* =========================================================
-   COMPLETE FALLING WORD
+   NEXT FALLING WORD
    ========================================================= */
 
-function completeWord() {
-
-    wordsCompleted++;
+function startNextWord() {
 
     const config =
-        difficultyConfig[currentDifficulty];
+        difficultyConfig[
+            currentDifficulty
+        ];
 
-    const lengthBonus =
-        currentWord.length * 2;
+    if (
+        config.words > 0 &&
+        wordsCompleted >= config.words
+    ) {
 
-    const speedBonus =
-        Math.max(
-            0,
-            Math.round(
-                (
-                    1 -
-                    wordY /
-                    Math.max(
-                        1,
-                        fallingBoard.clientHeight
-                    )
-                ) * 10
-            )
+        endGame(
+            "You completed the target number of words."
         );
 
-    score +=
-        config.wordScore +
-        lengthBonus +
-        speedBonus;
-
-    /*
-     * New word ONLY appears after
-     * current word is completely typed.
-     */
+        return;
+    }
 
     currentWord =
         getNewWord();
 
-    typedWord = "";
-
     fallingInput.value = "";
 
-    wordY = 20;
+    wordPosition = 20;
+
+    fallingLoop.lastTimestamp = 0;
 
     fallingWordElement.textContent =
         currentWord;
 
     fallingWordElement.style.top =
-        `${wordY}px`;
-
-    fallingInput.focus();
-
-    updateStats();
+        `${wordPosition}px`;
 
 }
 
 
 /* =========================================================
-   PARAGRAPH GAME
+   PARAGRAPH MODE
    ========================================================= */
 
-function startParagraphGame() {
+function startParagraphMode() {
+
+    currentParagraph =
+        getNewParagraph();
 
     paragraphInput.value = "";
 
-    paragraphCorrectCharacters = 0;
-
-    updateParagraphDisplay();
-
-    updateParagraphProgress();
+    renderParagraph();
 
     paragraphInput.focus();
 
@@ -1041,9 +994,23 @@ function startParagraphGame() {
    PARAGRAPH RENDER
    ========================================================= */
 
+function escapeHTML(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
 function renderParagraph() {
 
-    paragraphDisplay.innerHTML = "";
+    const typed =
+        paragraphInput.value;
+
+    let html = "";
 
     for (
         let i = 0;
@@ -1051,20 +1018,31 @@ function renderParagraph() {
         i++
     ) {
 
-        const span =
-            document.createElement("span");
+        const character =
+            escapeHTML(
+                currentParagraph[i]
+            );
 
-        span.textContent =
-            currentParagraph[i];
+        if (i < typed.length) {
 
-        span.dataset.index =
-            String(i);
+            html +=
+                `<span class="correct">${character}</span>`;
 
-        paragraphDisplay.appendChild(
-            span
-        );
+        } else if (i === typed.length) {
+
+            html +=
+                `<span class="current">${character}</span>`;
+
+        } else {
+
+            html += character;
+
+        }
 
     }
+
+    paragraphDisplay.innerHTML =
+        html;
 
 }
 
@@ -1075,175 +1053,85 @@ function renderParagraph() {
 
 paragraphInput.addEventListener(
     "input",
-    () => {
+    function () {
 
-        if (
-            !gameRunning ||
-            currentMode !== "paragraph"
-        ) {
-            return;
-        }
+        if (!gameRunning) return;
 
-        const expected =
-            currentParagraph;
+        if (currentMode !== "paragraph") return;
 
-        const value =
+        const typed =
             paragraphInput.value;
 
+
         /*
-         * Correct prefix:
-         * allow it.
-         */
+           Correct prefix:
+           allow it.
+        */
 
         if (
-            value.length <= expected.length &&
-            expected.startsWith(value)
+            currentParagraph.startsWith(typed)
         ) {
 
+            correctCharacters =
+                Math.min(
+                    typed.length,
+                    currentParagraph.length
+                );
+
+            charactersTyped++;
+
+            renderParagraph();
+
+            updateParagraphProgress();
+
             if (
-                value.length >
-                paragraphCorrectCharacters
+                typed === currentParagraph
             ) {
 
-                const added =
-                    value.length -
-                    paragraphCorrectCharacters;
+                score =
+                    Math.max(
+                        1,
+                        Math.round(
+                            currentParagraph.length *
+                            difficultyScoreMultiplier() *
+                            2
+                        )
+                    );
 
-                totalCorrectCharacters +=
-                    added;
-
-                totalAttempts +=
-                    added;
+                endGame(
+                    "You completed the paragraph."
+                );
 
             }
-
-            paragraphCorrectCharacters =
-                value.length;
 
         } else {
 
             /*
-             * Find exactly how much of the
-             * entered text is valid.
-             */
-
-            let validLength = 0;
-
-            const max =
-                Math.min(
-                    value.length,
-                    expected.length
-                );
-
-            while (
-                validLength < max &&
-                value[validLength] ===
-                expected[validLength]
-            ) {
-
-                validLength++;
-
-            }
-
-            /*
-             * Every invalid character attempt
-             * counts as a mistake.
-             */
-
-            const invalidCount =
-                Math.max(
-                    1,
-                    value.length -
-                    validLength
-                );
-
-            mistakes +=
-                invalidCount;
-
-            totalAttempts +=
-                invalidCount;
+               Wrong character:
+               immediately remove the newest
+               character so progress cannot continue.
+            */
 
             paragraphInput.value =
-                expected.slice(
+                typed.slice(
                     0,
-                    validLength
+                    Math.max(0, typed.length - 1)
                 );
 
-            paragraphCorrectCharacters =
-                validLength;
+            mistakes++;
 
-            flashInputError(
-                paragraphInput
-            );
+            charactersTyped++;
 
-        }
+            renderParagraph();
 
-        updateParagraphDisplay();
+            updateParagraphProgress();
 
-        updateParagraphProgress();
-
-        updateStats();
-
-        if (
-            paragraphInput.value ===
-            expected
-        ) {
-
-            completeParagraph();
+            updateStats();
 
         }
 
     }
 );
-
-
-/* =========================================================
-   PARAGRAPH DISPLAY
-   ========================================================= */
-
-function updateParagraphDisplay() {
-
-    const spans =
-        paragraphDisplay.querySelectorAll(
-            "span"
-        );
-
-    const value =
-        paragraphInput.value;
-
-    spans.forEach(
-        (span, index) => {
-
-            span.classList.remove(
-                "correct",
-                "current",
-                "incorrect"
-            );
-
-            if (
-                index <
-                value.length
-            ) {
-
-                span.classList.add(
-                    "correct"
-                );
-
-            } else if (
-                index ===
-                value.length
-            ) {
-
-                span.classList.add(
-                    "current"
-                );
-
-            }
-
-        }
-    );
-
-}
 
 
 /* =========================================================
@@ -1253,21 +1141,22 @@ function updateParagraphDisplay() {
 function updateParagraphProgress() {
 
     if (!currentParagraph.length) {
+
+        paragraphProgress.style.width =
+            "0%";
+
+        paragraphProgressText.textContent =
+            "0%";
+
         return;
     }
 
-    const value =
-        paragraphInput.value.length;
-
     const percentage =
-        Math.min(
-            100,
-            Math.round(
-                (
-                    value /
-                    currentParagraph.length
-                ) * 100
-            )
+        Math.floor(
+            (
+                paragraphInput.value.length /
+                currentParagraph.length
+            ) * 100
         );
 
     paragraphProgress.style.width =
@@ -1280,98 +1169,28 @@ function updateParagraphProgress() {
 
 
 /* =========================================================
-   COMPLETE PARAGRAPH
+   SCORE MULTIPLIER
    ========================================================= */
 
-function completeParagraph() {
+function difficultyScoreMultiplier() {
 
-    const time =
-        getElapsedSeconds();
+    switch (currentDifficulty) {
 
-    const words =
-        currentParagraph
-            .trim()
-            .split(/\s+/)
-            .length;
+        case "easy":
+            return 1;
 
-    score =
-        Math.max(
-            0,
-            Math.round(
-                words * 15 +
-                currentParagraph.length * 2 -
-                mistakes * 4 +
-                Math.max(
-                    0,
-                    300 -
-                    time * 3
-                )
-            )
-        );
+        case "normal":
+            return 1.5;
 
-    endGame(
-        "Paragraph completed!"
-    );
+        case "hard":
+            return 2;
 
-}
+        case "insane":
+            return 3;
 
-
-/* =========================================================
-   TIMER
-   ========================================================= */
-
-function startTimer() {
-
-    stopTimer();
-
-    timerInterval =
-        setInterval(
-            () => {
-
-                if (!gameRunning) {
-                    return;
-                }
-
-                elapsedSeconds =
-                    getElapsedSeconds();
-
-                updateStats();
-
-            },
-            250
-        );
-
-}
-
-
-function stopTimer() {
-
-    if (timerInterval) {
-
-        clearInterval(
-            timerInterval
-        );
-
-        timerInterval = null;
-
+        default:
+            return 1;
     }
-
-}
-
-
-function getElapsedSeconds() {
-
-    if (!startTime) {
-        return 0;
-    }
-
-    return Math.max(
-        0,
-        (
-            performance.now() -
-            startTime
-        ) / 1000
-    );
 
 }
 
@@ -1380,44 +1199,45 @@ function getElapsedSeconds() {
    STATS
    ========================================================= */
 
-function calculateAccuracy() {
+function calculateWPM() {
 
-    if (totalAttempts <= 0) {
-        return 100;
+    if (elapsedSeconds <= 0) {
+
+        return 0;
     }
 
-    return Math.max(
-        0,
-        Math.min(
-            100,
-            Math.round(
-                (
-                    totalCorrectCharacters /
-                    totalAttempts
-                ) * 100
-            )
-        )
+    const minutes =
+        elapsedSeconds / 60;
+
+    /*
+       Standard typing WPM:
+       5 characters = 1 word.
+    */
+
+    return Math.round(
+        (
+            correctCharacters / 5
+        ) / minutes
     );
 
 }
 
 
-function calculateWPM() {
+function calculateAccuracy() {
 
-    const minutes =
-        elapsedSeconds / 60;
+    if (charactersTyped <= 0) {
 
-    if (
-        minutes <= 0 ||
-        totalCorrectCharacters <= 0
-    ) {
-        return 0;
+        return 100;
     }
 
-    return Math.round(
-        (
-            totalCorrectCharacters / 5
-        ) / minutes
+    return Math.max(
+        0,
+        Math.round(
+            (
+                correctCharacters /
+                charactersTyped
+            ) * 100
+        )
     );
 
 }
@@ -1425,15 +1245,11 @@ function calculateWPM() {
 
 function updateStats() {
 
-    if (gameRunning) {
-
-        elapsedSeconds =
-            getElapsedSeconds();
-
-    }
+    const seconds =
+        Math.floor(elapsedSeconds);
 
     timeValue.textContent =
-        formatTime(elapsedSeconds);
+        `${seconds}s`;
 
     wpmValue.textContent =
         calculateWPM();
@@ -1445,10 +1261,7 @@ function updateStats() {
         mistakes;
 
     scoreValue.textContent =
-        Math.max(
-            0,
-            Math.round(score)
-        );
+        score;
 
     bestValue.textContent =
         getBestScore();
@@ -1457,81 +1270,64 @@ function updateStats() {
 
 
 /* =========================================================
-   FORMAT TIME
-   ========================================================= */
-
-function formatTime(seconds) {
-
-    if (seconds < 60) {
-
-        return `${Math.floor(seconds)}s`;
-
-    }
-
-    const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-    const remaining =
-        Math.floor(
-            seconds % 60
-        );
-
-    return `${minutes}m ${String(
-        remaining
-    ).padStart(2, "0")}s`;
-
-}
-
-
-/* =========================================================
    END GAME
    ========================================================= */
 
-function gameOver(reason) {
+function endGame(message) {
 
-    endGame(reason);
-
-}
-
-
-function endGame(reason) {
-
-    if (!gameRunning) {
-        return;
-    }
-
-    elapsedSeconds =
-        getElapsedSeconds();
+    if (!gameRunning) return;
 
     gameRunning = false;
 
-    stopGameLoops();
+    gameFinished = true;
 
-    fallingInput.disabled = true;
-    paragraphInput.disabled = true;
+    stopLoops();
+
+    elapsedSeconds =
+        Math.max(
+            0.01,
+            (performance.now() - startTime) / 1000
+        );
+
+    updateInputs();
+
+    updateStats();
+
+    const finalWpm =
+        calculateWPM();
+
+    const finalAccuracy =
+        calculateAccuracy();
 
     const finalScore =
-        Math.max(
-            0,
-            Math.round(score)
-        );
+        score;
 
     const oldBest =
         getBestScore();
 
-    const newBest =
+    let newBest = false;
+
+    if (finalScore > oldBest) {
+
         saveBestScore(finalScore);
 
+        newBest = true;
+
+    }
+
+    updateStats();
+
+
+    /* RESULTS */
+
     resultTime.textContent =
-        formatTime(elapsedSeconds);
+        `${Math.floor(elapsedSeconds)}s`;
 
     resultWpm.textContent =
-        calculateWPM();
+        finalWpm;
 
     resultAccuracy.textContent =
-        `${calculateAccuracy()}%`;
+        `${finalAccuracy}%`;
 
     resultMistakes.textContent =
         mistakes;
@@ -1540,56 +1336,42 @@ function endGame(reason) {
         finalScore;
 
     resultBest.textContent =
-        newBest;
+        Math.max(
+            finalScore,
+            oldBest
+        );
 
-    if (
-        finalScore > oldBest &&
-        finalScore > 0
-    ) {
+
+    if (newBest) {
+
+        resultIcon.textContent = "🏆";
 
         resultTitle.textContent =
             "NEW RECORD!";
 
-        resultSubtitle.textContent =
-            "You just set a new personal best.";
+        resultMessage.textContent =
+            "You just set your best score.";
+
+        resultExtra.textContent =
+            `${message} • New personal best!`;
 
     } else {
+
+        resultIcon.textContent = "🔥";
 
         resultTitle.textContent =
-            currentMode === "falling"
-                ? "Game Over"
-                : "Challenge Complete";
+            "Challenge Complete";
 
-        resultSubtitle.textContent =
-            reason || "Great run!";
+        resultMessage.textContent =
+            "Great run! Keep practicing to beat your record.";
 
-    }
-
-    if (
-        currentMode === "falling"
-    ) {
-
-        resultExtra.innerHTML =
-            `<strong>${wordsCompleted}</strong> words completed`;
-
-    } else {
-
-        resultExtra.innerHTML =
-            `<strong>${currentParagraph.length}</strong> characters typed`;
+        resultExtra.textContent =
+            message;
 
     }
 
-    updateStats();
 
-    resultsOverlay.classList.remove(
-        "hidden"
-    );
-
-    startBtn.textContent =
-        "▶ START";
-
-    recordText.textContent =
-        reason || "Run finished.";
+    showResultsOverlay();
 
 }
 
@@ -1598,7 +1380,7 @@ function endGame(reason) {
    STOP LOOPS
    ========================================================= */
 
-function stopGameLoops() {
+function stopLoops() {
 
     stopTimer();
 
@@ -1612,44 +1394,110 @@ function stopGameLoops() {
 
     }
 
+    fallingLoop.lastTimestamp = 0;
+
 }
 
 
 /* =========================================================
-   OVERLAYS
+   RESET CURRENT GAME
    ========================================================= */
 
-function showStartOverlay() {
+function resetCurrentGame() {
 
-    closeResultsOverlay();
+    hideResultsOverlay();
 
-    setModeDisplay();
+    prepareGame();
 
-    setDifficultyDisplay();
-
-    startOverlay.classList.remove(
-        "hidden"
-    );
+    showStartOverlay();
 
 }
 
 
-function closeStartOverlay() {
+/* =========================================================
+   MODE BUTTONS
+   ========================================================= */
 
-    startOverlay.classList.add(
-        "hidden"
+modeButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            /*
+               Do not change mode during an active game.
+               The player can change it after finishing
+               or before starting.
+            */
+
+            if (gameRunning) return;
+
+            const mode =
+                button.dataset.mode;
+
+            if (
+                mode !== "falling" &&
+                mode !== "paragraph"
+            ) {
+
+                return;
+            }
+
+            currentMode = mode;
+
+            updateModeButtons();
+
+            prepareGame();
+
+            updateModeText();
+
+            showMode();
+
+        }
     );
 
-}
+});
 
 
-function closeResultsOverlay() {
+/* =========================================================
+   DIFFICULTY BUTTONS
+   ========================================================= */
 
-    resultsOverlay.classList.add(
-        "hidden"
+difficultyButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            if (gameRunning) return;
+
+            const difficulty =
+                button.dataset.difficulty;
+
+            if (
+                !difficultyConfig[
+                    difficulty
+                ]
+            ) {
+
+                return;
+            }
+
+            currentDifficulty =
+                difficulty;
+
+            updateDifficultyButtons();
+
+            prepareGame();
+
+            updateModeText();
+
+            showMode();
+
+        }
     );
 
-}
+});
 
 
 /* =========================================================
@@ -1658,29 +1506,23 @@ function closeResultsOverlay() {
 
 startBtn.addEventListener(
     "click",
-    () => {
+    function () {
 
-        if (!gameRunning) {
-
-            prepareNewGame();
-
-            startGame();
-
-        }
+        startGame();
 
     }
 );
 
 
 /* =========================================================
-   OVERLAY START
+   PLAY AGAIN
    ========================================================= */
 
-overlayStartBtn.addEventListener(
+playAgainBtn.addEventListener(
     "click",
-    () => {
+    function () {
 
-        closeStartOverlay();
+        hideResultsOverlay();
 
         startGame();
 
@@ -1694,14 +1536,9 @@ overlayStartBtn.addEventListener(
 
 restartBtn.addEventListener(
     "click",
-    () => {
+    function () {
 
-        closeStartOverlay();
-        closeResultsOverlay();
-
-        prepareNewGame();
-
-        startGame();
+        resetCurrentGame();
 
     }
 );
@@ -1713,123 +1550,54 @@ restartBtn.addEventListener(
 
 newGameBtn.addEventListener(
     "click",
-    () => {
+    function () {
 
-        closeResultsOverlay();
-
-        prepareNewGame();
-
-        showStartOverlay();
+        resetCurrentGame();
 
     }
 );
 
 
 /* =========================================================
-   RESULT PLAY AGAIN
-   ========================================================= */
-
-resultRestartBtn.addEventListener(
-    "click",
-    () => {
-
-        closeResultsOverlay();
-
-        prepareNewGame();
-
-        startGame();
-
-    }
-);
-
-
-/* =========================================================
-   ERROR FEEDBACK
-   ========================================================= */
-
-function flashInputError(input) {
-
-    input.animate(
-        [
-            {
-                transform:
-                    "translateX(0)"
-            },
-            {
-                transform:
-                    "translateX(-5px)"
-            },
-            {
-                transform:
-                    "translateX(5px)"
-            },
-            {
-                transform:
-                    "translateX(-4px)"
-            },
-            {
-                transform:
-                    "translateX(4px)"
-            },
-            {
-                transform:
-                    "translateX(0)"
-            }
-        ],
-        {
-            duration: 180,
-            easing: "ease-out"
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PREVENT PASTE / DROP
-   ========================================================= */
-
-function preventPasteAndDrop(input) {
-
-    input.addEventListener(
-        "paste",
-        event => {
-            event.preventDefault();
-        }
-    );
-
-    input.addEventListener(
-        "drop",
-        event => {
-            event.preventDefault();
-        }
-    );
-
-}
-
-
-preventPasteAndDrop(fallingInput);
-preventPasteAndDrop(paragraphInput);
-
-
-/* =========================================================
-   ESC
+   KEYBOARD SAFETY
    ========================================================= */
 
 document.addEventListener(
     "keydown",
-    event => {
+    function (event) {
 
         if (
-            event.key === "Escape" &&
-            !resultsOverlay.classList.contains(
-                "hidden"
-            )
+            event.key === "Enter" &&
+            !gameRunning &&
+            !startOverlay.hidden
         ) {
 
-            closeResultsOverlay();
+            startGame();
 
         }
+
+    }
+);
+
+
+/* =========================================================
+   BLOCK PASTE
+   ========================================================= */
+
+fallingInput.addEventListener(
+    "paste",
+    function (event) {
+
+        event.preventDefault();
+
+    }
+);
+
+paragraphInput.addEventListener(
+    "paste",
+    function (event) {
+
+        event.preventDefault();
 
     }
 );
@@ -1839,15 +1607,29 @@ document.addEventListener(
    INITIALIZATION
    ========================================================= */
 
-prepareNewGame();
+function initialize() {
 
-currentMode = "falling";
-currentDifficulty = "easy";
+    currentMode = "falling";
 
-setModeDisplay();
-setDifficultyDisplay();
-updateButtonStates();
+    currentDifficulty = "easy";
 
-showStartOverlay();
+    updateModeButtons();
 
-updateStats();
+    updateDifficultyButtons();
+
+    prepareGame();
+
+    updateModeText();
+
+    showMode();
+
+    hideResultsOverlay();
+
+    showStartOverlay();
+
+    updateStats();
+
+}
+
+
+initialize();

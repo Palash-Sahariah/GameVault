@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
 
@@ -11,19 +10,14 @@
 
     <meta
         name="description"
-        content="Typing Rush - test your typing speed and accuracy with falling words and challenging paragraphs."
-    >
-
-    <meta
-        name="robots"
-        content="index, follow"
+        content="Typing Rush — test your typing speed and accuracy with falling words and paragraph challenges."
     >
 
     <title>Typing Rush | GameVault</title>
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/typing.css') }}"
+        href="{{ url_for('static', filename='css/typing.css') }}?v=20"
     >
 </head>
 
@@ -33,41 +27,56 @@
     <div class="background-glow glow-one"></div>
     <div class="background-glow glow-two"></div>
 
+
     <main class="typing-page">
 
-        <!-- TOP BAR -->
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
         <header class="top-bar">
 
             <a href="/" class="back-btn">
-                ← BACK
+                ← GAMEVAULT
             </a>
 
             <div class="game-title">
-                <span class="title-icon">⌨️</span>
+
+                <div class="title-icon">
+                    ⌨️
+                </div>
+
                 <div>
                     <h1>Typing Rush</h1>
-                    <p>Speed • Accuracy • Focus</p>
+
+                    <p>
+                        Speed • Accuracy • Focus
+                    </p>
                 </div>
+
             </div>
 
         </header>
 
 
-        <!-- MODE SELECTOR -->
-        <section class="mode-panel">
+        <!-- =================================================
+             MODE SELECTOR
+        ================================================== -->
+
+        <section class="mode-panel" aria-label="Game mode">
 
             <button
+                type="button"
                 class="mode-btn active"
                 data-mode="falling"
-                type="button"
             >
                 🍎 Falling Words
             </button>
 
             <button
+                type="button"
                 class="mode-btn"
                 data-mode="paragraph"
-                type="button"
             >
                 📖 Paragraph Challenge
             </button>
@@ -75,37 +84,43 @@
         </section>
 
 
-        <!-- DIFFICULTY -->
-        <section class="difficulty-panel">
+        <!-- =================================================
+             DIFFICULTY SELECTOR
+        ================================================== -->
+
+        <section
+            class="difficulty-panel"
+            aria-label="Difficulty"
+        >
 
             <button
+                type="button"
                 class="difficulty-btn active"
                 data-difficulty="easy"
-                type="button"
             >
                 EASY
             </button>
 
             <button
+                type="button"
                 class="difficulty-btn"
                 data-difficulty="normal"
-                type="button"
             >
                 NORMAL
             </button>
 
             <button
+                type="button"
                 class="difficulty-btn"
                 data-difficulty="hard"
-                type="button"
             >
                 HARD
             </button>
 
             <button
+                type="button"
                 class="difficulty-btn"
                 data-difficulty="insane"
-                type="button"
             >
                 INSANE
             </button>
@@ -113,7 +128,10 @@
         </section>
 
 
-        <!-- STATS -->
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
         <section class="stats-grid">
 
             <div class="stat-card">
@@ -149,24 +167,29 @@
         </section>
 
 
-        <!-- ========================= -->
-        <!-- FALLING WORDS -->
-        <!-- ========================= -->
+        <!-- =================================================
+             FALLING WORDS
+        ================================================== -->
 
         <section
             id="fallingMode"
-            class="game-section active-section"
+            class="game-section"
         >
 
             <div class="section-heading">
+
                 <div>
-                    <span class="section-tag">MODE 01</span>
+                    <span class="section-tag">
+                        MODE 01
+                    </span>
+
                     <h2>Falling Words</h2>
                 </div>
 
                 <p>
-                    Type the falling word before it reaches the ground.
+                    Type the word before it reaches the ground.
                 </p>
+
             </div>
 
 
@@ -195,9 +218,8 @@
                     type="text"
                     autocomplete="off"
                     autocorrect="off"
-                    autocapitalize="none"
+                    autocapitalize="off"
                     spellcheck="false"
-                    inputmode="text"
                     placeholder="Type the falling word..."
                     disabled
                 >
@@ -207,9 +229,9 @@
         </section>
 
 
-        <!-- ========================= -->
-        <!-- PARAGRAPH -->
-        <!-- ========================= -->
+        <!-- =================================================
+             PARAGRAPH
+        ================================================== -->
 
         <section
             id="paragraphMode"
@@ -218,32 +240,37 @@
         >
 
             <div class="section-heading">
+
                 <div>
-                    <span class="section-tag">MODE 02</span>
+                    <span class="section-tag">
+                        MODE 02
+                    </span>
+
                     <h2>Paragraph Challenge</h2>
                 </div>
 
                 <p>
-                    Type the complete paragraph with perfect accuracy.
+                    Type the entire paragraph accurately.
                 </p>
+
             </div>
 
 
             <div
                 id="paragraphDisplay"
                 class="paragraph-display"
-            >
-                Your paragraph will appear here.
-            </div>
+            ></div>
 
 
             <div class="paragraph-progress">
 
                 <div class="progress-track">
+
                     <div
                         id="paragraphProgress"
                         class="progress-fill"
                     ></div>
+
                 </div>
 
                 <span id="paragraphProgressText">
@@ -260,11 +287,10 @@
                     class="typing-input paragraph-input"
                     autocomplete="off"
                     autocorrect="off"
-                    autocapitalize="none"
+                    autocapitalize="off"
                     spellcheck="false"
-                    placeholder="Type the paragraph here..."
+                    placeholder="Start typing the paragraph..."
                     disabled
-                    rows="5"
                 ></textarea>
 
             </div>
@@ -272,16 +298,11 @@
         </section>
 
 
-        <!-- CONTROLS -->
-        <section class="controls">
+        <!-- =================================================
+             CONTROLS
+        ================================================== -->
 
-            <button
-                id="startBtn"
-                class="control-btn primary-btn"
-                type="button"
-            >
-                ▶ START
-            </button>
+        <section class="controls">
 
             <button
                 id="restartBtn"
@@ -293,26 +314,29 @@
 
             <button
                 id="newGameBtn"
-                class="control-btn"
+                class="control-btn primary-btn"
                 type="button"
             >
-                ✦ NEW GAME
+                ⚡ NEW GAME
             </button>
 
         </section>
 
 
-        <!-- BEST RECORD -->
-        <div class="record-line">
-            <span id="recordText">
-                Ready when you are.
-            </span>
+        <div
+            id="recordText"
+            class="record-line"
+        >
+            Your best performance is saved locally on this device.
         </div>
 
     </main>
 
 
-    <!-- START OVERLAY -->
+    <!-- =====================================================
+         START OVERLAY
+    ====================================================== -->
+
     <div
         id="startOverlay"
         class="overlay"
@@ -324,30 +348,33 @@
                 ⌨️
             </div>
 
-            <h2>Typing Rush</h2>
+            <h2>
+                Typing Rush
+            </h2>
 
-            <p id="startDescription">
-                Type the falling words before they hit the ground.
+            <p>
+                Choose your mode and difficulty, then type as
+                quickly and accurately as possible.
             </p>
 
             <div class="overlay-info">
 
-                <span id="overlayMode">
+                <span id="startModeText">
                     🍎 Falling Words
                 </span>
 
-                <span id="overlayDifficulty">
+                <span id="startDifficultyText">
                     EASY
                 </span>
 
             </div>
 
             <button
-                id="overlayStartBtn"
+                id="startBtn"
                 class="control-btn primary-btn big-btn"
                 type="button"
             >
-                ▶ START GAME
+                🚀 START GAME
             </button>
 
         </div>
@@ -355,23 +382,30 @@
     </div>
 
 
-    <!-- RESULTS OVERLAY -->
+    <!-- =====================================================
+         RESULTS OVERLAY
+    ====================================================== -->
+
     <div
         id="resultsOverlay"
-        class="overlay hidden"
+        class="overlay"
+        hidden
     >
 
         <div class="overlay-card results-card">
 
-            <div class="result-icon">
+            <div
+                id="resultIcon"
+                class="result-icon"
+            >
                 🏆
             </div>
 
             <h2 id="resultTitle">
-                Game Over
+                Challenge Complete
             </h2>
 
-            <p id="resultSubtitle">
+            <p id="resultMessage">
                 Great run!
             </p>
 
@@ -418,11 +452,11 @@
 
 
             <button
-                id="resultRestartBtn"
+                id="playAgainBtn"
                 class="control-btn primary-btn big-btn"
                 type="button"
             >
-                ↻ PLAY AGAIN
+                🔥 PLAY AGAIN
             </button>
 
         </div>
@@ -431,9 +465,9 @@
 
 
     <script
-        src="{{ url_for('static', filename='js/typing.js') }}"
+        src="{{ url_for('static', filename='js/typing.js') }}?v=20"
+        defer
     ></script>
 
 </body>
-
 </html>
