@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Empire | GameVault</title>
+
+    <!-- EXACT SAME VAULT CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/billionaire-vault.css') }}">
+</head>
+
+<body>
+
+<div class="vault-background">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+
+
+<header class="vault-navbar">
+
+    <div class="brand">
+        <span class="brand-main">GAMEVAULT</span>
+        <span class="brand-sub">EMPIRE</span>
+    </div>
+
+    <div class="nav-right">
+
+        <button class="nav-cart" id="cartButton">
+            🛒 YOUR CART
+            <span id="cartCount">0</span>
+        </button>
+
+        <button class="back-button" id="backButton">
+            ← BACK
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="vault-container">
+
+    <section class="vault-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                GAMEVAULT • BILLIONAIRE BREAKOUT
+            </div>
+
+            <h1>THE EMPIRE VAULT</h1>
+
+            <p>
+                Acquire legendary companies, global brands,
+                media giants, financial institutions and
+                industrial empires.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search companies..."
+                autocomplete="off"
+            >
+
+            <button
+                id="clearSearch"
+                class="clear-search">
+                ×
+            </button>
+
+        </div>
+
+        <div class="result-info">
+            <span id="resultCount">0</span>
+            empires found
+        </div>
+
+    </section>
+
+
+    <div class="shop-layout">
+
+
+        <!-- FILTER SIDEBAR -->
+
+        <aside
+            class="filter-sidebar"
+            id="filterSidebar">
+
+
+            <div class="filter-header">
+
+                <h2>FILTER</h2>
+
+                <button id="closeFilters">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="filter-section">
+
+                <h3>INDUSTRY</h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="technology"
+                        class="category-filter">
+                    Technology
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="automotive"
+                        class="category-filter">
+                    Automotive
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="finance"
+                        class="category-filter">
+                    Finance
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="media"
+                        class="category-filter">
+                    Media
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="retail"
+                        class="category-filter">
+                    Retail
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="luxury"
+                        class="category-filter">
+                    Luxury
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="energy"
+                        class="category-filter">
+                    Energy
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="telecom"
+                        class="category-filter">
+                    Telecom
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="industrial"
+                        class="category-filter">
+                    Industrial
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="food"
+                        class="category-filter">
+                    Food & Beverage
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="pharma"
+                        class="category-filter">
+                    Healthcare
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="aerospace"
+                        class="category-filter">
+                    Aerospace
+                </label>
+
+            </div>
+
+
+            <div class="filter-section">
+
+                <h3>PRICE</h3>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="all"
+                        checked>
+                    All Prices
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="10000000000">
+                    Under $10B
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="50000000000">
+                    $10B – $50B
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="100000000000">
+                    $50B – $100B
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="250000000000">
+                    $100B – $250B
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="1000000000000">
+                    $250B+
+                </label>
+
+            </div>
+
+
+            <div class="filter-section">
+
+                <h3>OWNERSHIP</h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="available"
+                        class="availability-filter">
+                    Available
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="owned"
+                        class="availability-filter">
+                    Owned
+                </label>
+
+            </div>
+
+
+            <button
+                id="resetFilters"
+                class="reset-filters">
+                RESET FILTERS
+            </button>
+
+        </aside>
+
+
+        <!-- PRODUCTS -->
+
+        <section class="products-section">
+
+
+            <div class="mobile-filter-row">
+
+                <button
+                    id="openFilters"
+                    class="mobile-filter-button">
+                    ☰ FILTER
+                </button>
+
+
+                <select id="sortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="desktop-sort">
+
+                <span>Sort by</span>
+
+                <select id="desktopSortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="productsGrid"
+                class="products-grid">
+            </div>
+
+
+            <div
+                id="noResults"
+                class="no-results">
+
+                <div class="empty-icon">
+                    🏢
+                </div>
+
+                <h2>
+                    NO EMPIRES FOUND
+                </h2>
+
+                <p>
+                    Try another search or change your filters.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/empire-data.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/billionaire-empire.js') }}"></script>
+
+
+</body>
+</html>

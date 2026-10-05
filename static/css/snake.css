@@ -1,0 +1,978 @@
+/* =========================================================
+   GAMEVAULT — SNAKE
+   FULL SCREEN GAME LAYOUT
+   ========================================================= */
+
+
+/* ================= GLOBAL ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0, 80, 255, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(150, 0, 255, 0.15),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #02050d,
+            #061225 50%,
+            #02040a
+        );
+
+    color: white;
+}
+
+
+/* Prevent mobile browser weirdness */
+
+body {
+    min-height: 100dvh;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.snake-page {
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.snake-header {
+    width: 100%;
+
+    height: 64px;
+    min-height: 64px;
+
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid
+        rgba(212, 175, 55, 0.25);
+
+    background:
+        rgba(2, 6, 18, 0.82);
+
+    backdrop-filter: blur(14px);
+
+    position: relative;
+    z-index: 20;
+}
+
+
+/* Logo */
+
+.brand {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.brand-game {
+    color: white;
+}
+
+.brand-vault {
+    color: #d4af37;
+    margin-left: 4px;
+}
+
+
+/* Back button */
+
+.back-btn {
+    text-decoration: none;
+
+    color: white;
+
+    padding: 9px 17px;
+
+    border-radius: 12px;
+
+    border: 1px solid
+        rgba(212, 175, 55, 0.35);
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    transition: 0.25s ease;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.back-btn:hover {
+    background:
+        rgba(212, 175, 55, 0.12);
+
+    border-color:
+        rgba(212, 175, 55, 0.8);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   MAIN GAME
+   ========================================================= */
+
+.snake-main {
+    width: 100%;
+
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    padding:
+        8px 20px 10px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TITLE + SCORE
+   ========================================================= */
+
+.snake-top {
+    width: min(100%, 1000px);
+
+    flex-shrink: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 5px;
+}
+
+
+/* Title */
+
+.eyebrow {
+    color: #d4af37;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 2px;
+}
+
+.snake-title h1 {
+    margin: 0;
+
+    font-size: clamp(25px, 4vh, 46px);
+
+    line-height: 1;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 15px
+        rgba(0, 200, 255, 0.35);
+}
+
+.snake-title h1 span {
+    color: #00ff9d;
+}
+
+
+/* Score */
+
+.score-area {
+    display: flex;
+    gap: 8px;
+}
+
+.score-box {
+    min-width: 75px;
+
+    padding: 8px 12px;
+
+    text-align: center;
+
+    border-radius: 13px;
+
+    border: 1px solid
+        rgba(212, 175, 55, 0.3);
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(10px);
+}
+
+.score-box span {
+    display: block;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #9ba8bd;
+
+    font-weight: 800;
+}
+
+.score-box strong {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #d4af37;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   GAME BOARD AREA
+   ========================================================= */
+
+.snake-game-area {
+    width: 100%;
+
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* Board wrapper */
+
+.snake-board-wrap {
+    position: relative;
+
+    /*
+       The important part.
+
+       Board uses BOTH width and height,
+       so it cannot make the page taller
+       than the screen.
+    */
+
+    width: min(82vw, 70vh);
+    height: min(82vw, 70vh);
+
+    max-width: 720px;
+    max-height: 720px;
+
+    aspect-ratio: 1 / 1;
+
+    flex-shrink: 1;
+
+    border-radius: 20px;
+
+    border:
+        2px solid
+        rgba(212, 175, 55, 0.65);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7, 25, 48, 0.92),
+            rgba(2, 8, 20, 0.95)
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(0, 110, 255, 0.16),
+
+        inset 0 0 30px
+        rgba(0, 0, 0, 0.4);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CANVAS
+   ========================================================= */
+
+#gameCanvas {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            rgba(0, 255, 140, 0.025),
+            rgba(0, 100, 255, 0.02)
+        );
+
+    touch-action: none;
+
+    cursor: crosshair;
+}
+
+
+/* =========================================================
+   OVERLAYS
+   ========================================================= */
+
+.game-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(1, 5, 15, 0.55);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 10;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+.game-overlay.hidden {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* Overlay card */
+
+.overlay-card {
+    width: min(420px, 88%);
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.55);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12, 53, 100, 0.94),
+            rgba(5, 18, 38, 0.97)
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(0, 140, 255, 0.28),
+
+        inset 0 0 25px
+        rgba(255, 255, 255, 0.025);
+
+    animation:
+        popupIn 0.35s ease;
+}
+
+
+.small-card {
+    width: min(340px, 85%);
+}
+
+
+@keyframes popupIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.overlay-icon {
+    font-size: 45px;
+
+    margin-bottom: 4px;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(0, 255, 160, 0.55)
+        );
+}
+
+
+.overlay-card h2 {
+    margin: 3px 0 8px;
+
+    font-size: 30px;
+
+    letter-spacing: 1px;
+}
+
+
+.overlay-card p {
+    margin: 0 0 18px;
+
+    color: #c2ccdc;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PLAY BUTTON
+   ========================================================= */
+
+.primary-btn {
+    width: 100%;
+
+    padding: 13px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #dfffea
+        );
+
+    color: #057b48;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 0 18px
+        rgba(0, 255, 150, 0.4);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 28px
+        rgba(0, 255, 150, 0.65);
+}
+
+.primary-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   CONTROL INFO
+   ========================================================= */
+
+.control-info {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 13px;
+}
+
+.control-info > div {
+    flex: 1;
+
+    padding: 9px 5px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    color: #dbe4f0;
+
+    font-size: 10px;
+}
+
+.control-info small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8795aa;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   GAME BUTTONS
+   ========================================================= */
+
+.game-controls {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+
+    margin-top: 6px;
+}
+
+
+.control-btn {
+    padding: 8px 16px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.35);
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+
+.control-btn:hover {
+    border-color:
+        rgba(212, 175, 55, 0.8);
+
+    background:
+        rgba(212, 175, 55, 0.1);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   MOBILE D-PAD
+   ========================================================= */
+
+.dpad {
+    display: none;
+
+    flex-shrink: 0;
+
+    margin-top: 6px;
+}
+
+
+.dpad-middle {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+}
+
+
+.dpad-btn {
+    width: 42px;
+    height: 36px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid
+        rgba(0, 200, 255, 0.35);
+
+    background:
+        rgba(0, 100, 180, 0.15);
+
+    color: #bdeeff;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    user-select: none;
+}
+
+
+.dpad-btn:active {
+    background:
+        rgba(0, 180, 255, 0.35);
+
+    transform: scale(0.94);
+}
+
+
+.dpad .up {
+    display: block;
+
+    margin: 0 auto 5px;
+}
+
+
+/* =========================================================
+   HINT
+   ========================================================= */
+
+.game-hint {
+    flex-shrink: 0;
+
+    margin-top: 5px;
+
+    color: #6e7e96;
+
+    font-size: 9px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .snake-header {
+        height: 50px;
+        min-height: 50px;
+
+        padding: 0 13px;
+    }
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .back-btn {
+        padding: 7px 10px;
+
+        font-size: 11px;
+    }
+
+
+    .snake-main {
+        padding:
+            5px 8px 6px;
+    }
+
+
+    .snake-top {
+        width: 100%;
+
+        margin-bottom: 3px;
+    }
+
+
+    .eyebrow {
+        font-size: 7px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .snake-title h1 {
+        font-size: 25px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .score-box {
+        min-width: 52px;
+
+        padding: 5px 7px;
+
+        border-radius: 9px;
+    }
+
+
+    .score-box span {
+        font-size: 6px;
+    }
+
+
+    .score-box strong {
+        font-size: 13px;
+    }
+
+
+    /*
+       Smaller board so the title,
+       board and controls all fit.
+    */
+
+    .snake-board-wrap {
+        width: min(94vw, 60vh);
+        height: min(94vw, 60vh);
+
+        border-radius: 15px;
+    }
+
+
+    .game-controls {
+        margin-top: 4px;
+    }
+
+
+    .control-btn {
+        padding: 6px 12px;
+
+        font-size: 9px;
+    }
+
+
+    .dpad {
+        display: block;
+    }
+
+
+    .game-hint {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   VERY SHORT SCREENS
+   ========================================================= */
+
+@media (max-height: 650px) {
+
+    .snake-header {
+        height: 44px;
+        min-height: 44px;
+    }
+
+
+    .snake-main {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+
+    .snake-title h1 {
+        font-size: 21px;
+    }
+
+
+    .snake-board-wrap {
+        width: min(70vw, 55vh);
+        height: min(70vw, 55vh);
+    }
+
+
+    .game-controls {
+        margin-top: 2px;
+    }
+
+
+    .control-btn {
+        padding: 5px 10px;
+    }
+
+
+    .dpad {
+        margin-top: 2px;
+    }
+
+
+    .dpad-btn {
+        width: 34px;
+        height: 28px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .snake-board-wrap {
+        width: min(92vw, 54vh);
+        height: min(92vw, 54vh);
+    }
+
+
+    .overlay-card {
+        padding: 18px;
+    }
+
+
+    .overlay-icon {
+        font-size: 34px;
+    }
+
+
+    .overlay-card h2 {
+        font-size: 23px;
+    }
+
+
+    .overlay-card p {
+        font-size: 11px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .primary-btn {
+        padding: 10px;
+
+        font-size: 11px;
+    }
+
+
+    .control-info {
+        margin-top: 9px;
+    }
+
+
+    .control-info > div {
+        padding: 6px 3px;
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE PHONE
+   ========================================================= */
+
+@media (max-height: 500px) and (orientation: landscape) {
+
+    .snake-header {
+        height: 40px;
+        min-height: 40px;
+    }
+
+
+    .snake-main {
+        padding: 2px 10px;
+    }
+
+
+    .snake-top {
+        margin-bottom: 2px;
+    }
+
+
+    .snake-title h1 {
+        font-size: 20px;
+    }
+
+
+    .eyebrow {
+        display: none;
+    }
+
+
+    .snake-board-wrap {
+        width: min(62vh, 65vw);
+        height: min(62vh, 65vw);
+    }
+
+
+    .dpad {
+        display: none;
+    }
+
+
+    .game-hint {
+        display: block;
+
+        font-size: 7px;
+    }
+
+
+    .game-controls {
+        margin-top: 2px;
+    }
+}

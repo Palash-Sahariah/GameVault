@@ -1,0 +1,2431 @@
+/* =========================================================
+   GAMEVAULT — BILLIONAIRE BREAKOUT
+   Main Selection + Billionaire Command Center
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+
+    min-height: 100vh;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(78, 61, 255, 0.20),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 65%,
+            rgba(0, 108, 255, 0.16),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(151, 62, 255, 0.12),
+            transparent 35%
+        ),
+        #050713;
+
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   ANIMATED BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    z-index: -5;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(12, 17, 43, 0.96),
+            rgba(5, 7, 19, 0.98)
+        );
+}
+
+.background::before {
+    content: "";
+
+    position: absolute;
+    inset: -20%;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(83, 65, 255, 0.18),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 125, 255, 0.15),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(162, 62, 255, 0.12),
+            transparent 25%
+        );
+
+    animation: backgroundMove 15s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundMove {
+
+    0% {
+        transform: translate3d(-2%, -2%, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(2%, 1%, 0) scale(1.05);
+    }
+
+    100% {
+        transform: translate3d(-1%, 3%, 0) scale(1.02);
+    }
+}
+
+
+.orb {
+    position: fixed;
+
+    border-radius: 50%;
+
+    filter: blur(60px);
+
+    pointer-events: none;
+
+    z-index: -3;
+
+    opacity: 0.35;
+}
+
+.orb-one {
+    width: 280px;
+    height: 280px;
+
+    top: 10%;
+    left: -100px;
+
+    background: rgba(80, 65, 255, 0.35);
+
+    animation: orbFloatOne 10s ease-in-out infinite;
+}
+
+.orb-two {
+    width: 250px;
+    height: 250px;
+
+    right: -80px;
+    top: 45%;
+
+    background: rgba(0, 120, 255, 0.25);
+
+    animation: orbFloatTwo 12s ease-in-out infinite;
+}
+
+.orb-three {
+    width: 300px;
+    height: 300px;
+
+    bottom: -100px;
+    left: 40%;
+
+    background: rgba(160, 60, 255, 0.18);
+
+    animation: orbFloatThree 14s ease-in-out infinite;
+}
+
+@keyframes orbFloatOne {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(70px, 40px);
+    }
+}
+
+@keyframes orbFloatTwo {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-60px, -40px);
+    }
+}
+
+@keyframes orbFloatThree {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(40px, -60px);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.topbar {
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 12px 5%;
+
+    background:
+        rgba(5, 7, 19, 0.88);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom:
+        1px solid rgba(218, 174, 72, 0.25);
+
+    box-shadow:
+        0 10px 45px rgba(0, 0, 0, 0.4);
+}
+
+
+.brand {
+
+    color: #e2bc56;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 1000;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+}
+
+
+.page-title {
+
+    color: #b8bdd0;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    text-align: center;
+}
+
+
+.nav-actions {
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.nav-btn {
+
+    border:
+        1px solid rgba(218, 174, 72, 0.42);
+
+    background:
+        rgba(218, 174, 72, 0.055);
+
+    color: #dfbd5b;
+
+    padding: 10px 15px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        0.25s ease;
+
+    white-space: nowrap;
+}
+
+
+.nav-btn:hover {
+
+    transform: translateY(-2px);
+
+    background:
+        rgba(218, 174, 72, 0.12);
+
+    border-color:
+        rgba(218, 174, 72, 0.8);
+
+    box-shadow:
+        0 8px 25px rgba(218, 174, 72, 0.12);
+}
+
+
+.reset-btn {
+
+    border-color:
+        rgba(255, 90, 90, 0.45);
+
+    color:
+        #ffaaaa;
+
+    background:
+        rgba(255, 70, 70, 0.045);
+}
+
+
+.reset-btn:hover {
+
+    border-color:
+        rgba(255, 100, 100, 0.9);
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 70, 70, 0.1);
+
+    box-shadow:
+        0 0 25px rgba(255, 60, 60, 0.18);
+}
+
+
+.cart-count {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 20px;
+    height: 20px;
+
+    margin-left: 5px;
+
+    padding: 0 5px;
+
+    border-radius: 50px;
+
+    background:
+        #dcb653;
+
+    color:
+        #090a12;
+
+    font-size: 9px;
+
+    font-weight: 1000;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+
+    width: min(1180px, 92%);
+
+    margin: 0 auto;
+
+    padding:
+        55px 0 80px;
+}
+
+
+/* =========================================================
+   BILLIONAIRE PROFILE
+========================================================= */
+
+.billionaire-profile {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 28px 30px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.25);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018)
+        );
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.3);
+}
+
+
+.profile-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    min-width: 0;
+}
+
+
+.profile-avatar {
+
+    width: 78px;
+    height: 78px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.45);
+
+    background:
+        linear-gradient(
+            135deg,
+            #151a38,
+            #281c4b
+        );
+
+    color: #dfbd5b;
+
+    font-size: 26px;
+
+    font-weight: 1000;
+
+    box-shadow:
+        inset 0 0 25px rgba(90, 70, 255, 0.12),
+        0 0 25px rgba(218, 174, 72, 0.06);
+}
+
+
+.profile-info {
+
+    min-width: 0;
+}
+
+
+.profile-label {
+
+    color: #8b78ff;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2.5px;
+}
+
+
+.profile-info h1 {
+
+    margin-top: 7px;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(25px, 4vw, 42px);
+
+    line-height: 1.05;
+
+    word-break: break-word;
+}
+
+
+.profile-info p {
+
+    margin-top: 8px;
+
+    color: #777e96;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.profile-fortune {
+
+    text-align: right;
+
+    flex-shrink: 0;
+}
+
+
+.fortune-label {
+
+    color: #707790;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.fortune-value {
+
+    margin-top: 7px;
+
+    color: #e3c15e;
+
+    font-size:
+        clamp(28px, 4vw, 45px);
+
+    font-weight: 1000;
+
+    text-shadow:
+        0 0 25px rgba(220, 182, 83, 0.12);
+}
+
+
+/* =========================================================
+   FINANCIAL GRID
+========================================================= */
+
+.financial-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.financial-card {
+
+    padding: 22px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        0.25s ease;
+}
+
+
+.financial-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(218, 174, 72, 0.22);
+}
+
+
+.financial-card span {
+
+    display: block;
+
+    color: #686f87;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.financial-card strong {
+
+    display: block;
+
+    margin-top: 9px;
+
+    color: #d6d9e5;
+
+    font-size: 24px;
+}
+
+
+.current-card {
+
+    border-color:
+        rgba(218, 174, 72, 0.25);
+
+    background:
+        rgba(218, 174, 72, 0.035);
+}
+
+
+.current-card strong {
+
+    color: #dfbd5b;
+}
+
+
+/* =========================================================
+   SPENDING PROGRESS
+========================================================= */
+
+.progress-section {
+
+    margin-top: 20px;
+
+    padding: 22px 24px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.055);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.022);
+
+    backdrop-filter: blur(15px);
+}
+
+
+.progress-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 12px;
+
+    color: #707790;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.progress-header div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.progress-header strong {
+
+    color: #dcb653;
+
+    font-size: 12px;
+}
+
+
+#spentAmount {
+
+    color: #b6bbca;
+}
+
+
+.progress-bar {
+
+    width: 100%;
+
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+}
+
+
+.progress-fill {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5b4cff,
+            #8b65ff,
+            #dcb653
+        );
+
+    box-shadow:
+        0 0 18px rgba(100, 80, 255, 0.3);
+
+    transition:
+        width 0.6s ease;
+}
+
+
+.progress-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 10px;
+
+    color: #646b83;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.progress-footer strong {
+
+    color: #bfc3d0;
+}
+
+
+/* =========================================================
+   FICTIONAL NOTICE
+========================================================= */
+
+.fictional-notice {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    padding: 13px 16px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.18);
+
+    border-radius: 12px;
+
+    background:
+        rgba(218, 174, 72, 0.035);
+
+    color: #9298ac;
+
+    font-size: 11px;
+}
+
+
+.fictional-notice span {
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SPEND HEADING
+========================================================= */
+
+.spend-heading {
+
+    margin-top: 70px;
+
+    text-align: center;
+}
+
+
+.small-heading {
+
+    color: #8977ff;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.spend-heading h2 {
+
+    margin-top: 8px;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(32px, 5vw, 52px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+
+.spend-heading p {
+
+    max-width: 650px;
+
+    margin: 15px auto 0;
+
+    color: #747b92;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CATEGORY GRID
+========================================================= */
+
+.category-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-top: 35px;
+}
+
+
+.category-card {
+
+    position: relative;
+
+    min-height: 170px;
+
+    padding: 24px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.18);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.015)
+        );
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.category-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: -80px;
+    right: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(90, 70, 255, 0.15);
+
+    filter: blur(20px);
+
+    transition:
+        0.3s ease;
+}
+
+
+.category-card:hover {
+
+    transform:
+        translateY(-7px)
+        scale(1.015);
+
+    border-color:
+        rgba(218, 174, 72, 0.55);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(76, 65, 255, 0.08);
+}
+
+
+.category-card:hover::before {
+
+    transform: scale(1.5);
+
+    background:
+        rgba(90, 70, 255, 0.23);
+}
+
+
+.category-icon {
+
+    position: relative;
+
+    font-size: 30px;
+
+    margin-bottom: 18px;
+}
+
+
+.category-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.category-content h3 {
+
+    color: #f0f1f5;
+
+    font-size: 19px;
+
+    font-weight: 900;
+}
+
+
+.category-content p {
+
+    margin-top: 8px;
+
+    max-width: 240px;
+
+    color: #747b92;
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+.category-arrow {
+
+    position: absolute;
+
+    right: 22px;
+    bottom: 20px;
+
+    color: #dcb653;
+
+    font-size: 22px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.category-card:hover .category-arrow {
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================================
+   BOTTOM CART
+========================================================= */
+
+.bottom-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 35px;
+}
+
+
+.cart-btn {
+
+    min-width: 230px;
+
+    padding: 14px 24px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.5);
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(218, 174, 72, 0.13),
+            rgba(218, 174, 72, 0.035)
+        );
+
+    color: #dfbd5b;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    transition:
+        0.25s ease;
+}
+
+
+.cart-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        #dcb653;
+
+    box-shadow:
+        0 12px 35px rgba(218, 174, 72, 0.13);
+}
+
+
+/* =========================================================
+   RESET MODAL
+========================================================= */
+
+.reset-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(2, 4, 15, 0.82);
+
+    backdrop-filter: blur(14px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+.reset-modal.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+.reset-modal-card {
+
+    width:
+        min(450px, 100%);
+
+    padding: 35px;
+
+    text-align: center;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.38);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 25, 55, 0.98),
+            rgba(7, 12, 30, 0.98)
+        );
+
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.7),
+        0 0 45px rgba(80, 65, 255, 0.12);
+
+    transform:
+        scale(0.9)
+        translateY(15px);
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.reset-modal.show .reset-modal-card {
+
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+
+.reset-icon {
+
+    width: 68px;
+    height: 68px;
+
+    margin:
+        0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.5);
+
+    border-radius: 50%;
+
+    background:
+        rgba(218, 174, 72, 0.07);
+
+    color:
+        #dcb653;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 0 25px rgba(218, 174, 72, 0.08);
+}
+
+
+.reset-modal-card h2 {
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    font-weight: 1000;
+}
+
+
+.reset-modal-card p {
+
+    margin-top: 10px;
+
+    color: #8b91a5;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.reset-warning {
+
+    margin-top: 20px;
+
+    padding: 14px 16px;
+
+    border:
+        1px solid rgba(255, 100, 100, 0.2);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 70, 70, 0.055);
+
+    color:
+        rgba(255, 210, 210, 0.85);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+.reset-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+
+.cancel-reset,
+.confirm-reset {
+
+    flex: 1;
+
+    padding: 13px 18px;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        0.25s ease;
+}
+
+
+.cancel-reset {
+
+    border:
+        1px solid rgba(255, 255, 255, 0.13);
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    color:
+        rgba(255, 255, 255, 0.72);
+}
+
+
+.cancel-reset:hover {
+
+    border-color:
+        rgba(255, 255, 255, 0.35);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.confirm-reset {
+
+    border:
+        1px solid rgba(255, 100, 100, 0.42);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(155, 45, 45, 0.95),
+            rgba(85, 24, 38, 0.95)
+        );
+
+    color: #ffffff;
+}
+
+
+.confirm-reset:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(255, 60, 60, 0.18);
+}
+
+
+/* =========================================================
+   SELECTION PAGE — SHARED STYLES
+========================================================= */
+
+.bb-navbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    min-height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background:
+        rgba(5, 7, 19, 0.88);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid rgba(218, 174, 72, 0.28);
+}
+
+
+.bb-brand {
+
+    color: #e6bd58;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.bb-nav-title {
+
+    color: #ddd;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+.back-button {
+
+    text-decoration: none;
+
+    color: #ddd;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.45);
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+
+.back-button:hover {
+
+    color: #f1ca64;
+
+    border-color: #dcb653;
+
+    background:
+        rgba(220, 182, 83, 0.08);
+}
+
+
+.bb-hero {
+
+    position: relative;
+
+    min-height: 540px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+
+.hero-glow {
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(74, 58, 255, 0.22),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    animation:
+        heroPulse 5s ease-in-out infinite;
+}
+
+
+@keyframes heroPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+
+    padding: 40px 20px;
+}
+
+
+.hero-content h1 {
+
+    font-size:
+        clamp(48px, 8vw, 92px);
+
+    line-height: 0.92;
+
+    font-weight: 1000;
+
+    letter-spacing: -4px;
+}
+
+
+.hero-content h1 span {
+
+    display: block;
+
+    color: #dcb653;
+}
+
+
+.hero-content p {
+
+    max-width: 620px;
+
+    margin: 28px auto;
+
+    color: #9da3ba;
+
+    line-height: 1.7;
+}
+
+
+.choose-button {
+
+    border: 0;
+
+    cursor: pointer;
+
+    padding: 16px 28px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e1bd58,
+            #9e7622
+        );
+
+    color: #090a12;
+
+    font-weight: 900;
+
+    transition: 0.3s;
+}
+
+
+.bb-disclaimer {
+
+    max-width: 1100px;
+
+    margin: 35px auto;
+
+    padding: 18px 22px;
+
+    display: flex;
+
+    gap: 15px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.22);
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    border-radius: 14px;
+}
+
+
+.selection-section {
+
+    max-width: 1100px;
+
+    margin: 70px auto;
+
+    padding: 0 20px;
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.section-label {
+
+    color: #8b78ff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+
+.section-heading h2 {
+
+    margin-top: 8px;
+
+    font-size:
+        clamp(30px, 5vw, 48px);
+}
+
+
+.section-heading h2 span {
+
+    color: #dcb653;
+}
+
+
+.total-count {
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: right;
+}
+
+
+.total-count strong {
+
+    color: #e0bc55;
+
+    font-size: 30px;
+}
+
+
+.total-count span {
+
+    color: #6e748b;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+.search-wrapper {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    height: 62px;
+
+    margin-bottom: 15px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.28);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(16px);
+}
+
+
+#billionaireSearch {
+
+    flex: 1;
+
+    height: 100%;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    padding: 0 15px;
+
+    font-size: 15px;
+}
+
+
+#billionaireSearch::placeholder {
+
+    color: #686f87;
+}
+
+
+.clear-search {
+
+    width: 42px;
+
+    height: 42px;
+
+    margin-right: 8px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #737a91;
+
+    font-size: 26px;
+
+    cursor: pointer;
+}
+
+
+.billionaire-list {
+
+    display: grid;
+
+    gap: 12px;
+}
+
+
+.billionaire-card {
+
+    display: grid;
+
+    grid-template-columns:
+        55px 75px 1fr auto;
+
+    align-items: center;
+
+    gap: 18px;
+
+    min-height: 100px;
+
+    padding: 13px 16px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.055);
+
+    border-left:
+        2px solid rgba(218, 174, 72, 0.35);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    transition: 0.25s;
+}
+
+
+.billionaire-card:hover {
+
+    transform: translateX(5px);
+
+    border-color:
+        rgba(104, 93, 255, 0.45);
+
+    border-left-color:
+        #dcb653;
+}
+
+
+.rank-box {
+
+    color: #777e96;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    text-align: center;
+}
+
+
+.billionaire-photo {
+
+    width: 68px;
+    height: 68px;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.28);
+
+    background:
+        linear-gradient(
+            135deg,
+            #12162b,
+            #1e1737
+        );
+}
+
+
+.billionaire-image {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.billionaire-initials {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #dcb653;
+
+    font-size: 20px;
+
+    font-weight: 900;
+}
+
+
+.billionaire-small-label {
+
+    color: #6f7690;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+.billionaire-info h3 {
+
+    margin-top: 4px;
+
+    font-size: 17px;
+
+    color: #f2f3f7;
+}
+
+
+.billionaire-estimate {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #656c84;
+
+    font-size: 9px;
+}
+
+
+.billionaire-fortune {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.billionaire-fortune strong {
+
+    color: #dfbd5b;
+
+    font-size: 20px;
+
+    white-space: nowrap;
+}
+
+
+.select-button {
+
+    border:
+        1px solid rgba(218, 174, 72, 0.5);
+
+    background:
+        rgba(218, 174, 72, 0.08);
+
+    color: #e2bf5e;
+
+    padding: 10px 16px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition: 0.25s;
+}
+
+
+.select-button:hover {
+
+    background:
+        #dcb653;
+
+    color: #090a12;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.no-results {
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.02);
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+.bb-footer {
+
+    padding: 40px 20px;
+
+    text-align: center;
+
+    color: #535a70;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   OLD SELECTED BILLIONAIRE PAGE SUPPORT
+========================================================= */
+
+.play-page {
+    min-height: 100vh;
+}
+
+
+.selected-billionaire {
+
+    max-width: 1000px;
+
+    margin: 80px auto;
+
+    padding: 20px;
+}
+
+
+.selected-card {
+
+    display: grid;
+
+    grid-template-columns: 300px 1fr;
+
+    gap: 50px;
+
+    padding: 45px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.28);
+
+    border-radius: 22px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(20px);
+}
+
+
+.selected-image-wrapper {
+
+    width: 100%;
+
+    aspect-ratio: 1;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.35);
+}
+
+
+.selected-image-wrapper img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+}
+
+
+.selected-initials {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #dcb653;
+
+    font-size: 70px;
+
+    font-weight: 1000;
+}
+
+
+.selected-label {
+
+    color: #8c79ff;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    font-weight: 900;
+}
+
+
+.selected-details h1 {
+
+    margin-top: 12px;
+
+    font-size:
+        clamp(35px, 6vw, 60px);
+}
+
+
+.selected-rank {
+
+    margin-top: 12px;
+
+    color: #737a91;
+
+    font-size: 12px;
+}
+
+
+.fortune-box {
+
+    margin-top: 35px;
+
+    padding: 20px;
+
+    border:
+        1px solid rgba(218, 174, 72, 0.22);
+
+    border-radius: 14px;
+
+    background:
+        rgba(218, 174, 72, 0.035);
+}
+
+
+.fortune-box strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: #dfbd5b;
+
+    font-size: 42px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .category-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .financial-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .financial-card:last-child {
+
+        grid-column:
+            span 2;
+    }
+
+    .selected-card {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .topbar {
+
+        min-height: 64px;
+
+        padding: 9px 12px;
+
+        gap: 8px;
+    }
+
+
+    .brand {
+
+        font-size: 11px;
+    }
+
+
+    .page-title {
+
+        display: none;
+    }
+
+
+    .nav-actions {
+
+        gap: 5px;
+    }
+
+
+    .nav-btn {
+
+        padding: 8px 9px;
+
+        font-size: 8px;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    .cart-count {
+
+        min-width: 17px;
+
+        height: 17px;
+
+        font-size: 8px;
+    }
+
+
+    .container {
+
+        width: 94%;
+
+        padding-top: 30px;
+    }
+
+
+    .billionaire-profile {
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .profile-left {
+
+        gap: 14px;
+    }
+
+
+    .profile-avatar {
+
+        width: 62px;
+        height: 62px;
+
+        border-radius: 15px;
+
+        font-size: 21px;
+    }
+
+
+    .profile-info h1 {
+
+        font-size: 25px;
+    }
+
+
+    .profile-fortune {
+
+        text-align: left;
+
+        padding-top: 12px;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.06);
+    }
+
+
+    .fortune-value {
+
+        font-size: 32px;
+    }
+
+
+    .financial-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .financial-card:last-child {
+
+        grid-column: auto;
+    }
+
+
+    .progress-section {
+
+        padding: 18px;
+    }
+
+
+    .progress-header {
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .spend-heading {
+
+        margin-top: 50px;
+    }
+
+
+    .spend-heading h2 {
+
+        font-size: 34px;
+    }
+
+
+    .spend-heading p {
+
+        font-size: 12px;
+    }
+
+
+    .category-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .category-card {
+
+        min-height: 145px;
+
+        padding: 20px;
+    }
+
+
+    .bottom-actions {
+
+        margin-top: 25px;
+    }
+
+
+    .cart-btn {
+
+        width: 100%;
+    }
+
+
+    .reset-modal-card {
+
+        padding: 28px 20px;
+
+        border-radius: 20px;
+    }
+
+
+    .reset-modal-card h2 {
+
+        font-size: 24px;
+    }
+
+
+    .reset-actions {
+
+        flex-direction: column;
+    }
+
+
+    /* Selection page mobile */
+
+    .bb-navbar {
+
+        min-height: 64px;
+
+        padding: 0 15px;
+    }
+
+
+    .bb-nav-title {
+
+        display: none;
+    }
+
+
+    .section-heading {
+
+        align-items: flex-start;
+    }
+
+
+    .total-count {
+
+        display: none;
+    }
+
+
+    .billionaire-card {
+
+        grid-template-columns:
+            35px 55px 1fr;
+
+        gap: 10px;
+
+        padding: 10px;
+    }
+
+
+    .billionaire-photo {
+
+        width: 55px;
+        height: 55px;
+    }
+
+
+    .billionaire-info h3 {
+
+        font-size: 13px;
+    }
+
+
+    .billionaire-fortune {
+
+        grid-column: 3;
+
+        justify-content: space-between;
+
+        margin-top: -8px;
+    }
+
+
+    .billionaire-fortune strong {
+
+        font-size: 15px;
+    }
+
+
+    .select-button {
+
+        padding: 8px 11px;
+
+        font-size: 8px;
+    }
+
+
+    .selected-billionaire {
+
+        margin: 35px auto;
+
+        padding: 12px;
+    }
+
+
+    .selected-card {
+
+        gap: 25px;
+
+        padding: 25px;
+    }
+
+
+    .selected-image-wrapper {
+
+        max-width: 240px;
+
+        margin: auto;
+    }
+
+
+    .selected-details {
+
+        text-align: center;
+    }
+
+
+    .fortune-box strong {
+
+        font-size: 32px;
+    }
+}

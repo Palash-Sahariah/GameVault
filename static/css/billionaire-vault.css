@@ -1,0 +1,1551 @@
+/* =========================================================
+   GAMEVAULT — THE VAULT
+   Premium Navy / Blue / Purple / Ancient Gold
+========================================================= */
+
+:root {
+    --bg: #050814;
+    --bg-deep: #02040b;
+
+    --panel: rgba(10, 15, 30, 0.88);
+    --panel-light: rgba(18, 25, 48, 0.78);
+
+    --gold: #d8b45a;
+    --gold-light: #ffe8a0;
+    --gold-dark: #8f6b24;
+
+    --blue: #4d7cff;
+    --blue-light: #7ea2ff;
+
+    --purple: #8b5cf6;
+    --purple-light: #b58cff;
+
+    --text: #f5f7ff;
+    --muted: #9ba5c2;
+
+    --border: rgba(216, 180, 90, 0.30);
+    --border-blue: rgba(77, 124, 255, 0.25);
+
+    --shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+
+    --radius: 18px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(60, 90, 220, 0.18),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(130, 60, 255, 0.13),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(20, 70, 180, 0.12),
+            transparent 38%
+        ),
+
+        var(--bg);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.vault-background {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: -2;
+}
+
+
+.vault-background::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.018) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.8),
+            transparent
+        );
+}
+
+
+.orb {
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    opacity: 0.18;
+
+    animation:
+        floatingOrb 12s ease-in-out infinite;
+}
+
+
+.orb-1 {
+    top: 5%;
+    left: -130px;
+
+    background: #315cff;
+}
+
+
+.orb-2 {
+    top: 35%;
+    right: -150px;
+
+    background: #8b3dff;
+
+    animation-delay: -4s;
+}
+
+
+.orb-3 {
+    bottom: -170px;
+    left: 35%;
+
+    background: #174bff;
+
+    animation-delay: -7s;
+}
+
+
+@keyframes floatingOrb {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(35px, -25px, 0);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.vault-navbar {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        14px
+        clamp(18px, 4vw, 55px);
+
+    background:
+        rgba(4, 7, 18, 0.90);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.28);
+}
+
+
+.brand {
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1;
+}
+
+
+.brand-main {
+    color: var(--gold-light);
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.brand-sub {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+.nav-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.nav-cart,
+.back-button {
+    min-height: 42px;
+
+    padding:
+        0 16px;
+
+    border-radius: 11px;
+
+    font-weight: 800;
+
+    font-size: 12px;
+
+    letter-spacing: 0.7px;
+
+    cursor: pointer;
+
+    transition:
+        0.25s ease;
+}
+
+
+.nav-cart {
+    color: #fff4cc;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(216,180,90,0.16),
+            rgba(216,180,90,0.05)
+        );
+
+    border:
+        1px solid rgba(216,180,90,0.45);
+}
+
+
+.nav-cart:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--gold);
+
+    box-shadow:
+        0 0 25px rgba(216,180,90,0.16);
+}
+
+
+.back-button {
+    color: #c5d0ff;
+
+    background:
+        rgba(50,75,160,0.08);
+
+    border:
+        1px solid rgba(100,130,255,0.35);
+}
+
+
+.back-button:hover {
+    transform: translateX(-3px);
+
+    color: white;
+
+    border-color: rgba(120,150,255,0.8);
+
+    background:
+        rgba(80,110,255,0.12);
+}
+
+
+.cart-count {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 21px;
+
+    height: 21px;
+
+    margin-left: 6px;
+
+    padding: 0 5px;
+
+    border-radius: 999px;
+
+    color: #111;
+
+    background: var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.vault-container {
+    width: min(
+        1500px,
+        calc(100% - 36px)
+    );
+
+    margin:
+        0 auto;
+
+    padding:
+        55px 0 90px;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.vault-heading {
+    margin-bottom: 35px;
+}
+
+
+.eyebrow {
+    margin-bottom: 10px;
+
+    color: var(--blue-light);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 2.5px;
+}
+
+
+.vault-heading h1 {
+    font-size:
+        clamp(44px, 7vw, 82px);
+
+    line-height: 0.95;
+
+    font-weight: 950;
+
+    letter-spacing: -3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4c7,
+            var(--gold),
+            #9c762c
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    text-shadow:
+        0 0 45px rgba(216,180,90,0.10);
+}
+
+
+.vault-heading p {
+    max-width: 680px;
+
+    margin-top: 18px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-area {
+    margin-bottom: 28px;
+}
+
+
+.search-box {
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        0 18px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(8, 13, 28, 0.85);
+
+    border:
+        1px solid rgba(90,120,230,0.28);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.22);
+
+    transition:
+        0.25s ease;
+}
+
+
+.search-box:focus-within {
+    border-color:
+        rgba(216,180,90,0.65);
+
+    box-shadow:
+        0 0 0 3px rgba(216,180,90,0.07),
+        0 15px 45px rgba(0,0,0,0.25);
+}
+
+
+.search-icon {
+    color: var(--gold);
+
+    font-size: 25px;
+
+    line-height: 1;
+}
+
+
+.search-box input {
+    flex: 1;
+
+    min-width: 0;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+
+.search-box input::placeholder {
+    color: #69738f;
+}
+
+
+.clear-search {
+    width: 32px;
+    height: 32px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    color: #aab4d0;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    transition: 0.2s;
+}
+
+
+.clear-search:hover {
+    color: white;
+
+    background:
+        rgba(255,255,255,0.12);
+}
+
+
+.result-info {
+    margin-top: 11px;
+
+    color: #78839e;
+
+    font-size: 12px;
+}
+
+
+.result-info span {
+    color: var(--gold-light);
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   SHOP LAYOUT
+========================================================= */
+
+.shop-layout {
+    display: grid;
+
+    grid-template-columns:
+        260px minmax(0, 1fr);
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   FILTER SIDEBAR
+========================================================= */
+
+.filter-sidebar {
+    position: sticky;
+
+    top: 98px;
+
+    padding: 20px;
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,22,43,0.92),
+            rgba(5,9,20,0.92)
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter: blur(18px);
+}
+
+
+.filter-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+
+.filter-header h2 {
+    color: var(--gold-light);
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+
+.filter-header button {
+    display: none;
+
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 9px;
+
+    color: white;
+
+    background: rgba(255,255,255,0.04);
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+
+.filter-section {
+    padding:
+        18px 0;
+
+    border-top:
+        1px solid rgba(255,255,255,0.06);
+}
+
+
+.filter-section:first-of-type {
+    border-top: 0;
+
+    padding-top: 0;
+}
+
+
+.filter-section h3 {
+    margin-bottom: 13px;
+
+    color: #d7def4;
+
+    font-size: 10px;
+
+    letter-spacing: 1.8px;
+}
+
+
+.filter-section label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin:
+        10px 0;
+
+    color: #909ab6;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.filter-section label:hover {
+    color: white;
+}
+
+
+.filter-section input {
+    accent-color: var(--gold);
+
+    cursor: pointer;
+}
+
+
+.reset-filters {
+    width: 100%;
+
+    height: 42px;
+
+    margin-top: 5px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid rgba(216,180,90,0.35);
+
+    color: var(--gold-light);
+
+    background:
+        rgba(216,180,90,0.06);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.reset-filters:hover {
+    background:
+        rgba(216,180,90,0.13);
+
+    border-color:
+        rgba(216,180,90,0.7);
+}
+
+
+/* =========================================================
+   PRODUCTS SECTION
+========================================================= */
+
+.products-section {
+    min-width: 0;
+}
+
+
+.mobile-filter-row {
+    display: none;
+}
+
+
+.desktop-sort {
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+
+    color: #707b99;
+
+    font-size: 12px;
+}
+
+
+.desktop-sort select,
+.mobile-filter-row select {
+    height: 38px;
+
+    padding:
+        0 12px;
+
+    border-radius: 9px;
+
+    outline: 0;
+
+    color: #dce3ff;
+
+    background: #0a1021;
+
+    border:
+        1px solid rgba(100,125,210,0.25);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PRODUCTS GRID
+========================================================= */
+
+.products-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(220px, 1fr)
+        );
+
+    gap: 17px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.product-card {
+    position: relative;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19,27,51,0.92),
+            rgba(7,11,24,0.95)
+        );
+
+    border:
+        1px solid rgba(100,125,210,0.18);
+
+    box-shadow:
+        0 16px 45px rgba(0,0,0,0.25);
+
+    transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+
+.product-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(216,180,90,0.7),
+            transparent
+        );
+
+    opacity: 0;
+
+    transition: 0.3s;
+}
+
+
+.product-card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(216,180,90,0.45);
+
+    box-shadow:
+        0 22px 60px rgba(0,0,0,0.40),
+        0 0 30px rgba(216,180,90,0.07);
+}
+
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.product-image {
+    position: relative;
+
+    height: 175px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(67,95,190,0.20),
+            transparent 62%
+        );
+}
+
+
+.product-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 40%,
+            rgba(255,255,255,0.035),
+            transparent 60%
+        );
+
+    transform:
+        translateX(-100%);
+
+    transition:
+        transform 0.7s ease;
+}
+
+
+.product-card:hover .product-image::after {
+    transform:
+        translateX(100%);
+}
+
+
+.vault-symbol {
+    width: 94px;
+    height: 94px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: var(--gold-light);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216,180,90,0.15),
+            rgba(216,180,90,0.03)
+        );
+
+    border:
+        1px solid rgba(216,180,90,0.32);
+
+    box-shadow:
+        inset 0 0 25px rgba(216,180,90,0.08),
+        0 0 35px rgba(216,180,90,0.06);
+
+    font-size: 38px;
+
+    transition: 0.3s;
+}
+
+
+.product-card:hover .vault-symbol {
+    transform:
+        scale(1.08)
+        rotate(3deg);
+
+    border-color:
+        rgba(216,180,90,0.65);
+
+    box-shadow:
+        0 0 40px rgba(216,180,90,0.15);
+}
+
+
+.badge {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    padding:
+        6px 8px;
+
+    border-radius: 999px;
+
+    color: #e8edff;
+
+    background:
+        rgba(8,13,28,0.84);
+
+    border:
+        1px solid rgba(110,135,220,0.25);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* =========================================================
+   PRODUCT CONTENT
+========================================================= */
+
+.product-content {
+    padding: 16px;
+}
+
+
+.product-category {
+    margin-bottom: 6px;
+
+    color: var(--blue-light);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.3px;
+
+    text-transform: uppercase;
+}
+
+
+.product-content h3 {
+    min-height: 42px;
+
+    color: #f4f6ff;
+
+    font-size: 16px;
+
+    line-height: 1.3;
+}
+
+
+.product-content p {
+    min-height: 38px;
+
+    margin-top: 7px;
+
+    color: #7f8aa7;
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+.product-price {
+    margin-top: 13px;
+
+    color: var(--gold-light);
+
+    font-size: 19px;
+
+    font-weight: 950;
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+.quantity-control {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    height: 39px;
+
+    margin-top: 13px;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(100,125,210,0.25);
+
+    background:
+        rgba(0,0,0,0.18);
+}
+
+
+.quantity-control button {
+    width: 39px;
+    height: 100%;
+
+    border: 0;
+
+    color: #dce4ff;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+
+.quantity-control button:hover {
+    background:
+        rgba(216,180,90,0.10);
+
+    color: var(--gold-light);
+}
+
+
+.quantity-control span {
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+
+.one-only {
+    height: 39px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 13px;
+
+    border-radius: 9px;
+
+    color: #e8d18b;
+
+    background:
+        rgba(216,180,90,0.06);
+
+    border:
+        1px solid rgba(216,180,90,0.22);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   ADD CART
+========================================================= */
+
+.add-cart {
+    width: 100%;
+
+    height: 43px;
+
+    margin-top: 11px;
+
+    border-radius: 10px;
+
+    color: #111;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe9a4,
+            #d8b45a
+        );
+
+    border: 0;
+
+    font-size: 10px;
+
+    font-weight: 950;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.add-cart:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(216,180,90,0.18);
+}
+
+
+.add-cart:active {
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.no-results {
+    display: none;
+
+    padding:
+        80px 20px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    background:
+        rgba(8,13,28,0.55);
+
+    border:
+        1px dashed rgba(100,125,210,0.22);
+}
+
+
+.empty-icon {
+    margin-bottom: 14px;
+
+    color: var(--gold);
+
+    font-size: 42px;
+}
+
+
+.no-results h2 {
+    color: #e8ecff;
+
+    font-size: 20px;
+}
+
+
+.no-results p {
+    margin-top: 8px;
+
+    color: #78839e;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.vault-toast {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 25px;
+
+    z-index: 500;
+
+    transform:
+        translate(-50%, 30px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    padding:
+        13px 18px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        rgba(10,15,30,0.96);
+
+    border:
+        1px solid rgba(216,180,90,0.45);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.4);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    transition:
+        0.3s ease;
+}
+
+
+.vault-toast.show {
+    transform:
+        translate(-50%, 0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .shop-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .filter-sidebar {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: min(320px, 88vw);
+
+        height: 100vh;
+
+        z-index: 300;
+
+        overflow-y: auto;
+
+        border-radius: 0 18px 18px 0;
+
+        transform:
+            translateX(-105%);
+
+        transition:
+            transform 0.3s ease;
+    }
+
+
+    .filter-sidebar.open {
+        transform:
+            translateX(0);
+    }
+
+
+    .filter-header button {
+        display: block;
+    }
+
+
+    .mobile-filter-row {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .mobile-filter-button {
+        height: 38px;
+
+        padding:
+            0 13px;
+
+        border-radius: 9px;
+
+        color: var(--gold-light);
+
+        background:
+            rgba(216,180,90,0.07);
+
+        border:
+            1px solid rgba(216,180,90,0.3);
+
+        font-size: 10px;
+
+        font-weight: 900;
+
+        cursor: pointer;
+    }
+
+
+    .desktop-sort {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .vault-navbar {
+        min-height: 68px;
+
+        padding:
+            10px 14px;
+    }
+
+
+    .brand-main {
+        font-size: 16px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .brand-sub {
+        font-size: 7px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .nav-right {
+        gap: 6px;
+    }
+
+
+    .nav-cart,
+    .back-button {
+        padding:
+            0 10px;
+
+        font-size: 9px;
+    }
+
+
+    .vault-container {
+        width:
+            calc(100% - 24px);
+
+        padding-top: 35px;
+    }
+
+
+    .vault-heading h1 {
+        font-size: 48px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .vault-heading p {
+        font-size: 13px;
+    }
+
+
+    .products-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+
+    .product-image {
+        height: 135px;
+    }
+
+
+    .vault-symbol {
+        width: 70px;
+        height: 70px;
+
+        font-size: 28px;
+    }
+
+
+    .product-content {
+        padding: 12px;
+    }
+
+
+    .product-content h3 {
+        min-height: 36px;
+
+        font-size: 13px;
+    }
+
+
+    .product-content p {
+        min-height: 48px;
+
+        font-size: 10px;
+    }
+
+
+    .product-price {
+        font-size: 15px;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .product-image {
+        height: 165px;
+    }
+
+
+    .product-content h3 {
+        min-height: auto;
+    }
+
+
+    .product-content p {
+        min-height: auto;
+    }
+
+}

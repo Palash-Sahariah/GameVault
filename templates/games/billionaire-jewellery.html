@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Jewellery | GameVault</title>
+
+    <!-- SAME VAULT CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/billionaire-vault.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="vault-background">
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+</div>
+
+
+
+<header class="vault-navbar">
+
+    <div class="brand">
+
+        <span class="brand-main">
+            GAMEVAULT
+        </span>
+
+        <span class="brand-sub">
+            THE JEWELLERY
+        </span>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <button
+            class="nav-cart"
+            id="cartButton"
+            type="button"
+        >
+
+            💎 YOUR CART
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </button>
+
+
+        <button
+            class="back-button"
+            id="backButton"
+            type="button"
+        >
+
+            ← BACK
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="vault-container">
+
+
+    <section class="vault-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                GAMEVAULT • BILLIONAIRE BREAKOUT
+            </div>
+
+            <h1>
+                JEWELLERY
+            </h1>
+
+            <p>
+                Discover iconic jewellery houses, legendary
+                collections, rare gemstones and extraordinary pieces.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search jewellery, brands or collections..."
+                autocomplete="off"
+            >
+
+            <button
+                id="clearSearch"
+                class="clear-search"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="result-info">
+
+            <span id="resultCount">
+                0
+            </span>
+
+            jewellery pieces found
+
+        </div>
+
+    </section>
+
+
+
+    <div class="shop-layout">
+
+
+        <!-- FILTER SIDEBAR -->
+
+        <aside
+            class="filter-sidebar"
+            id="filterSidebar"
+        >
+
+            <div class="filter-header">
+
+                <h2>
+                    FILTER
+                </h2>
+
+                <button
+                    id="closeFilters"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- BRAND -->
+
+            <div class="filter-section">
+
+                <h3>
+                    BRAND
+                </h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="cartier"
+                        class="category-filter"
+                    >
+                    Cartier
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="van-cleef-arpels"
+                        class="category-filter"
+                    >
+                    Van Cleef & Arpels
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="tiffany"
+                        class="category-filter"
+                    >
+                    Tiffany & Co.
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="bulgari"
+                        class="category-filter"
+                    >
+                    Bulgari
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="harry-winston"
+                        class="category-filter"
+                    >
+                    Harry Winston
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="graff"
+                        class="category-filter"
+                    >
+                    Graff
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="chopard"
+                        class="category-filter"
+                    >
+                    Chopard
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="piaget"
+                        class="category-filter"
+                    >
+                    Piaget
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="buccellati"
+                        class="category-filter"
+                    >
+                    Buccellati
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="boucheron"
+                        class="category-filter"
+                    >
+                    Boucheron
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="chaumet"
+                        class="category-filter"
+                    >
+                    Chaumet
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="mikimoto"
+                        class="category-filter"
+                    >
+                    Mikimoto
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="david-yurman"
+                        class="category-filter"
+                    >
+                    David Yurman
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="messika"
+                        class="category-filter"
+                    >
+                    Messika
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="de-beers"
+                        class="category-filter"
+                    >
+                    De Beers
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="pomellato"
+                        class="category-filter"
+                    >
+                    Pomellato
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="tous"
+                        class="category-filter"
+                    >
+                    TOUS
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="fred"
+                        class="category-filter"
+                    >
+                    FRED
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="dior"
+                        class="category-filter"
+                    >
+                    Dior
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="chanel"
+                        class="category-filter"
+                    >
+                    Chanel
+                </label>
+
+            </div>
+
+
+
+            <!-- JEWELLERY TYPE -->
+
+            <div class="filter-section">
+
+                <h3>
+                    TYPE
+                </h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="rings"
+                        class="type-filter"
+                    >
+                    Rings
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="necklaces"
+                        class="type-filter"
+                    >
+                    Necklaces
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="bracelets"
+                        class="type-filter"
+                    >
+                    Bracelets
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="earrings"
+                        class="type-filter"
+                    >
+                    Earrings
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="pendants"
+                        class="type-filter"
+                    >
+                    Pendants
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="brooches"
+                        class="type-filter"
+                    >
+                    Brooches
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="high-jewellery"
+                        class="type-filter"
+                    >
+                    High Jewellery
+                </label>
+
+            </div>
+
+
+
+            <!-- PRICE -->
+
+            <div class="filter-section">
+
+                <h3>
+                    PRICE
+                </h3>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="all"
+                        checked
+                    >
+                    All Prices
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="10000"
+                    >
+                    Under $10K
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="100000"
+                    >
+                    $10K – $100K
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="1000000"
+                    >
+                    $100K – $1M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="10000000"
+                    >
+                    $1M – $10M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="1000000000000"
+                    >
+                    $10M+
+                </label>
+
+            </div>
+
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="filter-section">
+
+                <h3>
+                    AVAILABILITY
+                </h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="unlimited"
+                        class="availability-filter"
+                    >
+                    In Stock
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="limited"
+                        class="availability-filter"
+                    >
+                    Limited
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="one"
+                        class="availability-filter"
+                    >
+                    One of One
+                </label>
+
+            </div>
+
+
+
+            <button
+                id="resetFilters"
+                class="reset-filters"
+                type="button"
+            >
+                RESET FILTERS
+            </button>
+
+        </aside>
+
+
+
+        <!-- PRODUCTS -->
+
+        <section class="products-section">
+
+
+            <div class="mobile-filter-row">
+
+                <button
+                    id="openFilters"
+                    class="mobile-filter-button"
+                    type="button"
+                >
+                    ☰ FILTER
+                </button>
+
+
+                <select id="sortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="desktop-sort">
+
+                <span>
+                    Sort by
+                </span>
+
+                <select id="desktopSortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div
+                id="productsGrid"
+                class="products-grid"
+            ></div>
+
+
+
+            <div
+                id="noResults"
+                class="no-results"
+            >
+
+                <div class="empty-icon">
+                    💎
+                </div>
+
+                <h2>
+                    NO JEWELLERY FOUND
+                </h2>
+
+                <p>
+                    Try another search or change your filters.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<script
+    src="{{ url_for('static', filename='js/jewellery-data.js') }}"
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/billionaire-jewellery.js') }}"
+></script>
+
+
+</body>
+
+</html>

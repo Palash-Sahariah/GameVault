@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Yachts | GameVault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/billionaire-vault.css') }}">
+</head>
+
+<body>
+
+<div class="vault-background">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+
+<header class="vault-navbar">
+
+    <div class="brand">
+        <span class="brand-main">GAMEVAULT</span>
+        <span class="brand-sub">YACHTS</span>
+    </div>
+
+    <div class="nav-right">
+
+        <button class="nav-cart" id="cartButton">
+            🛒 YOUR CART
+            <span id="cartCount">0</span>
+        </button>
+
+        <button class="back-button" id="backButton">
+            ← BACK
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="vault-container">
+
+    <section class="vault-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                GAMEVAULT • BILLIONAIRE BREAKOUT
+            </div>
+
+            <h1>THE YACHT VAULT</h1>
+
+            <p>
+                Discover legendary superyachts, megayachts,
+                motor yachts, explorer yachts and iconic vessels
+                from around the world. Add anything you want to your cart.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search yachts..."
+                autocomplete="off"
+            >
+
+            <button id="clearSearch" class="clear-search">
+                ×
+            </button>
+
+        </div>
+
+        <div class="result-info">
+            <span id="resultCount">0</span> yachts found
+        </div>
+
+    </section>
+
+
+    <div class="shop-layout">
+
+
+        <!-- FILTER SIDEBAR -->
+
+        <aside class="filter-sidebar" id="filterSidebar">
+
+            <div class="filter-header">
+
+                <h2>FILTER</h2>
+
+                <button id="closeFilters">
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="filter-section">
+
+                <h3>YACHT TYPE</h3>
+
+                <label>
+                    <input type="checkbox"
+                           value="Superyacht"
+                           class="category-filter">
+                    Superyachts
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="Motor Yacht"
+                           class="category-filter">
+                    Motor Yachts
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="Megayacht"
+                           class="category-filter">
+                    Megayachts
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="Explorer"
+                           class="category-filter">
+                    Explorer Yachts
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="Sailing Yacht"
+                           class="category-filter">
+                    Sailing Yachts
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="Classic"
+                           class="category-filter">
+                    Classic Yachts
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="Sport Yacht"
+                           class="category-filter">
+                    Sport Yachts
+                </label>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="filter-section">
+
+                <h3>PRICE</h3>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="all"
+                           checked>
+                    All Prices
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="10000000">
+                    Under $10M
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="50000000">
+                    $10M – $50M
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="100000000">
+                    $50M – $100M
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="250000000">
+                    $100M – $250M
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="1000000000000">
+                    $250M+
+                </label>
+
+            </div>
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="filter-section">
+
+                <h3>AVAILABILITY</h3>
+
+                <label>
+                    <input type="checkbox"
+                           value="unlimited"
+                           class="availability-filter">
+                    In Stock
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="limited"
+                           class="availability-filter">
+                    Limited
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="one"
+                           class="availability-filter">
+                    One of One
+                </label>
+
+            </div>
+
+
+            <button id="resetFilters"
+                    class="reset-filters">
+                RESET FILTERS
+            </button>
+
+        </aside>
+
+
+        <!-- PRODUCTS -->
+
+        <section class="products-section">
+
+            <div class="mobile-filter-row">
+
+                <button id="openFilters"
+                        class="mobile-filter-button">
+                    ☰ FILTER
+                </button>
+
+                <select id="sortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="desktop-sort">
+
+                <span>Sort by</span>
+
+                <select id="desktopSortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div id="productsGrid"
+                 class="products-grid"></div>
+
+
+            <div id="noResults"
+                 class="no-results">
+
+                <div class="empty-icon">⌕</div>
+
+                <h2>NO YACHTS FOUND</h2>
+
+                <p>
+                    Try another search or change your filters.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/yachts-data.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/billionaire-yachts.js') }}"></script>
+
+</body>
+</html>

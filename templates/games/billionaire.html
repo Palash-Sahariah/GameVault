@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Billionaire Breakout | GameVault</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/billionaire.css') }}">
+</head>
+
+<body>
+
+<div class="billionaire-page">
+
+    <!-- NAVBAR -->
+    <header class="bb-navbar">
+
+        <div class="bb-brand">
+            <span class="brand-icon">💰</span>
+            <span>GAMEVAULT</span>
+        </div>
+
+        <div class="bb-nav-title">
+            BILLIONAIRE BREAKOUT
+        </div>
+
+        <a href="{{ url_for('home') }}" class="back-button">
+            ← BACK
+        </a>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="bb-hero">
+
+        <div class="hero-glow"></div>
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                💎 GAMEVAULT ORIGINAL
+            </div>
+
+            <h1>
+                BILLIONAIRE
+                <span>BREAKOUT</span>
+            </h1>
+
+            <p>
+                Choose your billionaire.
+                Their estimated net worth becomes your
+                fictional gameplay fortune.
+            </p>
+
+            <button class="choose-button" id="scrollToBillionaires">
+                CHOOSE BILLIONAIRE
+                <span>↓</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- DISCLAIMER -->
+    <section class="bb-disclaimer">
+
+        <div class="disclaimer-icon">
+            ℹ
+        </div>
+
+        <div>
+            <strong>GAME DATA NOTICE</strong>
+
+            <p>
+                Net worth figures are estimates from the Forbes 2026
+                annual billionaire list, based on March 1, 2026 data.
+                They are converted into fictional gameplay cash and
+                do not represent actual cash or liquid assets.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- SELECTION -->
+    <main class="selection-section" id="billionaireSelection">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">THE VAULT</span>
+
+                <h2>
+                    CHOOSE YOUR
+                    <span>BILLIONAIRE</span>
+                </h2>
+            </div>
+
+            <div class="total-count">
+                <strong id="resultCount">100</strong>
+                <span>AVAILABLE</span>
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+        <div class="search-wrapper">
+
+            <div class="search-icon">
+                🔍
+            </div>
+
+            <input
+                type="text"
+                id="billionaireSearch"
+                placeholder="Search billionaire..."
+                autocomplete="off"
+            >
+
+            <button
+                id="clearSearch"
+                class="clear-search"
+                aria-label="Clear search"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH STATUS -->
+        <div id="searchStatus" class="search-status"></div>
+
+
+        <!-- LIST -->
+        <div id="billionaireList" class="billionaire-list"></div>
+
+
+        <!-- NO RESULTS -->
+        <div id="noResults" class="no-results hidden">
+
+            <div class="no-results-icon">
+                🔍
+            </div>
+
+            <h3>NOT AVAILABLE</h3>
+
+            <p>
+                No billionaire found matching
+                <strong id="searchedName"></strong>
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer class="bb-footer">
+        <span>GAMEVAULT</span>
+        <span>•</span>
+        <span>BILLIONAIRE BREAKOUT</span>
+    </footer>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/billionaire.js') }}"></script>
+
+</body>
+</html>

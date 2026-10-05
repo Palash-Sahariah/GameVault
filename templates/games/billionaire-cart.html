@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="GameVault Billionaire Breakout shopping cart"
+    >
+
+    <title>
+        Your Cart | GameVault
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/billionaire-cart.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div class="cart-background">
+
+    <div class="background-grid"></div>
+
+    <div class="background-orb orb-blue"></div>
+    <div class="background-orb orb-purple"></div>
+    <div class="background-orb orb-gold"></div>
+
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="cart-navbar">
+
+    <div class="cart-brand">
+
+        <div class="brand-main">
+            GAMEVAULT
+        </div>
+
+        <div class="brand-sub">
+            BILLIONAIRE BREAKOUT
+        </div>
+
+    </div>
+
+
+    <div class="cart-nav-right">
+
+        <button
+            type="button"
+            id="continueShoppingButton"
+            class="nav-button gold-button"
+        >
+            ← CONTINUE SHOPPING
+        </button>
+
+
+        <button
+            type="button"
+            id="backButton"
+            class="nav-button blue-button"
+        >
+            ← BACK
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="cart-page">
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <section class="cart-heading">
+
+        <div class="heading-left">
+
+            <div class="eyebrow">
+                BILLIONAIRE BREAKOUT • SHOPPING CART
+            </div>
+
+            <h1>
+                YOUR CART
+            </h1>
+
+            <p>
+                Everything you've selected across the GameVault.
+                Review it, adjust quantities, and spend your fortune.
+            </p>
+
+        </div>
+
+
+        <div class="cart-count-card">
+
+            <span
+                id="headerCartCount"
+                class="big-count"
+            >
+                0
+            </span>
+
+            <span class="count-label">
+                ITEMS
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FORTUNE HERO
+    ====================================================== -->
+
+    <section class="fortune-card">
+
+        <div class="fortune-profile">
+
+            <div
+                id="billionaireAvatar"
+                class="fortune-avatar"
+            >
+                ?
+            </div>
+
+
+            <div class="fortune-person">
+
+                <span class="small-label">
+                    SHOPPING AS
+                </span>
+
+                <h2 id="billionaireName">
+                    Loading...
+                </h2>
+
+                <span
+                    id="billionaireRank"
+                    class="rank-text"
+                >
+                    Rank #--
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="fortune-values">
+
+            <div class="fortune-value-box">
+
+                <span>
+                    STARTING FORTUNE
+                </span>
+
+                <strong id="startingFortune">
+                    $0
+                </strong>
+
+            </div>
+
+
+            <div class="fortune-value-box">
+
+                <span>
+                    CART VALUE
+                </span>
+
+                <strong
+                    id="cartFortuneValue"
+                    class="gold-value"
+                >
+                    $0
+                </strong>
+
+            </div>
+
+
+            <div class="fortune-value-box">
+
+                <span>
+                    AFTER PURCHASE
+                </span>
+
+                <strong
+                    id="fortuneRemaining"
+                    class="blue-value"
+                >
+                    $0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="fortune-progress-section">
+
+            <div class="progress-top">
+
+                <span>
+                    FORTUNE SPENT
+                </span>
+
+                <strong id="fortunePercentage">
+                    0.00%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-track">
+
+                <div
+                    id="fortuneProgressBar"
+                    class="progress-fill"
+                ></div>
+
+            </div>
+
+
+            <div
+                id="fortuneProgressText"
+                class="progress-text"
+            >
+                Build your collection.
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MAIN SHOPPING AREA
+    ====================================================== -->
+
+    <section class="cart-layout">
+
+
+        <!-- =================================================
+             CART ITEMS
+        ================================================== -->
+
+        <div class="items-column">
+
+
+            <div class="items-panel">
+
+
+                <div class="items-panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            SELECTED ITEMS
+                        </span>
+
+                        <h2>
+                            YOUR COLLECTION QUEUE
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="clearCartButton"
+                        class="clear-button"
+                    >
+                        CLEAR CART
+                    </button>
+
+                </div>
+
+
+                <!-- CATEGORY SUMMARY -->
+
+                <div
+                    id="categorySummary"
+                    class="category-summary"
+                >
+                </div>
+
+
+                <!-- CART ITEMS -->
+
+                <div
+                    id="cartItems"
+                    class="cart-items"
+                >
+                </div>
+
+
+                <!-- EMPTY CART -->
+
+                <div
+                    id="emptyCart"
+                    class="empty-cart"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        🛒
+                    </div>
+
+                    <span class="empty-eyebrow">
+                        THE VAULT IS WAITING
+                    </span>
+
+                    <h2>
+                        YOUR CART IS EMPTY
+                    </h2>
+
+                    <p>
+                        You haven't selected anything yet.
+                        Explore GameVault and start building
+                        your billionaire collection.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="emptyCartShopButton"
+                        class="explore-button"
+                    >
+                        EXPLORE THE VAULT →
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 GAME INFORMATION
+            ================================================== -->
+
+            <div class="cart-info-grid">
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        🛒
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            ONE SHARED CART
+                        </strong>
+
+                        <span>
+                            Items from every category stay together.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            YOUR FORTUNE
+                        </strong>
+
+                        <span>
+                            Purchases reduce your fictional gameplay fortune.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            INSTANT UPDATES
+                        </strong>
+
+                        <span>
+                            Quantities and totals update instantly.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ORDER SUMMARY
+        ================================================== -->
+
+        <aside class="summary-panel">
+
+
+            <div class="summary-top">
+
+                <span class="section-label">
+                    BILLIONAIRE BREAKOUT
+                </span>
+
+                <h2>
+                    ORDER SUMMARY
+                </h2>
+
+            </div>
+
+
+            <!-- BILLIONAIRE -->
+
+            <div class="summary-person">
+
+                <div
+                    id="summaryAvatar"
+                    class="summary-avatar"
+                >
+                    ?
+                </div>
+
+
+                <div>
+
+                    <span>
+                        SHOPPING AS
+                    </span>
+
+                    <strong id="summaryBillionaireName">
+                        Loading...
+                    </strong>
+
+                    <small id="summaryBillionaireRank">
+                        Rank #--
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ITEM COUNT -->
+
+            <div class="summary-line">
+
+                <span>
+                    Cart Items
+                </span>
+
+                <strong id="summaryItemCount">
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="summary-divider"></div>
+
+
+
+            <!-- SUBTOTAL -->
+
+            <div class="summary-line">
+
+                <span>
+                    Cart Value
+                </span>
+
+                <strong id="subtotal">
+                    $0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-line">
+
+                <span>
+                    GameVault Fees
+                </span>
+
+                <strong>
+                    $0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-divider"></div>
+
+
+
+            <!-- TOTAL -->
+
+            <div class="total-block">
+
+                <span>
+                    TOTAL PURCHASE
+                </span>
+
+                <strong id="cartTotal">
+                    $0
+                </strong>
+
+            </div>
+
+
+
+            <!-- REMAINING -->
+
+            <div class="remaining-box">
+
+                <div>
+
+                    <span>
+                        FORTUNE AFTER PURCHASE
+                    </span>
+
+                    <strong id="summaryRemaining">
+                        $0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- WARNING -->
+
+            <div
+                id="fortuneWarning"
+                class="fortune-warning"
+                hidden
+            >
+                ⚠ Your cart is worth more than the
+                billionaire's available fortune.
+            </div>
+
+
+
+            <!-- PURCHASE -->
+
+            <button
+                type="button"
+                id="checkoutButton"
+                class="purchase-button"
+            >
+
+                <span>
+                    COMPLETE PURCHASE
+                </span>
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+            <p class="game-disclaimer">
+
+                ✦ This is fictional GameVault gameplay.
+                No real-world transaction takes place.
+
+            </p>
+
+
+
+            <!-- CONTINUE -->
+
+            <button
+                type="button"
+                id="summaryContinueButton"
+                class="summary-continue"
+            >
+                CONTINUE SHOPPING
+            </button>
+
+
+        </aside>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     REMOVE CONFIRMATION
+========================================================= -->
+
+<div
+    id="removeOverlay"
+    class="modal-overlay"
+    hidden
+>
+
+    <div class="confirm-modal">
+
+        <div class="modal-icon">
+            ×
+        </div>
+
+        <span class="section-label">
+            REMOVE ITEM
+        </span>
+
+        <h2>
+            Remove this item?
+        </h2>
+
+        <p id="removeMessage">
+            This item will be removed from your cart.
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="cancelRemoveButton"
+                class="modal-cancel"
+            >
+                CANCEL
+            </button>
+
+            <button
+                type="button"
+                id="confirmRemoveButton"
+                class="modal-confirm"
+            >
+                REMOVE
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     CLEAR CART CONFIRMATION
+========================================================= -->
+
+<div
+    id="clearOverlay"
+    class="modal-overlay"
+    hidden
+>
+
+    <div class="confirm-modal">
+
+        <div class="modal-icon danger-icon">
+            !
+        </div>
+
+        <span class="section-label">
+            CLEAR CART
+        </span>
+
+        <h2>
+            Empty your cart?
+        </h2>
+
+        <p>
+            Every item currently in your cart will be removed.
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="cancelClearButton"
+                class="modal-cancel"
+            >
+                CANCEL
+            </button>
+
+            <button
+                type="button"
+                id="confirmClearButton"
+                class="modal-confirm"
+            >
+                CLEAR CART
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    id="cartToast"
+    class="cart-toast"
+>
+
+    <span id="cartToastIcon">
+        ✓
+    </span>
+
+    <span id="cartToastMessage">
+        Cart updated.
+    </span>
+
+</div>
+
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/billionaire.js'
+    ) }}"
+></script>
+
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/cart.js'
+    ) }}"
+></script>
+
+
+</body>
+</html>

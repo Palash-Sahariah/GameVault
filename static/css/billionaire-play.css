@@ -1,0 +1,1852 @@
+/* =========================================================
+   GAMEVAULT
+   BILLIONAIRE BREAKOUT
+   CATEGORY PORTAL
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(20, 92, 190, 0.28),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(105, 34, 190, 0.25),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(178, 128, 30, 0.08),
+            transparent 40%
+        ),
+
+        #020714;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.portal-page {
+    position: relative;
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3, 15, 40, 0.97),
+            rgba(5, 22, 55, 0.94),
+            rgba(18, 7, 47, 0.97)
+        );
+}
+
+
+/* =========================================================
+   ANIMATED BACKGROUND
+========================================================= */
+
+.portal-page::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.22;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        80px 80px;
+
+    animation:
+        gridMove 20s linear infinite;
+
+    z-index: 0;
+}
+
+
+@keyframes gridMove {
+
+    from {
+        transform:
+            translate3d(0, 0, 0);
+    }
+
+    to {
+        transform:
+            translate3d(80px, 80px, 0);
+    }
+
+}
+
+
+/* =========================================================
+   FLOATING ORBS
+========================================================= */
+
+.background-orb {
+
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: 0.17;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+.orb-one {
+
+    top: -180px;
+    left: -150px;
+
+    background:
+        #0878ff;
+
+    animation:
+        floatOne 12s ease-in-out infinite alternate;
+}
+
+
+.orb-two {
+
+    right: -180px;
+    top: 30%;
+
+    background:
+        #792cff;
+
+    animation:
+        floatTwo 15s ease-in-out infinite alternate;
+}
+
+
+.orb-three {
+
+    bottom: -220px;
+    left: 35%;
+
+    background:
+        #d19a28;
+
+    opacity: 0.07;
+
+    animation:
+        floatThree 17s ease-in-out infinite alternate;
+}
+
+
+@keyframes floatOne {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(100px, 90px);
+    }
+
+}
+
+
+@keyframes floatTwo {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(-100px, -70px);
+    }
+
+}
+
+
+@keyframes floatThree {
+
+    from {
+        transform:
+            translate(0, 0);
+    }
+
+    to {
+        transform:
+            translate(70px, -80px);
+    }
+
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.portal-navbar {
+
+    position: relative;
+
+    z-index: 20;
+
+    width: 100%;
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 5.5%;
+
+    border-bottom:
+        1px solid
+        rgba(201, 155, 52, 0.30);
+
+    background:
+        rgba(3, 9, 25, 0.86);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 8px 35px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.gamevault-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color:
+        #f4c85c;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    font-size: 20px;
+}
+
+
+.brand-icon {
+
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e0af42,
+            #7b5517
+        );
+
+    box-shadow:
+        0 0 18px
+        rgba(218, 169, 59, 0.35);
+
+    font-size: 19px;
+}
+
+
+.brand-text {
+
+    text-shadow:
+        0 0 15px
+        rgba(240, 193, 76, 0.20);
+}
+
+
+/* =========================================================
+   NAV TITLE
+========================================================= */
+
+.navbar-title {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    color:
+        #ffffff;
+
+    text-shadow:
+        0 0 14px
+        rgba(255, 255, 255, 0.22);
+}
+
+
+/* =========================================================
+   NAV ACTIONS
+========================================================= */
+
+.navbar-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   CART BUTTON
+========================================================= */
+
+.cart-button {
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        0 15px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(224, 177, 67, 0.75);
+
+    color:
+        #ffe28b;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(110, 75, 17, 0.65),
+            rgba(40, 28, 7, 0.75)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.10),
+
+        0 0 18px
+        rgba(213, 162, 50, 0.12);
+
+    cursor: pointer;
+
+    transition:
+        0.25s ease;
+
+    font-weight: 900;
+
+    letter-spacing: 0.8px;
+}
+
+
+.cart-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #ffd866;
+
+    box-shadow:
+        0 0 24px
+        rgba(221, 172, 54, 0.25),
+
+        inset 0 0 20px
+        rgba(221, 172, 54, 0.08);
+}
+
+
+.cart-icon {
+    font-size: 16px;
+}
+
+
+.cart-text {
+    font-size: 11px;
+}
+
+
+.cart-count {
+
+    min-width: 22px;
+    height: 22px;
+
+    padding: 0 6px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8d469,
+            #a46d18
+        );
+
+    color:
+        #151006;
+
+    font-size: 11px;
+
+    font-weight: 1000;
+
+    box-shadow:
+        0 0 12px
+        rgba(239, 190, 66, 0.30);
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button {
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        0 16px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(104, 151, 215, 0.28);
+
+    background:
+        rgba(16, 36, 72, 0.75);
+
+    color:
+        #dce9ff;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        0.25s ease;
+}
+
+
+.back-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(120, 177, 255, 0.65);
+
+    background:
+        rgba(25, 57, 108, 0.9);
+
+    box-shadow:
+        0 0 20px
+        rgba(50, 130, 255, 0.16);
+}
+
+
+/* =========================================================
+   PROFILE SECTION
+========================================================= */
+
+.profile-section {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1250px, 90%);
+
+    margin:
+        55px auto 0;
+}
+
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile-card {
+
+    position: relative;
+
+    min-height: 180px;
+
+    display: grid;
+
+    grid-template-columns:
+        auto 1fr auto;
+
+    align-items: center;
+
+    gap: 35px;
+
+    padding:
+        30px 38px;
+
+    border-radius: 24px;
+
+    border:
+        1px solid
+        rgba(207, 161, 54, 0.50);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 29, 65, 0.93),
+            rgba(7, 19, 48, 0.88),
+            rgba(29, 12, 61, 0.90)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.08),
+
+        inset 0 0 50px
+        rgba(18, 80, 180, 0.08),
+
+        0 20px 60px
+        rgba(0, 0, 0, 0.35);
+
+    overflow: hidden;
+
+    animation:
+        profileEnter 0.8s ease both;
+}
+
+
+@keyframes profileEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   PROFILE GOLD LINE
+========================================================= */
+
+.profile-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 0;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #c99a32,
+            #f5d675,
+            #c99a32,
+            transparent
+        );
+
+    box-shadow:
+        0 0 18px
+        rgba(222, 173, 54, 0.55);
+}
+
+
+/* =========================================================
+   PROFILE GLOW
+========================================================= */
+
+.profile-glow {
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    right: -100px;
+    top: -180px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(85, 35, 180, 0.20);
+
+    filter:
+        blur(70px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.profile-avatar {
+
+    position: relative;
+
+    width: 105px;
+    height: 105px;
+
+    padding: 4px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4d26c,
+            #8b611b,
+            #e5bd58,
+            #714b13
+        );
+
+    box-shadow:
+        0 0 28px
+        rgba(227, 177, 56, 0.22);
+}
+
+
+.avatar-inner {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #153d76,
+            #07152e
+        );
+}
+
+
+#selectedImage {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+}
+
+
+.profile-initials {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color:
+        #f8d36d;
+
+    font-size: 29px;
+
+    font-weight: 1000;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   PROFILE INFORMATION
+========================================================= */
+
+.profile-information {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.profile-kicker {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        #d5b25a;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.profile-information h1 {
+
+    font-size:
+        clamp(30px, 4vw, 48px);
+
+    line-height: 1;
+
+    margin-bottom: 12px;
+
+    color:
+        #ffffff;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,255,255,0.10);
+}
+
+
+.profile-rank {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        7px 12px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(201, 154, 48, 0.09);
+
+    border:
+        1px solid
+        rgba(201, 154, 48, 0.25);
+
+    color:
+        #aebdd5;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.profile-rank strong {
+
+    color:
+        #f2cc66;
+}
+
+
+/* =========================================================
+   PROFILE FORTUNE
+========================================================= */
+
+.profile-fortune {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-width: 285px;
+
+    padding:
+        20px 25px;
+
+    border-left:
+        1px solid
+        rgba(205, 162, 58, 0.30);
+
+    text-align: right;
+}
+
+
+.profile-fortune span {
+
+    display: block;
+
+    color:
+        #b8c6dd;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+}
+
+
+.profile-fortune strong {
+
+    display: block;
+
+    color:
+        #f4ca61;
+
+    font-size:
+        clamp(25px, 3vw, 39px);
+
+    font-weight: 1000;
+
+    text-shadow:
+        0 0 22px
+        rgba(239, 187, 63, 0.20);
+}
+
+
+.profile-fortune small {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color:
+        #7485a2;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.portal-intro {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    margin:
+        75px auto 42px;
+
+    width: min(850px, 90%);
+}
+
+
+.intro-kicker {
+
+    display: block;
+
+    margin-bottom: 13px;
+
+    color:
+        #d2ae54;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 5px;
+}
+
+
+.portal-intro h2 {
+
+    font-size:
+        clamp(40px, 6vw, 76px);
+
+    line-height: 0.95;
+
+    font-weight: 1000;
+
+    letter-spacing: -2px;
+
+    color:
+        #ffffff;
+
+    text-shadow:
+        0 8px 35px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.portal-intro h2 span {
+
+    color:
+        #eec65c;
+
+    text-shadow:
+        0 0 28px
+        rgba(229, 177, 55, 0.20);
+}
+
+
+.portal-intro p {
+
+    margin-top: 18px;
+
+    color:
+        #91a7c9;
+
+    font-size: 14px;
+
+    letter-spacing: 0.4px;
+}
+
+
+/* =========================================================
+   CATEGORY SECTION
+========================================================= */
+
+.category-section {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1250px, 90%);
+
+    margin:
+        0 auto 100px;
+}
+
+
+/* =========================================================
+   CATEGORY GRID
+========================================================= */
+
+.category-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   CATEGORY CARD
+========================================================= */
+
+.category-card {
+
+    position: relative;
+
+    min-height: 190px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding:
+        30px 27px;
+
+    text-decoration: none;
+
+    color:
+        #ffffff;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    border:
+        1px solid
+        rgba(202, 158, 55, 0.42);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13, 50, 105, 0.90),
+            rgba(7, 28, 64, 0.94)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.06),
+
+        inset 0 -25px 50px
+        rgba(0,0,0,0.08),
+
+        0 14px 30px
+        rgba(0,0,0,0.22);
+
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease;
+
+    cursor: pointer;
+
+    animation:
+        cardEnter 0.7s ease both;
+}
+
+
+.category-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.category-card:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.category-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.category-card:nth-child(4) {
+    animation-delay: 0.20s;
+}
+
+.category-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.category-card:nth-child(6) {
+    animation-delay: 0.30s;
+}
+
+.category-card:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.category-card:nth-child(8) {
+    animation-delay: 0.40s;
+}
+
+.category-card:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+.category-card:nth-child(10) {
+    animation-delay: 0.50s;
+}
+
+.category-card:nth-child(11) {
+    animation-delay: 0.55s;
+}
+
+.category-card:nth-child(12) {
+    animation-delay: 0.60s;
+}
+
+
+@keyframes cardEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(22px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   CARD LIGHT
+========================================================= */
+
+.category-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    top: -100px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(48, 126, 255, 0.20);
+
+    filter:
+        blur(25px);
+
+    transition:
+        0.35s ease;
+}
+
+
+.category-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 0;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(222, 177, 65, 0.75),
+            transparent
+        );
+
+    opacity: 0.4;
+
+    transition:
+        0.3s ease;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.category-card:hover {
+
+    border-color:
+        rgba(239, 199, 99, 0.90);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 67, 137, 0.98),
+            rgba(12, 36, 79, 0.98)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.10),
+
+        0 18px 45px
+        rgba(0,0,0,0.32),
+
+        0 0 30px
+        rgba(201, 155, 48, 0.10);
+}
+
+
+.category-card:hover::before {
+
+    transform:
+        scale(1.5);
+
+    background:
+        rgba(69, 137, 255, 0.30);
+}
+
+
+.category-card:hover::after {
+
+    opacity: 1;
+
+    box-shadow:
+        0 0 15px
+        rgba(226, 179, 58, 0.50);
+}
+
+
+/* =========================================================
+   FEATURED VAULT CARD
+========================================================= */
+
+.featured-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(31, 73, 136, 0.96),
+            rgba(17, 43, 87, 0.97)
+        );
+
+    border-color:
+        rgba(235, 194, 88, 0.72);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.12),
+
+        0 0 30px
+        rgba(213, 163, 52, 0.10);
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.card-number {
+
+    position: absolute;
+
+    top: 15px;
+    right: 19px;
+
+    color:
+        rgba(229, 190, 92, 0.42);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   CATEGORY ICON
+========================================================= */
+
+.category-icon {
+
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(2, 19, 47, 0.98),
+            rgba(6, 36, 75, 0.94)
+        );
+
+    border:
+        1px solid
+        rgba(214, 169, 65, 0.40);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.07),
+
+        0 8px 20px
+        rgba(0,0,0,0.20);
+
+    font-size: 26px;
+
+    transition:
+        0.25s ease;
+}
+
+
+.category-card:hover .category-icon {
+
+    transform:
+        translateY(-3px)
+        scale(1.06);
+
+    border-color:
+        rgba(238, 198, 98, 0.80);
+
+    box-shadow:
+        0 0 20px
+        rgba(225, 176, 54, 0.15);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.category-content span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+        #9aacc8;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 2.5px;
+}
+
+
+.category-content h3 {
+
+    color:
+        #ffffff;
+
+    font-size: 20px;
+
+    line-height: 1.1;
+
+    font-weight: 1000;
+
+    letter-spacing: 0.3px;
+}
+
+
+.category-content p {
+
+    margin-top: 8px;
+
+    color:
+        #8195b5;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CARD ARROW
+========================================================= */
+
+.card-arrow {
+
+    position: absolute;
+
+    right: 22px;
+    bottom: 21px;
+
+    color:
+        #e7bd58;
+
+    font-size: 20px;
+
+    opacity: 0.55;
+
+    transition:
+        0.25s ease;
+}
+
+
+.category-card:hover .card-arrow {
+
+    opacity: 1;
+
+    transform:
+        translateX(5px);
+
+    text-shadow:
+        0 0 12px
+        rgba(230, 182, 63, 0.45);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.portal-footer {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    padding:
+        45px 20px 55px;
+
+    background:
+        rgba(1, 7, 20, 0.50);
+}
+
+
+.footer-line {
+
+    width: min(900px, 80%);
+
+    height: 1px;
+
+    margin:
+        0 auto 28px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(207, 159, 53, 0.55),
+            transparent
+        );
+}
+
+
+.footer-brand {
+
+    color:
+        #e5b950;
+
+    font-weight: 1000;
+
+    letter-spacing: 4px;
+
+    font-size: 13px;
+}
+
+
+.footer-title {
+
+    margin-top: 7px;
+
+    color:
+        #7083a3;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    font-weight: 800;
+}
+
+
+.portal-footer p {
+
+    margin-top: 15px;
+
+    color:
+        #536581;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .category-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+    .profile-card {
+
+        grid-template-columns:
+            auto 1fr;
+
+    }
+
+    .profile-fortune {
+
+        grid-column:
+            1 / -1;
+
+        border-left:
+            none;
+
+        border-top:
+            1px solid
+            rgba(205, 162, 58, 0.22);
+
+        padding:
+            20px 0 0;
+
+        text-align: left;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+
+    .portal-navbar {
+
+        min-height: 68px;
+
+        padding:
+            0 4%;
+
+    }
+
+
+    .navbar-title {
+
+        display: none;
+
+    }
+
+
+    .gamevault-brand {
+
+        font-size: 15px;
+
+        letter-spacing: 1.3px;
+
+    }
+
+
+    .brand-icon {
+
+        width: 31px;
+        height: 31px;
+
+        font-size: 16px;
+
+    }
+
+
+    .cart-button {
+
+        width: 42px;
+        height: 40px;
+
+        padding: 0;
+
+        justify-content: center;
+
+    }
+
+
+    .cart-text {
+
+        display: none;
+
+    }
+
+
+    .back-button {
+
+        width: 42px;
+        height: 40px;
+
+        padding: 0;
+
+        justify-content: center;
+
+        font-size: 0;
+
+    }
+
+
+    .back-button span {
+
+        font-size: 18px;
+
+    }
+
+
+    .profile-section {
+
+        width: 92%;
+
+        margin-top: 30px;
+
+    }
+
+
+    .profile-card {
+
+        display: flex;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 30px 20px;
+
+        gap: 20px;
+
+    }
+
+
+    .profile-avatar {
+
+        width: 92px;
+        height: 92px;
+
+    }
+
+
+    .profile-information {
+
+        width: 100%;
+
+    }
+
+
+    .profile-information h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .profile-fortune {
+
+        width: 100%;
+
+        text-align: center;
+
+        padding:
+            18px 0 0;
+
+    }
+
+
+    .portal-intro {
+
+        margin-top: 55px;
+
+    }
+
+
+    .portal-intro h2 {
+
+        font-size: 43px;
+
+    }
+
+
+    .category-section {
+
+        width: 92%;
+
+    }
+
+
+    .category-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+
+    }
+
+
+    .category-card {
+
+        min-height: 170px;
+
+        padding:
+            22px 18px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .category-icon {
+
+        width: 48px;
+        height: 48px;
+
+        font-size: 22px;
+
+        margin-bottom: 14px;
+
+    }
+
+
+    .category-content h3 {
+
+        font-size: 15px;
+
+    }
+
+
+    .category-content p {
+
+        font-size: 9px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .category-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .category-card {
+
+        min-height: 150px;
+
+    }
+
+
+    .portal-intro h2 {
+
+        font-size: 38px;
+
+    }
+
+
+    .profile-information h1 {
+
+        font-size: 27px;
+
+    }
+
+}

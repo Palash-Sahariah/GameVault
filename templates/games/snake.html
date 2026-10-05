@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Snake | GameVault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/snake.css') }}">
+</head>
+
+<body>
+
+<div class="snake-page">
+
+    <!-- ================= HEADER ================= -->
+    <header class="snake-header">
+
+        <div class="brand">
+            <span class="brand-game">GAME</span>
+            <span class="brand-vault">VAULT</span>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="back-btn">
+            ← GameVault
+        </a>
+
+    </header>
+
+
+    <!-- ================= GAME AREA ================= -->
+    <main class="snake-main">
+
+        <!-- TITLE + SCORE -->
+        <div class="snake-top">
+
+            <div class="snake-title">
+
+                <div class="eyebrow">
+                    GAMEVAULT ORIGINAL
+                </div>
+
+                <h1>
+                    <span>🐍</span>
+                    SNAKE
+                </h1>
+
+            </div>
+
+
+            <div class="score-area">
+
+                <div class="score-box">
+                    <span>SCORE</span>
+                    <strong id="score">0</strong>
+                </div>
+
+                <div class="score-box">
+                    <span>BEST</span>
+                    <strong id="best">0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= BOARD ================= -->
+        <section class="snake-game-area">
+
+            <div class="snake-board-wrap">
+
+                <canvas id="gameCanvas"></canvas>
+
+
+                <!-- START SCREEN -->
+                <div class="game-overlay" id="startScreen">
+
+                    <div class="overlay-card">
+
+                        <div class="overlay-icon">
+                            🐍
+                        </div>
+
+                        <h2>Snake</h2>
+
+                        <p>
+                            Eat the apples.<br>
+                            Grow longer. Don't hit yourself.
+                        </p>
+
+                        <button id="startBtn" class="primary-btn">
+                            PLAY GAME
+                        </button>
+
+                        <div class="control-info">
+
+                            <div>
+                                🖥️ <strong>PC</strong>
+                                <small>Arrow / WASD</small>
+                            </div>
+
+                            <div>
+                                📱 <strong>Mobile</strong>
+                                <small>Swipe the board</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PAUSE SCREEN -->
+                <div class="game-overlay hidden" id="pauseScreen">
+
+                    <div class="overlay-card small-card">
+
+                        <div class="overlay-icon">
+                            ⏸️
+                        </div>
+
+                        <h2>Paused</h2>
+
+                        <p>
+                            Your snake is waiting.
+                        </p>
+
+                        <button id="resumeBtn" class="primary-btn">
+                            RESUME
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GAME OVER -->
+                <div class="game-overlay hidden" id="gameOverScreen">
+
+                    <div class="overlay-card">
+
+                        <div class="overlay-icon">
+                            💀
+                        </div>
+
+                        <h2>Game Over</h2>
+
+                        <p>
+                            Final Score:
+                            <strong id="finalScore">0</strong>
+                        </p>
+
+                        <button id="restartBtn" class="primary-btn">
+                            PLAY AGAIN
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTROLS ================= -->
+        <div class="game-controls">
+
+            <button id="pauseBtn" class="control-btn">
+                ⏸ PAUSE
+            </button>
+
+            <button id="restartGameBtn" class="control-btn">
+                🔄 RESTART
+            </button>
+
+        </div>
+
+
+        <!-- MOBILE D-PAD -->
+        <div class="dpad">
+
+            <button
+                id="upBtn"
+                class="dpad-btn up">
+                ▲
+            </button>
+
+            <div class="dpad-middle">
+
+                <button
+                    id="leftBtn"
+                    class="dpad-btn">
+                    ◀
+                </button>
+
+                <button
+                    id="downBtn"
+                    class="dpad-btn">
+                    ▼
+                </button>
+
+                <button
+                    id="rightBtn"
+                    class="dpad-btn">
+                    ▶
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="game-hint">
+            PC: Arrow Keys / WASD &nbsp; • &nbsp;
+            Mobile: Swipe the game board
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/snake.js') }}"></script>
+
+</body>
+</html>

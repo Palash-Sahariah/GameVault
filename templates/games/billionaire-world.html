@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>World | GameVault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/billionaire-vault.css') }}">
+</head>
+
+<body>
+
+<div class="vault-background">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+
+<header class="vault-navbar">
+
+    <div class="brand">
+        <span class="brand-main">GAMEVAULT</span>
+        <span class="brand-sub">WORLD</span>
+    </div>
+
+    <div class="nav-right">
+
+        <button class="nav-cart" id="cartButton">
+            🛒 YOUR CART
+            <span id="cartCount">0</span>
+        </button>
+
+        <button class="back-button" id="backButton">
+            ← BACK
+        </button>
+
+    </div>
+
+</header>
+
+<main class="vault-container">
+
+    <section class="vault-heading">
+        <div>
+            <div class="eyebrow">
+                GAMEVAULT • BILLIONAIRE BREAKOUT
+            </div>
+
+            <h1>THE WORLD VAULT</h1>
+
+            <p>
+                Explore iconic landmarks, museums, theme parks,
+                attractions and unforgettable experiences from around
+                the world using real-world ticket and experience pricing.
+            </p>
+        </div>
+    </section>
+
+    <section class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search the World..."
+                autocomplete="off"
+            >
+
+            <button id="clearSearch"
+                    class="clear-search">
+                ×
+            </button>
+
+        </div>
+
+        <div class="result-info">
+            <span id="resultCount">0</span>
+            experiences found
+        </div>
+
+    </section>
+
+    <div class="shop-layout">
+
+        <aside class="filter-sidebar"
+               id="filterSidebar">
+
+            <div class="filter-header">
+                <h2>FILTER</h2>
+                <button id="closeFilters">×</button>
+            </div>
+
+            <div class="filter-section">
+
+                <h3>CATEGORY</h3>
+
+                <label>
+                    <input type="checkbox"
+                           value="landmark"
+                           class="category-filter">
+                    Iconic Landmarks
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="museum"
+                           class="category-filter">
+                    Museums
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="theme-park"
+                           class="category-filter">
+                    Theme Parks
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="palace"
+                           class="category-filter">
+                    Palaces & Castles
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="observation"
+                           class="category-filter">
+                    Observation Decks
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="aquarium"
+                           class="category-filter">
+                    Aquariums
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="zoo"
+                           class="category-filter">
+                    Zoos & Wildlife
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="experience"
+                           class="category-filter">
+                    Experiences
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="resort"
+                           class="category-filter">
+                    Resorts
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="cruise"
+                           class="category-filter">
+                    Cruises
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="adventure"
+                           class="category-filter">
+                    Adventure
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="cultural"
+                           class="category-filter">
+                    Cultural
+                </label>
+
+            </div>
+
+            <div class="filter-section">
+
+                <h3>PRICE</h3>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="all"
+                           checked>
+                    All Prices
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="5000">
+                    Under ₹5K
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="15000">
+                    ₹5K – ₹15K
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="50000">
+                    ₹15K – ₹50K
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="100000">
+                    ₹50K – ₹1L
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="500000">
+                    ₹1L – ₹5L
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="price"
+                           value="1000000000000">
+                    ₹5L+
+                </label>
+
+            </div>
+
+            <div class="filter-section">
+
+                <h3>AVAILABILITY</h3>
+
+                <label>
+                    <input type="checkbox"
+                           value="unlimited"
+                           class="availability-filter">
+                    Available
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="limited"
+                           class="availability-filter">
+                    Limited
+                </label>
+
+            </div>
+
+            <button id="resetFilters"
+                    class="reset-filters">
+                RESET FILTERS
+            </button>
+
+        </aside>
+
+        <section class="products-section">
+
+            <div class="mobile-filter-row">
+
+                <button id="openFilters"
+                        class="mobile-filter-button">
+                    ☰ FILTER
+                </button>
+
+                <select id="sortSelect">
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+                </select>
+
+            </div>
+
+            <div class="desktop-sort">
+
+                <span>Sort by</span>
+
+                <select id="desktopSortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="productsGrid"
+                 class="products-grid"></div>
+
+            <div id="noResults"
+                 class="no-results">
+
+                <div class="empty-icon">⌕</div>
+
+                <h2>NO EXPERIENCES FOUND</h2>
+
+                <p>
+                    Try another search or change your filters.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/world-data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/billionaire-world.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Watches | GameVault</title>
+
+    <!-- SAME CSS AS THE VAULT -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/billionaire-vault.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="vault-background">
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+</div>
+
+
+<header class="vault-navbar">
+
+    <div class="brand">
+
+        <span class="brand-main">
+            GAMEVAULT
+        </span>
+
+        <span class="brand-sub">
+            THE WATCHES
+        </span>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <button
+            class="nav-cart"
+            id="cartButton"
+            type="button"
+        >
+
+            🛒 YOUR CART
+
+            <span id="cartCount">0</span>
+
+        </button>
+
+
+        <button
+            class="back-button"
+            id="backButton"
+            type="button"
+        >
+
+            ← BACK
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="vault-container">
+
+
+    <!-- HEADER -->
+
+    <section class="vault-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                GAMEVAULT • BILLIONAIRE BREAKOUT
+            </div>
+
+            <h1>
+                WATCHES
+            </h1>
+
+            <p>
+                Discover legendary timepieces, iconic references
+                and exceptional luxury watches.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEARCH -->
+
+    <section class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search watches, brands or references..."
+                autocomplete="off"
+            >
+
+            <button
+                id="clearSearch"
+                class="clear-search"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="result-info">
+
+            <span id="resultCount">
+                0
+            </span>
+
+            watches found
+
+        </div>
+
+    </section>
+
+
+
+    <div class="shop-layout">
+
+
+        <!-- FILTERS -->
+
+        <aside
+            class="filter-sidebar"
+            id="filterSidebar"
+        >
+
+            <div class="filter-header">
+
+                <h2>
+                    FILTERS
+                </h2>
+
+                <button
+                    id="closeFilters"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- BRAND FILTER -->
+
+            <div class="filter-section">
+
+                <h3>
+                    BRAND
+                </h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="rolex"
+                        class="category-filter"
+                    >
+                    Rolex
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="omega"
+                        class="category-filter"
+                    >
+                    Omega
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="patek-philippe"
+                        class="category-filter"
+                    >
+                    Patek Philippe
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="cartier"
+                        class="category-filter"
+                    >
+                    Cartier
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="audemars-piguet"
+                        class="category-filter"
+                    >
+                    Audemars Piguet
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="richard-mille"
+                        class="category-filter"
+                    >
+                    Richard Mille
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="vacheron-constantin"
+                        class="category-filter"
+                    >
+                    Vacheron Constantin
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="tudor"
+                        class="category-filter"
+                    >
+                    Tudor
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="tag-heuer"
+                        class="category-filter"
+                    >
+                    TAG Heuer
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="breitling"
+                        class="category-filter"
+                    >
+                    Breitling
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="iwc"
+                        class="category-filter"
+                    >
+                    IWC Schaffhausen
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="jaeger-lecoultre"
+                        class="category-filter"
+                    >
+                    Jaeger-LeCoultre
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="panerai"
+                        class="category-filter"
+                    >
+                    Panerai
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="hublot"
+                        class="category-filter"
+                    >
+                    Hublot
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="grand-seiko"
+                        class="category-filter"
+                    >
+                    Grand Seiko
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="breguet"
+                        class="category-filter"
+                    >
+                    Breguet
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="blancpain"
+                        class="category-filter"
+                    >
+                    Blancpain
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="zenith"
+                        class="category-filter"
+                    >
+                    Zenith
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="bulgari"
+                        class="category-filter"
+                    >
+                    Bulgari
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="chopard"
+                        class="category-filter"
+                    >
+                    Chopard
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="piaget"
+                        class="category-filter"
+                    >
+                    Piaget
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="girard-perregaux"
+                        class="category-filter"
+                    >
+                    Girard-Perregaux
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="ulysse-nardin"
+                        class="category-filter"
+                    >
+                    Ulysse Nardin
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="parmigiani-fleurier"
+                        class="category-filter"
+                    >
+                    Parmigiani Fleurier
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="glashutte-original"
+                        class="category-filter"
+                    >
+                    Glashütte Original
+                </label>
+
+            </div>
+
+
+
+            <!-- PRICE -->
+
+            <div class="filter-section">
+
+                <h3>
+                    PRICE
+                </h3>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="all"
+                        checked
+                    >
+                    All Prices
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="10000"
+                    >
+                    Under $10K
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="100000"
+                    >
+                    $10K – $100K
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="1000000"
+                    >
+                    $100K – $1M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="10000000"
+                    >
+                    $1M – $10M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="1000000000000"
+                    >
+                    $10M+
+                </label>
+
+            </div>
+
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="filter-section">
+
+                <h3>
+                    AVAILABILITY
+                </h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="unlimited"
+                        class="availability-filter"
+                    >
+                    In Stock
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="limited"
+                        class="availability-filter"
+                    >
+                    Limited
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="one"
+                        class="availability-filter"
+                    >
+                    One of One
+                </label>
+
+            </div>
+
+
+
+            <button
+                id="resetFilters"
+                class="reset-filters"
+                type="button"
+            >
+                RESET FILTERS
+            </button>
+
+        </aside>
+
+
+
+        <!-- PRODUCTS -->
+
+        <section class="products-section">
+
+
+            <div class="mobile-filter-row">
+
+                <button
+                    id="openFilters"
+                    class="mobile-filter-button"
+                    type="button"
+                >
+                    ☰ FILTER
+                </button>
+
+
+                <select id="sortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="desktop-sort">
+
+                <span>
+                    Sort by
+                </span>
+
+
+                <select id="desktopSortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div
+                id="productsGrid"
+                class="products-grid"
+            ></div>
+
+
+
+            <div
+                id="noResults"
+                class="no-results"
+            >
+
+                <div class="empty-icon">
+                    ⌕
+                </div>
+
+                <h2>
+                    NO WATCHES FOUND
+                </h2>
+
+                <p>
+                    Try another search or change your filters.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<script
+    src="{{ url_for('static', filename='js/watches-data.js') }}"
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/billionaire-watches.js') }}"
+></script>
+
+
+</body>
+
+</html>

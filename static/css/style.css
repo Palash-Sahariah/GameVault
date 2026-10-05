@@ -1,0 +1,1310 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+    background: #020611;
+    color: #f5f7ff;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(45, 72, 180, 0.16), transparent 28%),
+        radial-gradient(circle at 85% 30%, rgba(120, 45, 220, 0.13), transparent 28%),
+        #020611;
+}
+
+
+.grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(80, 120, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80, 120, 255, 0.035) 1px, transparent 1px);
+
+    background-size: 60px 60px;
+
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+
+
+.orb {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+    animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+
+.orb-one {
+    background: #145cff;
+    left: -180px;
+    top: 10%;
+}
+
+
+.orb-two {
+    background: #7b20ff;
+    right: -180px;
+    top: 45%;
+    animation-delay: -5s;
+}
+
+
+@keyframes floatOrb {
+
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(80px, -50px) scale(1.15);
+    }
+}
+
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #6da8ff;
+    box-shadow: 0 0 12px #468cff;
+    animation: particleMove 8s linear infinite;
+}
+
+
+.p1 { left: 10%; top: 80%; animation-delay: 0s; }
+.p2 { left: 25%; top: 60%; animation-delay: 2s; }
+.p3 { left: 70%; top: 75%; animation-delay: 4s; }
+.p4 { left: 82%; top: 30%; animation-delay: 1s; }
+.p5 { left: 55%; top: 15%; animation-delay: 5s; }
+
+
+@keyframes particleMove {
+
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120px);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    width: min(1200px, calc(100% - 40px));
+    margin: 20px auto 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 22px;
+
+    border: 1px solid rgba(202, 163, 72, 0.35);
+    border-radius: 18px;
+
+    background: rgba(5, 10, 25, 0.62);
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.35),
+        inset 0 0 25px rgba(255, 255, 255, 0.02);
+
+    position: relative;
+    z-index: 10;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    color: white;
+
+    font-family: "Orbitron", sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+
+.logo span span {
+    color: #d7ae4e;
+}
+
+
+.logo-icon {
+    font-size: 25px;
+}
+
+
+.desktop-nav {
+    display: flex;
+    gap: 32px;
+}
+
+
+.desktop-nav a {
+    color: #aeb8ce;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+
+.desktop-nav a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 12px #497fff;
+}
+
+
+.menu-btn {
+    display: none;
+
+    border: 1px solid rgba(215, 174, 78, 0.4);
+    background: rgba(255,255,255,0.04);
+    color: white;
+
+    border-radius: 10px;
+    padding: 8px 11px;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    width: min(1200px, calc(100% - 40px));
+    min-height: 650px;
+
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 50px;
+}
+
+
+.hero-badge {
+    display: inline-block;
+
+    padding: 8px 14px;
+
+    border-radius: 100px;
+
+    border: 1px solid rgba(215, 174, 78, 0.45);
+
+    background: rgba(215, 174, 78, 0.07);
+
+    color: #e2bd60;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+
+.hero h1 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(50px, 7vw, 88px);
+
+    line-height: 0.96;
+
+    letter-spacing: -4px;
+}
+
+
+.hero h1 span {
+    color: #5795ff;
+
+    text-shadow:
+        0 0 30px rgba(65, 120, 255, 0.45);
+}
+
+
+.hero p {
+    max-width: 540px;
+
+    margin: 28px 0;
+
+    color: #9ca9c3;
+
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-weight: 700;
+    font-size: 13px;
+
+    background: linear-gradient(120deg, #245eff, #7d2cff);
+
+    box-shadow:
+        0 0 25px rgba(63, 98, 255, 0.25);
+
+    transition: 0.3s;
+}
+
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 40px rgba(88, 105, 255, 0.5);
+}
+
+
+/* HERO VAULT */
+
+.hero-visual {
+    position: relative;
+
+    height: 450px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.vault-core {
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(215, 174, 78, 0.7);
+
+    background:
+        radial-gradient(circle, rgba(41, 92, 255, 0.25), rgba(4, 9, 23, 0.9));
+
+    box-shadow:
+        0 0 50px rgba(50, 105, 255, 0.3),
+        inset 0 0 50px rgba(215, 174, 78, 0.06);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    animation: vaultFloat 5s ease-in-out infinite;
+}
+
+
+.vault-symbol {
+    font-family: "Orbitron", sans-serif;
+    font-size: 80px;
+    font-weight: 800;
+
+    color: #d7ae4e;
+
+    text-shadow:
+        0 0 30px rgba(215, 174, 78, 0.45);
+}
+
+
+.vault-text {
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: #8190aa;
+    text-align: center;
+}
+
+
+@keyframes vaultFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+
+.hero-ring {
+    position: absolute;
+
+    border: 1px solid rgba(70, 120, 255, 0.25);
+
+    border-radius: 50%;
+
+    animation: rotateRing 20s linear infinite;
+}
+
+
+.ring-one {
+    width: 350px;
+    height: 350px;
+}
+
+
+.ring-two {
+    width: 430px;
+    height: 430px;
+
+    border-color: rgba(170, 70, 255, 0.16);
+
+    animation-direction: reverse;
+    animation-duration: 28s;
+}
+
+
+@keyframes rotateRing {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    width: min(1200px, calc(100% - 40px));
+    margin: 80px auto;
+}
+
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 28px;
+}
+
+
+.section-label {
+    color: #d7ae4e;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+
+.section-heading h2 {
+    margin-top: 7px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 28px;
+}
+
+
+.game-count {
+    color: #64718b;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   GAME GRID
+========================= */
+
+.games-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 24px;
+}
+
+
+.game-card {
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(215, 174, 78, 0.32);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 34, 57, 0.72),
+            rgba(5, 10, 24, 0.7)
+        );
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.25),
+        inset 0 0 35px rgba(255,255,255,0.015);
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+
+    animation: cardAppear 0.8s ease both;
+}
+
+
+.game-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(215, 174, 78, 0.75);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.4),
+        0 0 35px rgba(46, 102, 255, 0.12);
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   GAME ART
+========================= */
+
+.game-art {
+    height: 280px;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.money-art {
+    background:
+        radial-gradient(circle at 50% 60%, rgba(46, 130, 255, 0.2), transparent 35%),
+        linear-gradient(145deg, #071a30, #0c071d);
+}
+
+
+.money {
+    position: absolute;
+    font-size: 55px;
+
+    animation: moneyFloat 4s ease-in-out infinite;
+}
+
+
+.money-one {
+    left: 12%;
+    top: 20%;
+    transform: rotate(-20deg);
+}
+
+
+.money-two {
+    right: 15%;
+    top: 12%;
+    animation-delay: -1s;
+}
+
+
+.money-three {
+    left: 25%;
+    bottom: 15%;
+    animation-delay: -2s;
+}
+
+
+.money-four {
+    right: 27%;
+    bottom: 17%;
+    animation-delay: -3s;
+}
+
+
+@keyframes moneyFloat {
+
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-16px) rotate(8deg);
+    }
+}
+
+
+.fire {
+    position: absolute;
+
+    font-size: 65px;
+
+    filter: drop-shadow(0 0 15px rgba(255, 120, 20, 0.8));
+
+    animation: fireDance 0.8s ease-in-out infinite alternate;
+}
+
+
+.fire-one {
+    bottom: 20px;
+    left: 35%;
+}
+
+
+.fire-two {
+    bottom: 15px;
+    right: 28%;
+    animation-delay: -0.3s;
+}
+
+
+@keyframes fireDance {
+
+    from {
+        transform: scale(0.9) rotate(-4deg);
+    }
+
+    to {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+
+.game-art-title {
+    position: absolute;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 18px;
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    color: white;
+
+    text-shadow: 0 3px 15px black;
+}
+
+
+.game-art-title strong {
+    display: block;
+
+    font-size: 28px;
+
+    color: #d7ae4e;
+
+    margin-top: 5px;
+}
+
+
+/* SNAKE */
+
+.snake-art {
+    background:
+        radial-gradient(circle, rgba(40, 160, 110, 0.16), transparent 45%),
+        #03120f;
+}
+
+
+.snake-board {
+    width: 75%;
+    height: 70%;
+
+    border: 1px solid rgba(75, 200, 130, 0.2);
+
+    position: relative;
+
+    background-image:
+        linear-gradient(rgba(70, 200, 130, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(70, 200, 130, 0.04) 1px, transparent 1px);
+
+    background-size: 28px 28px;
+
+    overflow: hidden;
+}
+
+
+.snake-body,
+.snake-head {
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    border-radius: 6px;
+
+    background: #43d58b;
+
+    box-shadow: 0 0 15px rgba(60, 220, 130, 0.45);
+}
+
+
+.s1 {
+    left: 20%;
+    top: 55%;
+}
+
+
+.s2 {
+    left: 26%;
+    top: 55%;
+}
+
+
+.s3 {
+    left: 32%;
+    top: 55%;
+}
+
+
+.snake-head {
+    left: 38%;
+    top: 55%;
+
+    border-radius: 50%;
+
+    animation: snakeMove 4s linear infinite;
+}
+
+
+@keyframes snakeMove {
+
+    0% {
+        left: 38%;
+        top: 55%;
+    }
+
+    25% {
+        left: 65%;
+        top: 55%;
+    }
+
+    50% {
+        left: 65%;
+        top: 25%;
+    }
+
+    75% {
+        left: 30%;
+        top: 25%;
+    }
+
+    100% {
+        left: 38%;
+        top: 55%;
+    }
+}
+
+
+.snake-food {
+    position: absolute;
+
+    right: 20%;
+    bottom: 20%;
+
+    font-size: 25px;
+
+    animation: foodPulse 1s infinite alternate;
+}
+
+
+@keyframes foodPulse {
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+
+/* COMING SOON ART */
+
+.memory-art {
+    background:
+        radial-gradient(circle, rgba(100, 80, 255, 0.22), transparent 50%),
+        #090718;
+}
+
+
+.memory-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 70px);
+    gap: 10px;
+}
+
+
+.memory-cards span {
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(215, 174, 78, 0.4);
+
+    background: rgba(30, 25, 65, 0.8);
+
+    color: #d7ae4e;
+
+    font-size: 25px;
+
+    transform: rotate(-3deg);
+}
+
+
+.reaction-art {
+    background:
+        radial-gradient(circle, rgba(150, 40, 255, 0.25), transparent 45%),
+        #0c0618;
+}
+
+
+.reaction-target {
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 55px;
+
+    border: 1px solid rgba(160, 90, 255, 0.6);
+
+    box-shadow:
+        0 0 45px rgba(130, 70, 255, 0.35);
+
+    animation: reactionPulse 1.5s infinite alternate;
+}
+
+
+@keyframes reactionPulse {
+
+    to {
+        transform: scale(1.08);
+        box-shadow: 0 0 80px rgba(130, 70, 255, 0.55);
+    }
+}
+
+
+.puzzle-art {
+    background:
+        radial-gradient(circle, rgba(40, 130, 255, 0.2), transparent 50%),
+        #06101e;
+}
+
+
+.number-2048 {
+    display: flex;
+    gap: 5px;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 45px;
+    font-weight: 800;
+}
+
+
+.number-2048 span:nth-child(1) {
+    color: #64a4ff;
+}
+
+
+.number-2048 span:nth-child(2) {
+    color: #a56dff;
+}
+
+
+.number-2048 span:nth-child(3) {
+    color: #d7ae4e;
+}
+
+
+.number-2048 span:nth-child(4) {
+    color: #ffffff;
+}
+
+
+.coming-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(2px);
+}
+
+
+.coming-overlay span {
+    padding: 9px 15px;
+
+    border-radius: 100px;
+
+    background: rgba(5, 7, 18, 0.8);
+
+    border: 1px solid rgba(215, 174, 78, 0.55);
+
+    color: #e4bd63;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    box-shadow: 0 0 25px rgba(215, 174, 78, 0.15);
+}
+
+
+/* =========================
+   CARD INFO
+========================= */
+
+.game-info {
+    padding: 22px;
+}
+
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 13px;
+}
+
+
+.category {
+    font-size: 9px;
+
+    color: #8995ad;
+
+    letter-spacing: 2px;
+}
+
+
+.status {
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+
+.live {
+    color: #55dc96;
+}
+
+
+.coming {
+    color: #d7ae4e;
+}
+
+
+.game-info h3 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 19px;
+
+    margin-bottom: 10px;
+}
+
+
+.game-info p {
+    color: #8f9ab0;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    min-height: 44px;
+
+    margin-bottom: 20px;
+}
+
+
+.play-btn {
+    width: 100%;
+
+    border: none;
+
+    padding: 12px 16px;
+
+    border-radius: 11px;
+
+    color: white;
+
+    font-weight: 800;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.money-btn {
+    background: linear-gradient(100deg, #175cff, #7929ff);
+
+    box-shadow: 0 0 20px rgba(60, 90, 255, 0.18);
+}
+
+
+.money-btn:hover {
+    box-shadow: 0 0 30px rgba(90, 80, 255, 0.45);
+
+    transform: translateY(-2px);
+}
+
+
+.snake-btn {
+    background: linear-gradient(100deg, #168c59, #25c77b);
+}
+
+
+.snake-btn:hover {
+    box-shadow: 0 0 25px rgba(40, 210, 130, 0.35);
+
+    transform: translateY(-2px);
+}
+
+
+.disabled-btn {
+    background: rgba(255,255,255,0.05);
+
+    color: #777f91;
+
+    cursor: not-allowed;
+
+    border: 1px solid rgba(215,174,78,0.15);
+}
+
+
+/* =========================
+   FUTURE
+========================= */
+
+.future-section {
+    width: min(1200px, calc(100% - 40px));
+
+    margin: 130px auto;
+
+    padding: 90px 30px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(215,174,78,0.2);
+
+    background:
+        radial-gradient(circle at center, rgba(50,80,200,0.13), transparent 60%),
+        rgba(7,12,27,0.55);
+
+    backdrop-filter: blur(20px);
+}
+
+
+.future-section h2 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(32px, 5vw, 55px);
+
+    margin: 15px 0;
+}
+
+
+.future-section h2 span {
+    color: #628fff;
+}
+
+
+.future-section p {
+    color: #8d99b0;
+}
+
+
+.future-icons {
+    margin-top: 30px;
+
+    font-size: 30px;
+
+    letter-spacing: 15px;
+
+    animation: iconFloat 3s ease-in-out infinite alternate;
+}
+
+
+@keyframes iconFloat {
+
+    to {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    width: min(1200px, calc(100% - 40px));
+
+    margin: auto;
+
+    padding: 30px 0 40px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(215,174,78,0.12);
+
+    color: #66738b;
+}
+
+
+.footer-logo {
+    font-family: "Orbitron", sans-serif;
+
+    color: #d7ae4e;
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+}
+
+
+footer p {
+    font-size: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+footer span {
+    font-size: 10px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        width: calc(100% - 24px);
+        margin-top: 12px;
+
+        padding: 13px 15px;
+    }
+
+
+    .desktop-nav {
+        display: none;
+    }
+
+
+    .menu-btn {
+        display: block;
+    }
+
+
+    .hero {
+        width: calc(100% - 28px);
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        padding-top: 70px;
+
+        min-height: auto;
+    }
+
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .hero h1 {
+        font-size: clamp(46px, 15vw, 70px);
+
+        letter-spacing: -3px;
+    }
+
+
+    .hero-visual {
+        height: 360px;
+    }
+
+
+    .vault-core {
+        width: 190px;
+        height: 190px;
+    }
+
+
+    .vault-symbol {
+        font-size: 60px;
+    }
+
+
+    .ring-one {
+        width: 280px;
+        height: 280px;
+    }
+
+
+    .ring-two {
+        width: 340px;
+        height: 340px;
+    }
+
+
+    .section {
+        width: calc(100% - 28px);
+
+        margin-top: 60px;
+    }
+
+
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .game-art {
+        height: 240px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 21px;
+    }
+
+
+    .game-count {
+        font-size: 8px;
+    }
+
+
+    .future-section {
+        width: calc(100% - 28px);
+
+        padding: 65px 20px;
+
+        margin-top: 90px;
+    }
+
+
+    .future-icons {
+        font-size: 23px;
+
+        letter-spacing: 7px;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+
+    .logo {
+        font-size: 13px;
+    }
+
+
+    .logo-icon {
+        font-size: 20px;
+    }
+
+}

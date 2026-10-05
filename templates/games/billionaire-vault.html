@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="GameVault Billionaire Breakout — The Vault"
+    >
+
+    <title>
+        Vault | GameVault
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/billionaire-vault.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         ANIMATED BACKGROUND
+    ====================================================== -->
+
+    <div class="vault-background">
+
+        <div class="orb orb-1"></div>
+
+        <div class="orb orb-2"></div>
+
+        <div class="orb orb-3"></div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="vault-navbar">
+
+
+        <div class="brand">
+
+            <span class="brand-main">
+                GAMEVAULT
+            </span>
+
+            <span class="brand-sub">
+                THE VAULT
+            </span>
+
+        </div>
+
+
+
+        <div class="nav-right">
+
+
+            <!-- CART -->
+
+            <button
+                class="nav-cart"
+                id="cartButton"
+                data-cart-button
+                type="button"
+            >
+
+                🛒 YOUR CART
+
+                <span
+                    id="cartCount"
+                    class="cart-count"
+                >
+                    0
+                </span>
+
+            </button>
+
+
+
+            <!-- BACK -->
+
+            <button
+                class="back-button"
+                id="backButton"
+                type="button"
+            >
+
+                ← BACK
+
+            </button>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="vault-container">
+
+
+        <!-- =================================================
+             HEADING
+        ================================================== -->
+
+        <section class="vault-heading">
+
+
+            <div>
+
+                <div class="eyebrow">
+                    GAMEVAULT • BILLIONAIRE BREAKOUT
+                </div>
+
+
+                <h1>
+                    THE VAULT
+                </h1>
+
+
+                <p>
+                    Discover rare treasures, collectibles
+                    and legendary possessions.
+                    Add anything you want to your cart.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
+
+        <section class="search-area">
+
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search the Vault..."
+                    autocomplete="off"
+                >
+
+
+                <button
+                    id="clearSearch"
+                    class="clear-search"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="result-info">
+
+                <span id="resultCount">
+                    0
+                </span>
+
+                treasures found
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             SHOP
+        ================================================== -->
+
+        <div class="shop-layout">
+
+
+            <!-- =================================================
+                 FILTER SIDEBAR
+            ================================================== -->
+
+            <aside
+                class="filter-sidebar"
+                id="filterSidebar"
+            >
+
+
+                <div class="filter-header">
+
+                    <h2>
+                        FILTER
+                    </h2>
+
+
+                    <button
+                        id="closeFilters"
+                        type="button"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+
+                <!-- CATEGORY -->
+
+                <div class="filter-section">
+
+                    <h3>
+                        CATEGORY
+                    </h3>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="precious-metals"
+                            class="category-filter"
+                        >
+                        Precious Metals
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="rare-gems"
+                            class="category-filter"
+                        >
+                        Rare Gems
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="rare-coins"
+                            class="category-filter"
+                        >
+                        Rare Coins
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="collectibles"
+                            class="category-filter"
+                        >
+                        Collectibles
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="memorabilia"
+                            class="category-filter"
+                        >
+                        Memorabilia
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="luxury-collectibles"
+                            class="category-filter"
+                        >
+                        Luxury Collectibles
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="historical"
+                            class="category-filter"
+                        >
+                        Historical
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="toys-models"
+                            class="category-filter"
+                        >
+                        Toys &amp; Models
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="gaming"
+                            class="category-filter"
+                        >
+                        Gaming
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="music"
+                            class="category-filter"
+                        >
+                        Music
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="royal-heritage"
+                            class="category-filter"
+                        >
+                        Royal &amp; Heritage
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="ultra-rare"
+                            class="category-filter"
+                        >
+                        Ultra-Rare
+                    </label>
+
+                </div>
+
+
+
+                <!-- PRICE -->
+
+                <div class="filter-section">
+
+                    <h3>
+                        PRICE
+                    </h3>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="price"
+                            value="all"
+                            checked
+                        >
+                        All Prices
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="price"
+                            value="10000"
+                        >
+                        Under $10K
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="price"
+                            value="100000"
+                        >
+                        $10K – $100K
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="price"
+                            value="1000000"
+                        >
+                        $100K – $1M
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="price"
+                            value="10000000"
+                        >
+                        $1M – $10M
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="price"
+                            value="1000000000000"
+                        >
+                        $10M+
+                    </label>
+
+                </div>
+
+
+
+                <!-- AVAILABILITY -->
+
+                <div class="filter-section">
+
+                    <h3>
+                        AVAILABILITY
+                    </h3>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="unlimited"
+                            class="availability-filter"
+                        >
+                        In Stock
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="limited"
+                            class="availability-filter"
+                        >
+                        Limited
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="one"
+                            class="availability-filter"
+                        >
+                        One of One
+                    </label>
+
+                </div>
+
+
+
+                <!-- RESET -->
+
+                <button
+                    id="resetFilters"
+                    class="reset-filters"
+                    type="button"
+                >
+                    RESET FILTERS
+                </button>
+
+
+            </aside>
+
+
+
+            <!-- =================================================
+                 PRODUCTS
+            ================================================== -->
+
+            <section class="products-section">
+
+
+                <!-- MOBILE FILTER / SORT -->
+
+                <div class="mobile-filter-row">
+
+
+                    <button
+                        id="openFilters"
+                        class="mobile-filter-button"
+                        type="button"
+                    >
+                        ☰ FILTER
+                    </button>
+
+
+                    <select id="sortSelect">
+
+                        <option value="featured">
+                            Featured
+                        </option>
+
+                        <option value="low">
+                            Price: Low → High
+                        </option>
+
+                        <option value="high">
+                            Price: High → Low
+                        </option>
+
+                        <option value="name">
+                            Name A → Z
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- DESKTOP SORT -->
+
+                <div class="desktop-sort">
+
+                    <span>
+                        Sort by
+                    </span>
+
+
+                    <select id="desktopSortSelect">
+
+                        <option value="featured">
+                            Featured
+                        </option>
+
+                        <option value="low">
+                            Price: Low → High
+                        </option>
+
+                        <option value="high">
+                            Price: High → Low
+                        </option>
+
+                        <option value="name">
+                            Name A → Z
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- PRODUCTS -->
+
+                <div
+                    id="productsGrid"
+                    class="products-grid"
+                >
+                </div>
+
+
+
+                <!-- NO RESULTS -->
+
+                <div
+                    id="noResults"
+                    class="no-results"
+                >
+
+                    <div class="empty-icon">
+                        ⌕
+                    </div>
+
+
+                    <h2>
+                        NO TREASURES FOUND
+                    </h2>
+
+
+                    <p>
+                        Try another search or change
+                        your filters.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script
+        src="{{ url_for(
+            'static',
+            filename='js/vault-data.js'
+        ) }}"
+    ></script>
+
+
+    <script
+        src="{{ url_for(
+            'static',
+            filename='js/billionaire-vault.js'
+        ) }}"
+    ></script>
+
+
+</body>
+
+</html>

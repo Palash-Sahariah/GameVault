@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Technology | GameVault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/billionaire-vault.css') }}">
+</head>
+
+<body>
+
+<div class="vault-background">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+
+<header class="vault-navbar">
+
+    <div class="brand">
+        <span class="brand-main">GAMEVAULT</span>
+        <span class="brand-sub">TECHNOLOGY</span>
+    </div>
+
+    <div class="nav-right">
+
+        <button class="nav-cart" id="cartButton">
+            🛒 YOUR CART
+            <span id="cartCount">0</span>
+        </button>
+
+        <button class="back-button" id="backButton">
+            ← BACK
+        </button>
+
+    </div>
+
+</header>
+
+<main class="vault-container">
+
+    <section class="vault-heading">
+        <div>
+            <div class="eyebrow">GAMEVAULT • BILLIONAIRE BREAKOUT</div>
+
+            <h1>THE TECHNOLOGY VAULT</h1>
+
+            <p>
+                Discover real-world smartphones, computers, GPUs, cameras,
+                gaming hardware, displays, audio systems and other technology.
+                Prices are based on current real-world India pricing.
+            </p>
+        </div>
+    </section>
+
+    <section class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search technology..."
+                autocomplete="off"
+            >
+
+            <button id="clearSearch" class="clear-search">×</button>
+
+        </div>
+
+        <div class="result-info">
+            <span id="resultCount">0</span> products found
+        </div>
+
+    </section>
+
+    <div class="shop-layout">
+
+        <aside class="filter-sidebar" id="filterSidebar">
+
+            <div class="filter-header">
+                <h2>FILTER</h2>
+                <button id="closeFilters">×</button>
+            </div>
+
+            <div class="filter-section">
+
+                <h3>CATEGORY</h3>
+
+                <label>
+                    <input type="checkbox" value="smartphones"
+                           class="category-filter">
+                    Smartphones
+                </label>
+
+                <label>
+                    <input type="checkbox" value="laptops"
+                           class="category-filter">
+                    Laptops
+                </label>
+
+                <label>
+                    <input type="checkbox" value="tablets"
+                           class="category-filter">
+                    Tablets
+                </label>
+
+                <label>
+                    <input type="checkbox" value="desktop"
+                           class="category-filter">
+                    Desktop & PC
+                </label>
+
+                <label>
+                    <input type="checkbox" value="gpu"
+                           class="category-filter">
+                    Graphics Cards
+                </label>
+
+                <label>
+                    <input type="checkbox" value="gaming"
+                           class="category-filter">
+                    Gaming
+                </label>
+
+                <label>
+                    <input type="checkbox" value="cameras"
+                           class="category-filter">
+                    Cameras
+                </label>
+
+                <label>
+                    <input type="checkbox" value="tv"
+                           class="category-filter">
+                    TVs & Displays
+                </label>
+
+                <label>
+                    <input type="checkbox" value="audio"
+                           class="category-filter">
+                    Audio
+                </label>
+
+                <label>
+                    <input type="checkbox" value="wearables"
+                           class="category-filter">
+                    Wearables
+                </label>
+
+                <label>
+                    <input type="checkbox" value="drones"
+                           class="category-filter">
+                    Drones
+                </label>
+
+                <label>
+                    <input type="checkbox" value="storage"
+                           class="category-filter">
+                    Storage
+                </label>
+
+            </div>
+
+            <div class="filter-section">
+
+                <h3>PRICE</h3>
+
+                <label>
+                    <input type="radio" name="price"
+                           value="all" checked>
+                    All Prices
+                </label>
+
+                <label>
+                    <input type="radio" name="price"
+                           value="10000">
+                    Under ₹10K
+                </label>
+
+                <label>
+                    <input type="radio" name="price"
+                           value="50000">
+                    ₹10K – ₹50K
+                </label>
+
+                <label>
+                    <input type="radio" name="price"
+                           value="100000">
+                    ₹50K – ₹1L
+                </label>
+
+                <label>
+                    <input type="radio" name="price"
+                           value="250000">
+                    ₹1L – ₹2.5L
+                </label>
+
+                <label>
+                    <input type="radio" name="price"
+                           value="500000">
+                    ₹2.5L – ₹5L
+                </label>
+
+                <label>
+                    <input type="radio" name="price"
+                           value="1000000000000">
+                    ₹5L+
+                </label>
+
+            </div>
+
+            <div class="filter-section">
+
+                <h3>AVAILABILITY</h3>
+
+                <label>
+                    <input type="checkbox"
+                           value="unlimited"
+                           class="availability-filter">
+                    In Stock
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                           value="limited"
+                           class="availability-filter">
+                    Limited
+                </label>
+
+            </div>
+
+            <button id="resetFilters" class="reset-filters">
+                RESET FILTERS
+            </button>
+
+        </aside>
+
+        <section class="products-section">
+
+            <div class="mobile-filter-row">
+
+                <button id="openFilters"
+                        class="mobile-filter-button">
+                    ☰ FILTER
+                </button>
+
+                <select id="sortSelect">
+                    <option value="featured">Featured</option>
+                    <option value="low">Price: Low → High</option>
+                    <option value="high">Price: High → Low</option>
+                    <option value="name">Name A → Z</option>
+                </select>
+
+            </div>
+
+            <div class="desktop-sort">
+
+                <span>Sort by</span>
+
+                <select id="desktopSortSelect">
+                    <option value="featured">Featured</option>
+                    <option value="low">Price: Low → High</option>
+                    <option value="high">Price: High → Low</option>
+                    <option value="name">Name A → Z</option>
+                </select>
+
+            </div>
+
+            <div id="productsGrid"
+                 class="products-grid"></div>
+
+            <div id="noResults"
+                 class="no-results">
+
+                <div class="empty-icon">⌕</div>
+
+                <h2>NO TECHNOLOGY FOUND</h2>
+
+                <p>
+                    Try another search or change your filters.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/technology-data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/billionaire-technology.js') }}"></script>
+
+</body>
+</html>

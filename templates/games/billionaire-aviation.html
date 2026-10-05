@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Aviation | GameVault
+    </title>
+
+    <!-- SAME VAULT / AUTOMOTIVE DESIGN -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/billionaire-vault.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="vault-background">
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+</div>
+
+
+<!-- =========================================
+     NAVBAR
+========================================== -->
+
+<header class="vault-navbar">
+
+
+    <div class="brand">
+
+        <span class="brand-main">
+            GAMEVAULT
+        </span>
+
+        <span class="brand-sub">
+            AVIATION
+        </span>
+
+    </div>
+
+
+    <div class="nav-right">
+
+
+        <button
+            class="nav-cart"
+            id="cartButton"
+            type="button"
+        >
+
+            🛒 YOUR CART
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </button>
+
+
+        <button
+            class="back-button"
+            id="backButton"
+            type="button"
+        >
+
+            ← BACK
+
+        </button>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================== -->
+
+<main class="vault-container">
+
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <section class="vault-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                GAMEVAULT • BILLIONAIRE BREAKOUT
+            </div>
+
+            <h1>
+                AVIATION
+            </h1>
+
+            <p>
+                Explore private jets, airliners,
+                helicopters and legendary aircraft.
+                Add anything you want to your cart.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         SEARCH
+    ====================================== -->
+
+    <section class="search-area">
+
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search aircraft..."
+                autocomplete="off"
+            >
+
+
+            <button
+                id="clearSearch"
+                class="clear-search"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="result-info">
+
+            <span id="resultCount">
+                0
+            </span>
+
+            aircraft found
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         SHOP LAYOUT
+    ====================================== -->
+
+    <div class="shop-layout">
+
+
+        <!-- =================================
+             FILTER SIDEBAR
+        ================================== -->
+
+        <aside
+            class="filter-sidebar"
+            id="filterSidebar"
+        >
+
+
+            <div class="filter-header">
+
+                <h2>
+                    FILTER
+                </h2>
+
+                <button
+                    id="closeFilters"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="filter-section">
+
+                <h3>
+                    CATEGORY
+                </h3>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="private-jets"
+                        class="category-filter"
+                    >
+                    Private Jets
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="business-jets"
+                        class="category-filter"
+                    >
+                    Business Jets
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="vip-airliners"
+                        class="category-filter"
+                    >
+                    VIP Airliners
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="commercial-airliners"
+                        class="category-filter"
+                    >
+                    Commercial Airliners
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="turboprops"
+                        class="category-filter"
+                    >
+                    Turboprops
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="helicopters"
+                        class="category-filter"
+                    >
+                    Helicopters
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="military"
+                        class="category-filter"
+                    >
+                    Military Aircraft
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="cargo"
+                        class="category-filter"
+                    >
+                    Cargo Aircraft
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="supersonic"
+                        class="category-filter"
+                    >
+                    Supersonic
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="historic"
+                        class="category-filter"
+                    >
+                    Historic
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="experimental"
+                        class="category-filter"
+                    >
+                    Experimental
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="ultra-rare"
+                        class="category-filter"
+                    >
+                    Ultra-Rare
+                </label>
+
+            </div>
+
+
+
+            <!-- PRICE -->
+
+            <div class="filter-section">
+
+                <h3>
+                    PRICE
+                </h3>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="all"
+                        checked
+                    >
+                    All Prices
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="10000000"
+                    >
+                    Under $10M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="50000000"
+                    >
+                    $10M – $50M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="100000000"
+                    >
+                    $50M – $100M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="250000000"
+                    >
+                    $100M – $250M
+                </label>
+
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="1000000000000"
+                    >
+                    $250M+
+                </label>
+
+            </div>
+
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="filter-section">
+
+                <h3>
+                    AVAILABILITY
+                </h3>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="unlimited"
+                        class="availability-filter"
+                    >
+
+                    In Stock
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="limited"
+                        class="availability-filter"
+                    >
+
+                    Limited
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="one"
+                        class="availability-filter"
+                    >
+
+                    One of One
+
+                </label>
+
+            </div>
+
+
+
+            <button
+                id="resetFilters"
+                class="reset-filters"
+                type="button"
+            >
+                RESET FILTERS
+            </button>
+
+
+        </aside>
+
+
+
+        <!-- =================================
+             PRODUCTS
+        ================================== -->
+
+        <section class="products-section">
+
+
+            <div class="mobile-filter-row">
+
+
+                <button
+                    id="openFilters"
+                    class="mobile-filter-button"
+                    type="button"
+                >
+                    ☰ FILTER
+                </button>
+
+
+                <select id="sortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="desktop-sort">
+
+                <span>
+                    Sort by
+                </span>
+
+
+                <select id="desktopSortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="low">
+                        Price: Low → High
+                    </option>
+
+                    <option value="high">
+                        Price: High → Low
+                    </option>
+
+                    <option value="name">
+                        Name A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div
+                id="productsGrid"
+                class="products-grid"
+            ></div>
+
+
+
+            <div
+                id="noResults"
+                class="no-results"
+            >
+
+                <div class="empty-icon">
+                    ⌕
+                </div>
+
+                <h2>
+                    NO AIRCRAFT FOUND
+                </h2>
+
+                <p>
+                    Try another search or change
+                    your filters.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script
+    src="{{ url_for('static', filename='js/aviation-data.js') }}"
+></script>
+
+
+<script
+    src="{{ url_for('static', filename='js/billionaire-aviation.js') }}"
+></script>
+
+
+</body>
+
+</html>

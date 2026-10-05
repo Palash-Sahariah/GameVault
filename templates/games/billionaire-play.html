@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Billionaire Breakout | GameVault
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/billionaire.css') }}"
+    >
+
+    <!-- =========================================
+         SMALL NAVBAR ADJUSTMENT
+    ========================================== -->
+
+    <style>
+
+        .nav-actions {
+            gap: 7px;
+        }
+
+        .back-btn {
+            border-color: rgba(120, 150, 255, 0.45);
+            color: #b9c5ff;
+        }
+
+        .back-btn:hover {
+            border-color: rgba(120, 150, 255, 0.9);
+            color: #ffffff;
+            background: rgba(90, 110, 255, 0.10);
+            box-shadow: 0 0 20px rgba(90, 110, 255, 0.18);
+            transform: translateX(-3px);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ANIMATED BACKGROUND
+    ========================================== -->
+
+    <div class="background"></div>
+
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="topbar">
+
+        <a
+            href="{{ url_for('home') }}"
+            class="brand"
+        >
+            GAMEVAULT
+        </a>
+
+
+        <div class="page-title">
+            BILLIONAIRE BREAKOUT
+        </div>
+
+
+        <div class="nav-actions">
+
+            <!-- RESET GAME -->
+
+            <button
+                class="nav-btn reset-btn"
+                id="resetGameBtn"
+                type="button"
+            >
+                ↻ RESET GAME
+            </button>
+
+
+            <!-- CART -->
+
+            <button
+                class="nav-btn"
+                data-cart-button
+                onclick="openCart()"
+                type="button"
+            >
+
+                YOUR CART
+
+                <span class="cart-count">
+                    0
+                </span>
+
+            </button>
+
+
+            <!-- BACK -->
+
+            <button
+                class="nav-btn back-btn"
+                id="backBtn"
+                type="button"
+            >
+                ← BACK
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="container">
+
+
+        <!-- =====================================
+             BILLIONAIRE PROFILE
+        ====================================== -->
+
+        <section class="billionaire-profile">
+
+            <div class="profile-left">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    ?
+                </div>
+
+
+                <div class="profile-info">
+
+                    <div class="profile-label">
+                        SELECTED BILLIONAIRE
+                    </div>
+
+                    <h1 id="billionaireName">
+                        Loading...
+                    </h1>
+
+                    <p id="billionaireRank">
+                        Rank: --
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-fortune">
+
+                <div class="fortune-label">
+                    CURRENT FORTUNE
+                </div>
+
+                <div
+                    class="fortune-value"
+                    id="currentFortune"
+                >
+                    $0.0B
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FINANCIAL STATS
+        ====================================== -->
+
+        <section class="financial-grid">
+
+
+            <div class="financial-card">
+
+                <span>
+                    ORIGINAL FORTUNE
+                </span>
+
+                <strong id="originalFortune">
+                    $0.0B
+                </strong>
+
+            </div>
+
+
+            <div class="financial-card">
+
+                <span>
+                    TOTAL SPENT
+                </span>
+
+                <strong id="totalSpent">
+                    $0.0B
+                </strong>
+
+            </div>
+
+
+            <div class="financial-card current-card">
+
+                <span>
+                    CURRENT FORTUNE
+                </span>
+
+                <strong id="currentFortuneCard">
+                    $0.0B
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             SPENDING PROGRESS
+        ====================================== -->
+
+        <section class="progress-section">
+
+
+            <div class="progress-header">
+
+                <div>
+
+                    <span>
+                        FORTUNE SPENT
+                    </span>
+
+                    <strong id="spentPercentage">
+                        0.00%
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span id="spentAmount">
+                        $0
+                    </span>
+
+                    <span>
+                        SPENT
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                ></div>
+
+            </div>
+
+
+            <div class="progress-footer">
+
+                <span>
+                    REMAINING
+                </span>
+
+                <strong id="remainingAmount">
+                    $0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FICTIONAL MONEY NOTICE
+        ====================================== -->
+
+        <div class="fictional-notice">
+
+            ⚠️
+
+            <span>
+                All money shown here is fictional gameplay currency.
+            </span>
+
+        </div>
+
+
+
+        <!-- =====================================
+             PAGE HEADING
+        ====================================== -->
+
+        <section class="spend-heading">
+
+            <div class="small-heading">
+                BILLIONAIRE EMPIRE
+            </div>
+
+            <h2>
+                SPEND THE FORTUNE
+            </h2>
+
+            <p>
+                Explore the world's most luxurious assets
+                and build your ultimate billionaire empire.
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CATEGORY GRID
+        ====================================== -->
+
+        <section class="category-grid">
+
+
+            <!-- =================================
+                 VAULT
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openVault()"
+            >
+
+                <div class="category-icon">
+                    🏛️
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Vault
+                    </h3>
+
+                    <p>
+                        Explore the complete luxury collection.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 AUTOMOTIVE
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openAutomotive()"
+            >
+
+                <div class="category-icon">
+                    🏎️
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Automotive
+                    </h3>
+
+                    <p>
+                        Hypercars, supercars and luxury machines.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 AVIATION
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openAviation()"
+            >
+
+                <div class="category-icon">
+                    ✈️
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Aviation
+                    </h3>
+
+                    <p>
+                        Private jets and elite aircraft.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 REAL ESTATE
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('real-estate')"
+            >
+
+                <div class="category-icon">
+                    🏙️
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Real Estate
+                    </h3>
+
+                    <p>
+                        Mansions, penthouses and private islands.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 YACHTS
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('yachts')"
+            >
+
+                <div class="category-icon">
+                    🛥️
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Yachts
+                    </h3>
+
+                    <p>
+                        Superyachts and floating palaces.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 WATCHES
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('watches')"
+            >
+
+                <div class="category-icon">
+                    ⌚
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Watches
+                    </h3>
+
+                    <p>
+                        Rare watches and legendary timepieces.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 JEWELLERY
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('jewellery')"
+            >
+
+                <div class="category-icon">
+                    💎
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Jewellery
+                    </h3>
+
+                    <p>
+                        Diamonds and extraordinary jewellery.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 ART
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('art')"
+            >
+
+                <div class="category-icon">
+                    🎨
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Art
+                    </h3>
+
+                    <p>
+                        Masterpieces and private collections.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 EMPIRE
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('empire')"
+            >
+
+                <div class="category-icon">
+                    👑
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Empire
+                    </h3>
+
+                    <p>
+                        Hotels, companies and global businesses.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 TECHNOLOGY
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('technology')"
+            >
+
+                <div class="category-icon">
+                    💻
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Technology
+                    </h3>
+
+                    <p>
+                        AI, computing and futuristic technology.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 WORLD
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('world')"
+            >
+
+                <div class="category-icon">
+                    🌎
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        World
+                    </h3>
+
+                    <p>
+                        Luxury travel and unforgettable experiences.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================
+                 MEGA PROJECTS
+            ================================== -->
+
+            <div
+                class="category-card"
+                onclick="openCategory('mega-projects')"
+            >
+
+                <div class="category-icon">
+                    🏗️
+                </div>
+
+                <div class="category-content">
+
+                    <h3>
+                        Mega Projects
+                    </h3>
+
+                    <p>
+                        Build extraordinary projects around the world.
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             CART BUTTON
+        ====================================== -->
+
+        <div class="bottom-actions">
+
+            <button
+                class="cart-btn"
+                data-cart-button
+                onclick="openCart()"
+                type="button"
+            >
+
+                🛒 YOUR CART
+
+                <span class="cart-count">
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         RESET CONFIRMATION MODAL
+    ========================================== -->
+
+    <div
+        class="reset-modal"
+        id="resetModal"
+    >
+
+        <div class="reset-modal-card">
+
+            <div class="reset-icon">
+                ↻
+            </div>
+
+            <h2>
+                RESET GAME?
+            </h2>
+
+            <p>
+                This will reset this billionaire's
+                entire progress.
+            </p>
+
+            <div class="reset-warning">
+                Fortune will return to the original amount
+                and everything bought will be reset.
+            </div>
+
+            <div class="reset-actions">
+
+                <button
+                    class="cancel-reset"
+                    id="cancelReset"
+                    type="button"
+                >
+                    CANCEL
+                </button>
+
+                <button
+                    class="confirm-reset"
+                    id="confirmReset"
+                    type="button"
+                >
+                    RESET GAME
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         SCRIPTS
+    ========================================== -->
+
+    <script
+        src="{{ url_for('static', filename='js/billionaire.js') }}"
+    ></script>
+
+    <script
+        src="{{ url_for('static', filename='js/cart.js') }}"
+    ></script>
+
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =====================================
+                   GET SELECTED BILLIONAIRE
+                ====================================== */
+
+                const params =
+                    new URLSearchParams(
+                        window.location.search
+                    );
+
+
+                const billionaireId =
+                    params.get("id");
+
+
+                /* =====================================
+                   VALIDATE DATASET
+                ====================================== */
+
+                if (
+                    typeof billionaires === "undefined" ||
+                    !Array.isArray(billionaires)
+                ) {
+
+                    console.error(
+                        "Billionaire dataset is missing."
+                    );
+
+                    document.getElementById(
+                        "billionaireName"
+                    ).textContent =
+                        "DATASET ERROR";
+
+                    return;
+
+                }
+
+
+                /* =====================================
+                   FIND BILLIONAIRE
+                ====================================== */
+
+                const billionaire =
+                    billionaires.find(
+                        billionaire =>
+                            billionaire.id ===
+                            billionaireId
+                    );
+
+
+                if (!billionaire) {
+
+                    document.getElementById(
+                        "billionaireName"
+                    ).textContent =
+                        "BILLIONAIRE NOT FOUND";
+
+                    document.getElementById(
+                        "billionaireRank"
+                    ).textContent =
+                        "Invalid billionaire ID.";
+
+                    return;
+
+                }
+
+
+                /* =====================================
+                   BASIC PROFILE
+                ====================================== */
+
+                document.getElementById(
+                    "billionaireName"
+                ).textContent =
+                    billionaire.name;
+
+
+                document.getElementById(
+                    "billionaireRank"
+                ).textContent =
+                    "Rank #" +
+                    billionaire.rank;
+
+
+                /* =====================================
+                   AVATAR
+                ====================================== */
+
+                const avatar =
+                    document.getElementById(
+                        "profileAvatar"
+                    );
+
+
+                const nameParts =
+                    billionaire.name
+                        .replace(
+                            "& family",
+                            ""
+                        )
+                        .trim()
+                        .split(/\s+/);
+
+
+                let initials =
+                    nameParts
+                        .slice(0, 2)
+                        .map(
+                            part =>
+                                part
+                                    .charAt(0)
+                                    .toUpperCase()
+                        )
+                        .join("");
+
+
+                if (!initials) {
+
+                    initials = "?";
+
+                }
+
+
+                avatar.textContent =
+                    initials;
+
+
+                /* =====================================
+                   STORAGE KEYS
+                ====================================== */
+
+                const spendingKey =
+                    "gamevaultSpending_" +
+                    billionaire.id;
+
+
+                /*
+                 * Every billionaire has their
+                 * own separate cart.
+                 */
+
+                const cartKey =
+                    "gamevaultCart_" +
+                    billionaire.id;
+
+
+                /*
+                 * These keys are cleared too if
+                 * they are used later by the
+                 * collection system.
+                 */
+
+                const collectionKey =
+                    "gamevaultCollection_" +
+                    billionaire.id;
+
+
+                const purchasesKey =
+                    "gamevaultPurchases_" +
+                    billionaire.id;
+
+
+                /* =====================================
+                   FORTUNE
+                ====================================== */
+
+                const originalFortune =
+                    Number(
+                        billionaire.netWorth
+                    ) || 0;
+
+
+                let totalSpent =
+                    Number(
+                        localStorage.getItem(
+                            spendingKey
+                        )
+                    ) || 0;
+
+
+                totalSpent =
+                    Math.max(
+                        0,
+                        Math.min(
+                            totalSpent,
+                            originalFortune
+                        )
+                    );
+
+
+                let currentFortune =
+                    Math.max(
+                        0,
+                        originalFortune -
+                        totalSpent
+                    );
+
+
+                /* =====================================
+                   FORMAT BILLIONS
+                ====================================== */
+
+                function formatBillions(
+                    value
+                ) {
+
+                    value =
+                        Number(value) || 0;
+
+
+                    return "$" +
+                        value.toLocaleString(
+                            "en-US",
+                            {
+                                minimumFractionDigits: 1,
+                                maximumFractionDigits: 1
+                            }
+                        ) +
+                        "B";
+
+                }
+
+
+                /* =====================================
+                   FORMAT DOLLARS
+                ====================================== */
+
+                function formatDollars(
+                    value
+                ) {
+
+                    value =
+                        Number(value) || 0;
+
+
+                    return "$" +
+                        value.toLocaleString(
+                            "en-US",
+                            {
+                                maximumFractionDigits: 0
+                            }
+                        );
+
+                }
+
+
+                /* =====================================
+                   UPDATE DASHBOARD
+                ====================================== */
+
+                function updateDashboard() {
+
+
+                    currentFortune =
+                        Math.max(
+                            0,
+                            originalFortune -
+                            totalSpent
+                        );
+
+
+                    /* ---------------------------------
+                       FORTUNE VALUES
+                    --------------------------------- */
+
+                    document.getElementById(
+                        "originalFortune"
+                    ).textContent =
+                        formatBillions(
+                            originalFortune
+                        );
+
+
+                    document.getElementById(
+                        "totalSpent"
+                    ).textContent =
+                        formatBillions(
+                            totalSpent
+                        );
+
+
+                    document.getElementById(
+                        "currentFortune"
+                    ).textContent =
+                        formatBillions(
+                            currentFortune
+                        );
+
+
+                    document.getElementById(
+                        "currentFortuneCard"
+                    ).textContent =
+                        formatBillions(
+                            currentFortune
+                        );
+
+
+                    /* ---------------------------------
+                       SPENDING PERCENTAGE
+                    --------------------------------- */
+
+                    let percentage = 0;
+
+
+                    if (
+                        originalFortune > 0
+                    ) {
+
+                        percentage =
+                            (
+                                totalSpent /
+                                originalFortune
+                            ) *
+                            100;
+
+                    }
+
+
+                    percentage =
+                        Math.min(
+                            100,
+                            Math.max(
+                                0,
+                                percentage
+                            )
+                        );
+
+
+                    document.getElementById(
+                        "spentPercentage"
+                    ).textContent =
+                        percentage.toFixed(2) +
+                        "%";
+
+
+                    /* ---------------------------------
+                       SPENT
+                    --------------------------------- */
+
+                    const spentDollars =
+                        totalSpent *
+                        1000000000;
+
+
+                    document.getElementById(
+                        "spentAmount"
+                    ).textContent =
+                        formatDollars(
+                            spentDollars
+                        );
+
+
+                    /* ---------------------------------
+                       REMAINING
+                    --------------------------------- */
+
+                    const remainingDollars =
+                        currentFortune *
+                        1000000000;
+
+
+                    document.getElementById(
+                        "remainingAmount"
+                    ).textContent =
+                        formatDollars(
+                            remainingDollars
+                        );
+
+
+                    /* ---------------------------------
+                       PROGRESS BAR
+                    --------------------------------- */
+
+                    document.getElementById(
+                        "progressFill"
+                    ).style.width =
+                        percentage +
+                        "%";
+
+                }
+
+
+                /* =====================================
+                   OPEN CART
+                ====================================== */
+
+                window.openCart =
+                    function () {
+
+                        window.location.href =
+                            "{{ url_for('billionaire_cart') }}"
+                            + "?id="
+                            + encodeURIComponent(
+                                billionaire.id
+                            );
+
+                    };
+
+
+                /* =====================================
+                   OPEN VAULT
+                ====================================== */
+
+                window.openVault =
+                    function () {
+
+                        window.location.href =
+                            "{{ url_for('billionaire_vault') }}"
+                            + "?id="
+                            + encodeURIComponent(
+                                billionaire.id
+                            );
+
+                    };
+
+
+                /* =====================================
+                   OPEN AUTOMOTIVE
+                ====================================== */
+
+                window.openAutomotive =
+                    function () {
+
+                        window.location.href =
+                            "{{ url_for('billionaire_automotive') }}"
+                            + "?id="
+                            + encodeURIComponent(
+                                billionaire.id
+                            );
+
+                    };
+
+
+                /* =====================================
+                   OPEN AVIATION
+                ====================================== */
+
+                window.openAviation =
+                    function () {
+
+                        window.location.href =
+                            "{{ url_for('billionaire_aviation') }}"
+                            + "?id="
+                            + encodeURIComponent(
+                                billionaire.id
+                            );
+
+                    };
+
+
+                /* =====================================
+                   FUTURE CATEGORY ROUTES
+                ====================================== */
+
+                const categoryRoutes = {
+
+                    "real-estate":
+                        "/games/billionaire/real-estate",
+
+                    "yachts":
+                        "/games/billionaire/yachts",
+
+                    "watches":
+                        "/games/billionaire/watches",
+
+                    "jewellery":
+                        "/games/billionaire/jewellery",
+
+                    "art":
+                        "/games/billionaire/art",
+
+                    "empire":
+                        "/games/billionaire/empire",
+
+                    "technology":
+                        "/games/billionaire/technology",
+
+                    "world":
+                        "/games/billionaire/world",
+
+                    "mega-projects":
+                        "/games/billionaire/mega-projects"
+
+                };
+
+
+                /* =====================================
+                   OPEN ANY FUTURE CATEGORY
+                ====================================== */
+
+                window.openCategory =
+                    function (category) {
+
+                        const route =
+                            categoryRoutes[
+                                category
+                            ];
+
+                        if (!route) {
+
+                            console.error(
+                                "Unknown GameVault category:",
+                                category
+                            );
+
+                            return;
+
+                        }
+
+
+                        window.location.href =
+                            route +
+                            "?id=" +
+                            encodeURIComponent(
+                                billionaire.id
+                            );
+
+                    };
+
+
+                /* =====================================
+                   CATEGORY PLACEHOLDER
+                ====================================== */
+
+                window.categoryComingSoon =
+                    function (
+                        category
+                    ) {
+
+                        console.log(
+                            category +
+                            " category selected."
+                        );
+
+                    };
+
+
+                /* =====================================
+                   RESET MODAL ELEMENTS
+                ====================================== */
+
+                const resetModal =
+                    document.getElementById(
+                        "resetModal"
+                    );
+
+
+                const resetGameBtn =
+                    document.getElementById(
+                        "resetGameBtn"
+                    );
+
+
+                const cancelReset =
+                    document.getElementById(
+                        "cancelReset"
+                    );
+
+
+                const confirmReset =
+                    document.getElementById(
+                        "confirmReset"
+                    );
+
+
+                /* =====================================
+                   OPEN RESET MODAL
+                ====================================== */
+
+                resetGameBtn.addEventListener(
+                    "click",
+                    function () {
+
+                        resetModal.classList.add(
+                            "show"
+                        );
+
+                    }
+                );
+
+
+                /* =====================================
+                   CANCEL RESET
+                ====================================== */
+
+                cancelReset.addEventListener(
+                    "click",
+                    function () {
+
+                        resetModal.classList.remove(
+                            "show"
+                        );
+
+                    }
+                );
+
+
+                /* =====================================
+                   CLICK OUTSIDE RESET MODAL
+                ====================================== */
+
+                resetModal.addEventListener(
+                    "click",
+                    function (event) {
+
+                        if (
+                            event.target ===
+                            resetModal
+                        ) {
+
+                            resetModal.classList.remove(
+                                "show"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /* =====================================
+                   CONFIRM RESET
+                ====================================== */
+
+                confirmReset.addEventListener(
+                    "click",
+                    function () {
+
+
+                        /*
+                         * 1. RESET MONEY SPENT
+                         */
+
+                        localStorage.removeItem(
+                            spendingKey
+                        );
+
+
+                        /*
+                         * 2. EMPTY THIS
+                         * BILLIONAIRE'S CART
+                         */
+
+                        localStorage.removeItem(
+                            cartKey
+                        );
+
+
+                        /*
+                         * 3. CLEAR PURCHASED
+                         * COLLECTION IF USED
+                         */
+
+                        localStorage.removeItem(
+                            collectionKey
+                        );
+
+
+                        localStorage.removeItem(
+                            purchasesKey
+                        );
+
+
+                        /*
+                         * 4. RESET VARIABLES
+                         */
+
+                        totalSpent = 0;
+
+                        currentFortune =
+                            originalFortune;
+
+
+                        /*
+                         * 5. REFRESH DASHBOARD
+                         */
+
+                        updateDashboard();
+
+
+                        /*
+                         * 6. RESET CART COUNT
+                         */
+
+                        if (
+                            typeof updateCartButtons ===
+                            "function"
+                        ) {
+
+                            updateCartButtons(
+                                billionaire.id
+                            );
+
+                        }
+
+
+                        /*
+                         * 7. CLOSE MODAL
+                         */
+
+                        resetModal.classList.remove(
+                            "show"
+                        );
+
+
+                    }
+                );
+
+
+                /* =====================================
+                   UPDATE CART COUNT
+                ====================================== */
+
+                if (
+                    typeof updateCartButtons ===
+                    "function"
+                ) {
+
+                    updateCartButtons(
+                        billionaire.id
+                    );
+
+                }
+
+
+                /* =====================================
+                   INITIALIZE
+                ====================================== */
+
+                updateDashboard();
+
+
+                /* =====================================
+                   BACK BUTTON
+                ====================================== */
+
+                document.getElementById(
+                    "backBtn"
+                ).addEventListener(
+                    "click",
+                    function () {
+
+                        window.location.href =
+                            "{{ url_for('billionaire') }}";
+
+                    }
+                );
+
+
+            }
+
+        );
+
+    </script>
+
+
+</body>
+
+</html>
