@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta
+        name="description"
+        content="Typing Rush - test your typing speed and accuracy with falling words and challenging paragraphs."
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <title>Typing Rush | GameVault</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/typing.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="typing-page">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+
+            <a href="/" class="back-btn">
+                ← BACK
+            </a>
+
+            <div class="game-title">
+                <span class="title-icon">⌨️</span>
+                <div>
+                    <h1>Typing Rush</h1>
+                    <p>Speed • Accuracy • Focus</p>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- MODE SELECTOR -->
+        <section class="mode-panel">
+
+            <button
+                class="mode-btn active"
+                data-mode="falling"
+                type="button"
+            >
+                🍎 Falling Words
+            </button>
+
+            <button
+                class="mode-btn"
+                data-mode="paragraph"
+                type="button"
+            >
+                📖 Paragraph Challenge
+            </button>
+
+        </section>
+
+
+        <!-- DIFFICULTY -->
+        <section class="difficulty-panel">
+
+            <button
+                class="difficulty-btn active"
+                data-difficulty="easy"
+                type="button"
+            >
+                EASY
+            </button>
+
+            <button
+                class="difficulty-btn"
+                data-difficulty="normal"
+                type="button"
+            >
+                NORMAL
+            </button>
+
+            <button
+                class="difficulty-btn"
+                data-difficulty="hard"
+                type="button"
+            >
+                HARD
+            </button>
+
+            <button
+                class="difficulty-btn"
+                data-difficulty="insane"
+                type="button"
+            >
+                INSANE
+            </button>
+
+        </section>
+
+
+        <!-- STATS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <span class="stat-label">TIME</span>
+                <strong id="timeValue">0s</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">WPM</span>
+                <strong id="wpmValue">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">ACCURACY</span>
+                <strong id="accuracyValue">100%</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">MISTAKES</span>
+                <strong id="mistakesValue">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">SCORE</span>
+                <strong id="scoreValue">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">BEST</span>
+                <strong id="bestValue">0</strong>
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- FALLING WORDS -->
+        <!-- ========================= -->
+
+        <section
+            id="fallingMode"
+            class="game-section active-section"
+        >
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-tag">MODE 01</span>
+                    <h2>Falling Words</h2>
+                </div>
+
+                <p>
+                    Type the falling word before it reaches the ground.
+                </p>
+            </div>
+
+
+            <div
+                id="fallingBoard"
+                class="falling-board"
+            >
+
+                <div
+                    id="fallingWord"
+                    class="falling-word"
+                >
+                    READY
+                </div>
+
+                <div class="falling-ground"></div>
+
+            </div>
+
+
+            <div class="typing-input-area">
+
+                <input
+                    id="fallingInput"
+                    class="typing-input"
+                    type="text"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    inputmode="text"
+                    placeholder="Type the falling word..."
+                    disabled
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- PARAGRAPH -->
+        <!-- ========================= -->
+
+        <section
+            id="paragraphMode"
+            class="game-section"
+            hidden
+        >
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-tag">MODE 02</span>
+                    <h2>Paragraph Challenge</h2>
+                </div>
+
+                <p>
+                    Type the complete paragraph with perfect accuracy.
+                </p>
+            </div>
+
+
+            <div
+                id="paragraphDisplay"
+                class="paragraph-display"
+            >
+                Your paragraph will appear here.
+            </div>
+
+
+            <div class="paragraph-progress">
+
+                <div class="progress-track">
+                    <div
+                        id="paragraphProgress"
+                        class="progress-fill"
+                    ></div>
+                </div>
+
+                <span id="paragraphProgressText">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="typing-input-area">
+
+                <textarea
+                    id="paragraphInput"
+                    class="typing-input paragraph-input"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    placeholder="Type the paragraph here..."
+                    disabled
+                    rows="5"
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTROLS -->
+        <section class="controls">
+
+            <button
+                id="startBtn"
+                class="control-btn primary-btn"
+                type="button"
+            >
+                ▶ START
+            </button>
+
+            <button
+                id="restartBtn"
+                class="control-btn"
+                type="button"
+            >
+                ↻ RESTART
+            </button>
+
+            <button
+                id="newGameBtn"
+                class="control-btn"
+                type="button"
+            >
+                ✦ NEW GAME
+            </button>
+
+        </section>
+
+
+        <!-- BEST RECORD -->
+        <div class="record-line">
+            <span id="recordText">
+                Ready when you are.
+            </span>
+        </div>
+
+    </main>
+
+
+    <!-- START OVERLAY -->
+    <div
+        id="startOverlay"
+        class="overlay"
+    >
+
+        <div class="overlay-card">
+
+            <div class="overlay-icon">
+                ⌨️
+            </div>
+
+            <h2>Typing Rush</h2>
+
+            <p id="startDescription">
+                Type the falling words before they hit the ground.
+            </p>
+
+            <div class="overlay-info">
+
+                <span id="overlayMode">
+                    🍎 Falling Words
+                </span>
+
+                <span id="overlayDifficulty">
+                    EASY
+                </span>
+
+            </div>
+
+            <button
+                id="overlayStartBtn"
+                class="control-btn primary-btn big-btn"
+                type="button"
+            >
+                ▶ START GAME
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULTS OVERLAY -->
+    <div
+        id="resultsOverlay"
+        class="overlay hidden"
+    >
+
+        <div class="overlay-card results-card">
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <h2 id="resultTitle">
+                Game Over
+            </h2>
+
+            <p id="resultSubtitle">
+                Great run!
+            </p>
+
+
+            <div class="results-grid">
+
+                <div>
+                    <span>TIME</span>
+                    <strong id="resultTime">0s</strong>
+                </div>
+
+                <div>
+                    <span>WPM</span>
+                    <strong id="resultWpm">0</strong>
+                </div>
+
+                <div>
+                    <span>ACCURACY</span>
+                    <strong id="resultAccuracy">100%</strong>
+                </div>
+
+                <div>
+                    <span>MISTAKES</span>
+                    <strong id="resultMistakes">0</strong>
+                </div>
+
+                <div>
+                    <span>SCORE</span>
+                    <strong id="resultScore">0</strong>
+                </div>
+
+                <div>
+                    <span>BEST</span>
+                    <strong id="resultBest">0</strong>
+                </div>
+
+            </div>
+
+
+            <div
+                id="resultExtra"
+                class="result-extra"
+            ></div>
+
+
+            <button
+                id="resultRestartBtn"
+                class="control-btn primary-btn big-btn"
+                type="button"
+            >
+                ↻ PLAY AGAIN
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/typing.js') }}"
+    ></script>
+
+</body>
+
+</html>

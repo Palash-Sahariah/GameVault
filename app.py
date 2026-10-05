@@ -144,6 +144,11 @@ def game_2048():
     return render_template("games/2048.html")
 
 
+@app.route("/games/typing")
+def typing():
+    return render_template("games/typing.html")
+
+
 # =========================
 # SEO
 # =========================
