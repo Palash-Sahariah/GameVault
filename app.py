@@ -3,6 +3,10 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
+# =========================
+# MAIN GAMEVAULT
+# =========================
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -12,6 +16,10 @@ def home():
 def snake():
     return render_template("games/snake.html")
 
+
+# =========================
+# BILLIONAIRE BREAKOUT
+# =========================
 
 @app.route("/games/billionaire")
 def billionaire():
@@ -33,23 +41,18 @@ def billionaire_cart():
     return render_template("games/billionaire-cart.html")
 
 
+# =========================
+# BILLIONAIRE CATEGORIES
+# =========================
+
 @app.route("/games/billionaire/automotive")
 def billionaire_automotive():
-    return render_template(
-        "games/billionaire-automotive.html"
-    )
+    return render_template("games/billionaire-automotive.html")
 
 
 @app.route("/games/billionaire/aviation")
 def billionaire_aviation():
-    return render_template(
-        "games/billionaire-aviation.html"
-    )
-
-
-@app.route("/games/billionaire/real-estate")
-def billionaire_real_estate():
-    return render_template("games/billionaire-real-estate.html")
+    return render_template("games/billionaire-aviation.html")
 
 
 @app.route("/games/billionaire/yachts")
@@ -60,6 +63,11 @@ def billionaire_yachts():
 @app.route("/games/billionaire/watches")
 def billionaire_watches():
     return render_template("games/billionaire-watches.html")
+
+
+@app.route("/games/billionaire/real-estate")
+def billionaire_real_estate():
+    return render_template("games/billionaire-real-estate.html")
 
 
 @app.route("/games/billionaire/jewellery")
@@ -89,13 +97,36 @@ def billionaire_world():
 
 @app.route("/games/billionaire/mega-projects")
 def billionaire_mega_projects():
-    return render_template(
-        "games/billionaire-mega-projects.html"
-    )
+    return render_template("games/billionaire-mega-projects.html")
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# =========================
+# INFORMATION / POLICY
+# =========================
+
+@app.route("/privacy-policy")
+def privacy_policy():
+    return render_template("privacy.html")
+
+
+@app.route("/terms")
+def terms():
+    return render_template("terms.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
+# =========================
+# RUN
+# =========================
 
 if __name__ == "__main__":
     app.run(debug=True)

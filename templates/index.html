@@ -6,13 +6,120 @@
 
     <title>GameVault — Play. Explore. Repeat.</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        /* =========================================
+           GAMEVAULT FOOTER POLICY LINKS
+           Only changes the appearance of these links.
+        ========================================= */
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            margin: 24px auto 20px;
+            max-width: 900px;
+        }
+
+        .footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 17px;
+
+            color: #c9d5f5;
+            text-decoration: none;
+
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+
+            background: rgba(8, 15, 35, 0.72);
+
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            border-radius: 999px;
+
+            box-shadow:
+                inset 0 0 20px rgba(70, 90, 160, 0.04),
+                0 5px 20px rgba(0, 0, 0, 0.18);
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .footer-links a span {
+            color: #d8b84c;
+            font-size: 0.55rem;
+
+            transition:
+                transform 0.25s ease,
+                text-shadow 0.25s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(15, 38, 85, 0.9),
+                    rgba(39, 19, 78, 0.85)
+                );
+
+            border-color: rgba(212, 175, 55, 0.75);
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 28px rgba(0, 0, 0, 0.35),
+                0 0 20px rgba(212, 175, 55, 0.12);
+        }
+
+        .footer-links a:hover span {
+            transform: rotate(45deg);
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.9);
+        }
+
+        .footer-copy {
+            display: block;
+            margin-top: 4px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .footer-links {
+                gap: 8px;
+                padding: 0 12px;
+            }
+
+            .footer-links a {
+                padding: 9px 13px;
+                font-size: 0.72rem;
+            }
+
+        }
+    </style>
+
 </head>
 
 <body>
 
     <!-- Animated Background -->
     <div class="background">
+
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
         <div class="grid"></div>
@@ -22,60 +129,8 @@
         <span class="particle p3"></span>
         <span class="particle p4"></span>
         <span class="particle p5"></span>
-    </div>
-
-
-    <!-- NAVBAR -->
-    <header class="topbar">
-
-    <a
-        href="{{ url_for('home') }}"
-        class="brand"
-    >
-        GAMEVAULT
-    </a>
-
-    <div class="page-title">
-        BILLIONAIRE BREAKOUT
-    </div>
-
-    <div class="nav-actions">
-
-        <!-- BACK -->
-        <button
-            class="nav-btn back-btn"
-            id="backBtn"
-            type="button"
-        >
-            ← BACK
-        </button>
-
-        <!-- RESET GAME -->
-        <button
-            class="nav-btn reset-btn"
-            id="resetGameBtn"
-            type="button"
-        >
-            ↻ RESET GAME
-        </button>
-
-        <!-- CART -->
-        <button
-            class="nav-btn"
-            data-cart-button
-            onclick="openCart()"
-            type="button"
-        >
-            YOUR CART
-
-            <span class="cart-count">
-                0
-            </span>
-        </button>
 
     </div>
-
-</header>
 
 
     <main id="home">
@@ -107,6 +162,7 @@
 
             </div>
 
+
             <!-- HERO VISUAL -->
             <div class="hero-visual">
 
@@ -114,8 +170,16 @@
                 <div class="hero-ring ring-two"></div>
 
                 <div class="vault-core">
-                    <div class="vault-symbol">G</div>
-                    <div class="vault-text">GAME<br>VAULT</div>
+
+                    <div class="vault-symbol">
+                        G
+                    </div>
+
+                    <div class="vault-text">
+                        GAME<br>
+                        VAULT
+                    </div>
+
                 </div>
 
             </div>
@@ -127,12 +191,23 @@
         <section class="section" id="games">
 
             <div class="section-heading">
+
                 <div>
-                    <span class="section-label">FEATURED</span>
-                    <h2>🔥 Featured Games</h2>
+
+                    <span class="section-label">
+                        FEATURED
+                    </span>
+
+                    <h2>
+                        🔥 Featured Games
+                    </h2>
+
                 </div>
 
-                <span class="game-count">4 GAMES</span>
+                <span class="game-count">
+                    4 GAMES
+                </span>
+
             </div>
 
 
@@ -144,37 +219,74 @@
 
                     <div class="game-art money-art">
 
-                        <div class="money money-one">💵</div>
-                        <div class="money money-two">💸</div>
-                        <div class="money money-three">💰</div>
-                        <div class="money money-four">💵</div>
+                        <div class="money money-one">
+                            💵
+                        </div>
 
-                        <div class="fire fire-one">🔥</div>
-                        <div class="fire fire-two">🔥</div>
+                        <div class="money money-two">
+                            💸
+                        </div>
+
+                        <div class="money money-three">
+                            💰
+                        </div>
+
+                        <div class="money money-four">
+                            💵
+                        </div>
+
+                        <div class="fire fire-one">
+                            🔥
+                        </div>
+
+                        <div class="fire fire-two">
+                            🔥
+                        </div>
 
                         <div class="game-art-title">
-                            <span>💸</span>
+
+                            <span>
+                                💸
+                            </span>
+
                             BILLIONAIRE
-                            <strong>BREAKOUT</strong>
+
+                            <strong>
+                                BREAKOUT
+                            </strong>
+
                         </div>
 
                     </div>
 
+
                     <div class="game-info">
 
                         <div class="card-top">
-                            <span class="category">SIMULATION</span>
-                            <span class="status live">● PLAYABLE</span>
+
+                            <span class="category">
+                                SIMULATION
+                            </span>
+
+                            <span class="status live">
+                                ● PLAYABLE
+                            </span>
+
                         </div>
 
-                        <h3>Billionaire Breakout</h3>
+                        <h3>
+                            Billionaire Breakout
+                        </h3>
 
                         <p>
                             Choose a billionaire, take their fictional
                             fortune and try to spend every last dollar.
                         </p>
 
-                        <a href="{{ url_for('billionaire') }}" class="play-btn">
+                        <a
+                            href="{{ url_for('billionaire') }}"
+                            class="play-btn"
+                        >
                             💰 PLAY NOW
                         </a>
 
@@ -193,11 +305,17 @@
                             <div class="snake-body s1"></div>
                             <div class="snake-body s2"></div>
                             <div class="snake-body s3"></div>
-                            <div class="snake-head">👀</div>
 
-                            <div class="snake-food">🍎</div>
+                            <div class="snake-head">
+                                👀
+                            </div>
+
+                            <div class="snake-food">
+                                🍎
+                            </div>
 
                         </div>
+
 
                         <div class="game-art-title">
                             🐍 SNAKE
@@ -205,21 +323,34 @@
 
                     </div>
 
+
                     <div class="game-info">
 
                         <div class="card-top">
-                            <span class="category">ARCADE</span>
-                            <span class="status live">● PLAYABLE</span>
+
+                            <span class="category">
+                                ARCADE
+                            </span>
+
+                            <span class="status live">
+                                ● PLAYABLE
+                            </span>
+
                         </div>
 
-                        <h3>Snake</h3>
+                        <h3>
+                            Snake
+                        </h3>
 
                         <p>
                             Eat, grow and survive. How long can your snake
                             become?
                         </p>
 
-                        <a href="{{ url_for('snake') }}" class="play-btn snake-btn">
+                        <a
+                            href="{{ url_for('snake') }}"
+                            class="play-btn snake-btn"
+                        >
                             🐍 PLAY NOW
                         </a>
 
@@ -234,33 +365,64 @@
                     <div class="game-art memory-art">
 
                         <div class="memory-cards">
-                            <span>?</span>
-                            <span>🎮</span>
-                            <span>?</span>
-                            <span>?</span>
+
+                            <span>
+                                ?
+                            </span>
+
+                            <span>
+                                🎮
+                            </span>
+
+                            <span>
+                                ?
+                            </span>
+
+                            <span>
+                                ?
+                            </span>
+
                         </div>
 
+
                         <div class="coming-overlay">
-                            <span>COMING SOON</span>
+
+                            <span>
+                                COMING SOON
+                            </span>
+
                         </div>
 
                     </div>
 
+
                     <div class="game-info">
 
                         <div class="card-top">
-                            <span class="category">PUZZLE</span>
-                            <span class="status coming">COMING SOON</span>
+
+                            <span class="category">
+                                PUZZLE
+                            </span>
+
+                            <span class="status coming">
+                                COMING SOON
+                            </span>
+
                         </div>
 
-                        <h3>Memory Rush</h3>
+                        <h3>
+                            Memory Rush
+                        </h3>
 
                         <p>
                             Remember the cards, beat the clock and test
                             your memory.
                         </p>
 
-                        <button class="play-btn disabled-btn" disabled>
+                        <button
+                            class="play-btn disabled-btn"
+                            disabled
+                        >
                             🔒 COMING SOON
                         </button>
 
@@ -279,26 +441,43 @@
                         </div>
 
                         <div class="coming-overlay">
-                            <span>COMING SOON</span>
+
+                            <span>
+                                COMING SOON
+                            </span>
+
                         </div>
 
                     </div>
 
+
                     <div class="game-info">
 
                         <div class="card-top">
-                            <span class="category">SKILL</span>
-                            <span class="status coming">COMING SOON</span>
+
+                            <span class="category">
+                                SKILL
+                            </span>
+
+                            <span class="status coming">
+                                COMING SOON
+                            </span>
+
                         </div>
 
-                        <h3>Reaction Rush</h3>
+                        <h3>
+                            Reaction Rush
+                        </h3>
 
                         <p>
                             Your reflexes against the clock. How fast can
                             you react?
                         </p>
 
-                        <button class="play-btn disabled-btn" disabled>
+                        <button
+                            class="play-btn disabled-btn"
+                            disabled
+                        >
                             🔒 COMING SOON
                         </button>
 
@@ -313,33 +492,64 @@
                     <div class="game-art puzzle-art">
 
                         <div class="number-2048">
-                            <span>2</span>
-                            <span>0</span>
-                            <span>4</span>
-                            <span>8</span>
+
+                            <span>
+                                2
+                            </span>
+
+                            <span>
+                                0
+                            </span>
+
+                            <span>
+                                4
+                            </span>
+
+                            <span>
+                                8
+                            </span>
+
                         </div>
 
+
                         <div class="coming-overlay">
-                            <span>COMING SOON</span>
+
+                            <span>
+                                COMING SOON
+                            </span>
+
                         </div>
 
                     </div>
 
+
                     <div class="game-info">
 
                         <div class="card-top">
-                            <span class="category">PUZZLE</span>
-                            <span class="status coming">COMING SOON</span>
+
+                            <span class="category">
+                                PUZZLE
+                            </span>
+
+                            <span class="status coming">
+                                COMING SOON
+                            </span>
+
                         </div>
 
-                        <h3>2048</h3>
+                        <h3>
+                            2048
+                        </h3>
 
                         <p>
                             Combine numbers, build your score and reach
                             the legendary 2048 tile.
                         </p>
 
-                        <button class="play-btn disabled-btn" disabled>
+                        <button
+                            class="play-btn disabled-btn"
+                            disabled
+                        >
                             🔒 COMING SOON
                         </button>
 
@@ -353,11 +563,16 @@
 
 
         <!-- FUTURE -->
-        <section class="future-section" id="coming-soon">
+        <section
+            class="future-section"
+            id="coming-soon"
+        >
 
             <div class="future-content">
 
-                <span class="section-label">THE VAULT IS GROWING</span>
+                <span class="section-label">
+                    THE VAULT IS GROWING
+                </span>
 
                 <h2>
                     More games are<br>
@@ -390,7 +605,34 @@
             Play. Explore. Repeat.
         </p>
 
-        <span>
+
+        <!-- POLICY / INFORMATION LINKS -->
+        <div class="footer-links">
+
+            <a href="{{ url_for('about') }}">
+                <span>◆</span>
+                About
+            </a>
+
+            <a href="{{ url_for('privacy_policy') }}">
+                <span>◆</span>
+                Privacy Policy
+            </a>
+
+            <a href="{{ url_for('terms') }}">
+                <span>◆</span>
+                Terms &amp; Conditions
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                <span>◆</span>
+                Contact
+            </a>
+
+        </div>
+
+
+        <span class="footer-copy">
             © 2026 GameVault
         </span>
 

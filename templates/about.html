@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About GameVault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/policy.css') }}">
+</head>
+
+<body>
+
+<div class="policy-background"></div>
+
+<header class="policy-nav">
+    <a href="{{ url_for('home') }}" class="policy-brand">
+        🎮 GAMEVAULT
+    </a>
+
+    <a href="{{ url_for('home') }}" class="back-link">
+        ← BACK TO GAMEVAULT
+    </a>
+</header>
+
+
+<main class="policy-container">
+
+    <div class="policy-label">GAMEVAULT • ABOUT</div>
+
+    <h1>About GameVault</h1>
+
+    <p class="updated">
+        Play. Explore. Repeat.
+    </p>
+
+
+    <section>
+        <h2>What is GameVault?</h2>
+
+        <p>
+            GameVault is a browser-based gaming platform built around
+            quick, accessible and entertaining games that can be played
+            directly from a web browser.
+        </p>
+
+        <p>
+            The goal is simple: create a growing collection of games
+            where players can enter the vault, discover something fun
+            and start playing without unnecessary complexity.
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Our Games</h2>
+
+        <p>
+            GameVault features different types of browser games,
+            including arcade, puzzle, simulation and skill-based
+            experiences.
+        </p>
+
+        <p>
+            New games and features may be added to the platform over
+            time.
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Built for the Browser</h2>
+
+        <p>
+            GameVault is designed to work directly in modern web
+            browsers across desktop and mobile devices.
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Our Goal</h2>
+
+        <p>
+            We want GameVault to become a place where players can
+            discover simple, enjoyable games and return whenever they
+            want something new to play.
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Get in Touch</h2>
+
+        <p>
+            Have a question, suggestion or feedback?
+            Visit our
+            <a href="{{ url_for('contact') }}">Contact page</a>.
+        </p>
+    </section>
+
+</main>
+
+</body>
+</html>
