@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 
 app = Flask(__name__)
 
@@ -122,6 +122,55 @@ def about():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+
+# =========================
+# SEO
+# =========================
+
+@app.route("/robots.txt")
+def robots_txt():
+    content = """User-agent: *
+Allow: /
+
+Sitemap: https://gamevault-no18.onrender.com/sitemap.xml
+"""
+    return Response(content, mimetype="text/plain")
+
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    pages = [
+        "/",
+        "/games/snake",
+        "/games/billionaire",
+        "/games/billionaire/play",
+        "/games/billionaire/automotive",
+        "/games/billionaire/aviation",
+        "/games/billionaire/yachts",
+        "/games/billionaire/watches",
+        "/games/billionaire/real-estate",
+        "/games/billionaire/jewellery",
+        "/games/billionaire/art",
+        "/games/billionaire/empire",
+        "/games/billionaire/technology",
+        "/games/billionaire/world",
+        "/games/billionaire/mega-projects",
+        "/about",
+        "/contact",
+        "/privacy-policy",
+        "/terms",
+    ]
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+
+    for page in pages:
+        xml += f'    <url><loc>https://gamevault-no18.onrender.com{page}</loc></url>\n'
+
+    xml += "</urlset>"
+
+    return Response(xml, mimetype="application/xml")
 
 
 # =========================
