@@ -134,6 +134,16 @@ def reaction():
     return render_template("games/reaction.html")
 
 
+@app.route("/games/maze")
+def maze():
+    return render_template("games/maze.html")
+
+
+@app.route("/games/2048")
+def game_2048():
+    return render_template("games/2048.html")
+
+
 # =========================
 # SEO
 # =========================

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        2048 — Free Puzzle Game | GameVault
+    </title>
+
+    <meta
+        name="description"
+        content="Play 2048 online for free on GameVault. Combine matching numbers, build your score and reach the legendary 2048 tile."
+    >
+
+    <meta
+        name="author"
+        content="GameVault"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="canonical"
+        href="https://gamevault-no18.onrender.com/games/2048"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/2048.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="game-page">
+
+        <header class="game-header">
+
+            <a
+                href="/"
+                class="back-btn"
+            >
+                ← GAMEVAULT
+            </a>
+
+            <div class="title-area">
+
+                <h1>
+                    2048
+                </h1>
+
+                <p>
+                    Combine the tiles. Reach 2048.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="game-panel">
+
+            <div class="top-bar">
+
+                <div class="score-box">
+
+                    <span>
+                        SCORE
+                    </span>
+
+                    <strong id="score">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <span>
+                        BEST
+                    </span>
+
+                    <strong id="best">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="controls">
+
+                <button
+                    id="newGame"
+                    class="control-btn"
+                >
+                    ↻ NEW GAME
+                </button>
+
+            </div>
+
+
+            <div
+                id="gameBoard"
+                class="game-board"
+            >
+
+                <!-- Background cells -->
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+
+
+                <div
+                    id="tiles"
+                    class="tiles"
+                ></div>
+
+
+                <div
+                    id="gameMessage"
+                    class="game-message hidden"
+                >
+
+                    <div>
+
+                        <h2 id="messageTitle">
+                            GAME OVER
+                        </h2>
+
+                        <p id="messageText">
+                            No more moves!
+                        </p>
+
+                        <button
+                            id="tryAgain"
+                            class="play-again-btn"
+                        >
+                            PLAY AGAIN
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="mobile-controls">
+
+                <button data-direction="up">
+                    ▲
+                </button>
+
+                <div>
+
+                    <button data-direction="left">
+                        ◀
+                    </button>
+
+                    <button data-direction="down">
+                        ▼
+                    </button>
+
+                    <button data-direction="right">
+                        ▶
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="instructions">
+
+                <h3>
+                    HOW TO PLAY
+                </h3>
+
+                <p>
+                    Use your
+                    <strong>arrow keys</strong>
+                    or
+                    <strong>swipe</strong>
+                    on mobile to move the tiles.
+                </p>
+
+                <p>
+                    Matching numbers merge into one.
+                    Reach
+                    <strong>2048</strong>
+                    to win!
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script
+        src="{{ url_for('static', filename='js/2048.js') }}"
+    ></script>
+
+</body>
+
+</html>

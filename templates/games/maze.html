@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Maze Master — Random Maze Puzzle | GameVault</title>
+
+    <meta
+        name="description"
+        content="Play Maze Master on GameVault. Solve randomly generated mazes, avoid mistakes and reach the finish."
+    >
+
+    <link
+        rel="canonical"
+        href="https://gamevault-no18.onrender.com/games/maze"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/maze.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="maze-page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="maze-header">
+
+        <div class="header-left">
+            <a href="/" class="back-button">
+                ← GameVault
+            </a>
+        </div>
+
+        <div class="header-center">
+
+            <div class="game-badge">
+                🧩
+            </div>
+
+            <div>
+                <h1>MAZE MASTER</h1>
+
+                <p>
+                    Find the path. Don't look back.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="header-right">
+
+            <button
+                id="soundButton"
+                class="sound-button"
+                type="button"
+                aria-label="Toggle sound"
+            >
+                🔊
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         GAME PANEL
+    ====================================================== -->
+
+    <main class="maze-game">
+
+        <!-- =================================================
+             TOP CONTROLS
+        ================================================== -->
+
+        <section class="control-panel">
+
+            <div class="difficulty-section">
+
+                <span class="control-label">
+                    DIFFICULTY
+                </span>
+
+                <div class="difficulty-buttons">
+
+                    <button
+                        class="difficulty-button active"
+                        data-difficulty="easy"
+                        type="button"
+                    >
+                        EASY
+                    </button>
+
+                    <button
+                        class="difficulty-button"
+                        data-difficulty="normal"
+                        type="button"
+                    >
+                        NORMAL
+                    </button>
+
+                    <button
+                        class="difficulty-button"
+                        data-difficulty="hard"
+                        type="button"
+                    >
+                        HARD
+                    </button>
+
+                    <button
+                        class="difficulty-button"
+                        data-difficulty="insane"
+                        type="button"
+                    >
+                        INSANE
+                    </button>
+
+                    <button
+                        class="difficulty-button"
+                        data-difficulty="nightmare"
+                        type="button"
+                    >
+                        NIGHTMARE
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-buttons">
+
+                <button
+                    id="restartButton"
+                    class="game-button restart"
+                    type="button"
+                >
+                    ↻ RESTART
+                </button>
+
+                <button
+                    id="newMazeButton"
+                    class="game-button new-maze"
+                    type="button"
+                >
+                    ✦ NEW MAZE
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
+        <section class="stats-panel">
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    TIME
+                </span>
+
+                <strong id="timeValue">
+                    00:00
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    MAZE
+                </span>
+
+                <strong id="mazeSize">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    MISTAKES
+                </span>
+
+                <strong id="mistakes">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    BEST
+                </span>
+
+                <strong id="bestTime">
+                    —
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MAZE AREA
+        ================================================== -->
+
+        <section
+            id="mazeArea"
+            class="maze-area"
+        >
+
+            <canvas
+                id="mazeCanvas"
+                aria-label="Maze game"
+            ></canvas>
+
+            <!-- Player is deliberately outside the canvas
+                 so it can remain clearly visible. -->
+
+            <div
+                id="player"
+                class="player"
+                aria-hidden="true"
+            ></div>
+
+            <div
+                id="startLabel"
+                class="maze-label start-label"
+            >
+                START
+            </div>
+
+            <div
+                id="finishLabel"
+                class="maze-label finish-label"
+            >
+                FINISH
+            </div>
+
+            <div
+                id="mazeMessage"
+                class="maze-message"
+            >
+                READY
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MOBILE CONTROLS
+        ================================================== -->
+
+        <section class="movement-controls">
+
+            <div class="movement-title">
+                MOVE
+            </div>
+
+            <div class="arrow-pad">
+
+                <button
+                    class="arrow-button up"
+                    data-direction="up"
+                    type="button"
+                    aria-label="Move up"
+                >
+                    ▲
+                </button>
+
+                <button
+                    class="arrow-button left"
+                    data-direction="left"
+                    type="button"
+                    aria-label="Move left"
+                >
+                    ◀
+                </button>
+
+                <button
+                    class="arrow-button down"
+                    data-direction="down"
+                    type="button"
+                    aria-label="Move down"
+                >
+                    ▼
+                </button>
+
+                <button
+                    class="arrow-button right"
+                    data-direction="right"
+                    type="button"
+                    aria-label="Move right"
+                >
+                    ▶
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTROLS INFO
+        ================================================== -->
+
+        <section class="info-panel">
+
+            <div class="info-card">
+
+                <span class="info-icon">
+                    🎮
+                </span>
+
+                <div>
+                    <strong>
+                        CONTROLS
+                    </strong>
+
+                    <p>
+                        Arrow Keys / WASD
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span class="info-icon">
+                    🚫
+                </span>
+
+                <div>
+                    <strong>
+                        NO BACKTRACKING
+                    </strong>
+
+                    <p>
+                        Visited cells cannot be entered again.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span class="info-icon">
+                    🧠
+                </span>
+
+                <div>
+                    <strong>
+                        YOUR MISSION
+                    </strong>
+
+                    <p>
+                        Reach FINISH without getting trapped.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         RESULT SCREEN
+    ====================================================== -->
+
+    <div
+        id="resultOverlay"
+        class="result-overlay"
+    >
+
+        <div class="result-card">
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <h2>
+                MAZE COMPLETE!
+            </h2>
+
+            <p class="result-subtitle">
+                You found the exit.
+            </p>
+
+
+            <div class="result-stats">
+
+                <div>
+                    <span>TIME</span>
+                    <strong id="resultTime">
+                        00:00
+                    </strong>
+                </div>
+
+                <div>
+                    <span>MISTAKES</span>
+                    <strong id="resultMistakes">
+                        0
+                    </strong>
+                </div>
+
+                <div>
+                    <span>DIFFICULTY</span>
+                    <strong id="resultDifficulty">
+                        EASY
+                    </strong>
+                </div>
+
+                <div>
+                    <span>SIZE</span>
+                    <strong id="resultSize">
+                        —
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div
+                id="newRecord"
+                class="new-record"
+            >
+                🏆 NEW RECORD!
+            </div>
+
+
+            <div class="result-actions">
+
+                <button
+                    id="resultRestartButton"
+                    class="game-button restart"
+                    type="button"
+                >
+                    ↻ PLAY AGAIN
+                </button>
+
+                <button
+                    id="resultNewMazeButton"
+                    class="game-button new-maze"
+                    type="button"
+                >
+                    ✦ NEW MAZE
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/maze.js') }}"
+></script>
+
+</body>
+</html>

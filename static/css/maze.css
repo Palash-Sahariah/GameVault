@@ -1,0 +1,1521 @@
+/* =========================================================
+   GAMEVAULT — MAZE MASTER V2
+   Fresh CSS
+   No zoom
+   No scrolling
+   Entire maze fits inside game area
+========================================================= */
+
+:root {
+
+    --bg-main: #030711;
+    --bg-secondary: #07101f;
+
+    --panel: rgba(7, 15, 30, 0.88);
+    --panel-light: rgba(12, 25, 46, 0.92);
+
+    --blue: #149cff;
+    --blue-bright: #5ddcff;
+
+    --purple: #8b5cff;
+    --purple-bright: #b68cff;
+
+    --gold: #d7a83e;
+    --gold-bright: #ffd66b;
+
+    --text: #f4f7ff;
+    --muted: #8290aa;
+
+    --wall: #17243a;
+    --wall-bright: #263c5e;
+
+    --path: #07101e;
+
+    --danger: #ff4d67;
+
+    --radius: 18px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--bg-main);
+
+    color: var(--text);
+}
+
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(20, 156, 255, 0.10),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(139, 92, 255, 0.10),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(215, 168, 62, 0.06),
+            transparent 35%
+        );
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.maze-page {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding:
+        18px
+        clamp(12px, 3vw, 42px)
+        40px;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.maze-header {
+
+    width: 100%;
+
+    max-width: 1500px;
+
+    margin: 0 auto 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.header-left {
+    justify-self: start;
+}
+
+
+.header-right {
+    justify-self: end;
+}
+
+
+.header-center {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    text-align: left;
+}
+
+
+.game-badge {
+
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 156, 255, 0.18),
+            rgba(139, 92, 255, 0.15)
+        );
+
+    border:
+        1px solid
+        rgba(215, 168, 62, 0.55);
+
+    box-shadow:
+        0 0 22px rgba(20, 156, 255, 0.12);
+
+    font-size: 26px;
+}
+
+
+.header-center h1 {
+
+    font-size:
+        clamp(24px, 3vw, 38px);
+
+    letter-spacing: 4px;
+
+    line-height: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            var(--gold-bright)
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+.header-center p {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+.back-button,
+.sound-button {
+
+    border:
+        1px solid
+        rgba(215, 168, 62, 0.35);
+
+    background:
+        rgba(8, 16, 31, 0.75);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+
+    backdrop-filter: blur(10px);
+}
+
+
+.back-button {
+
+    display: inline-flex;
+
+    padding:
+        10px
+        14px;
+
+    font-size: 13px;
+}
+
+
+.sound-button {
+
+    width: 42px;
+    height: 42px;
+
+    font-size: 17px;
+}
+
+
+.back-button:hover,
+.sound-button:hover {
+
+    border-color: var(--gold);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 18px
+        rgba(215, 168, 62, 0.14);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.maze-game {
+
+    width: 100%;
+
+    max-width: 1500px;
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   CONTROL PANEL
+========================================================= */
+
+.control-panel {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 14px;
+
+    border:
+        1px solid
+        rgba(215, 168, 62, 0.22);
+
+    border-radius: var(--radius);
+
+    background: var(--panel);
+
+    box-shadow:
+        0 18px 50px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.difficulty-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+
+.control-label {
+
+    color: var(--gold-bright);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+}
+
+
+.difficulty-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.difficulty-button {
+
+    border:
+        1px solid
+        rgba(120, 140, 170, 0.25);
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    color: #aebbd0;
+
+    border-radius: 9px;
+
+    padding:
+        8px
+        11px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.difficulty-button:hover {
+
+    color: white;
+
+    border-color:
+        rgba(20, 156, 255, 0.55);
+
+    transform: translateY(-1px);
+}
+
+
+.difficulty-button.active {
+
+    color: white;
+
+    border-color: var(--gold);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215, 168, 62, 0.20),
+            rgba(20, 156, 255, 0.12)
+        );
+
+    box-shadow:
+        0 0 16px
+        rgba(215, 168, 62, 0.10);
+}
+
+
+.action-buttons {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+
+.game-button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding:
+        10px
+        14px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    white-space: nowrap;
+}
+
+
+.game-button:hover {
+
+    transform: translateY(-2px);
+}
+
+
+.game-button:active {
+
+    transform: translateY(0);
+}
+
+
+.game-button.restart {
+
+    background:
+        linear-gradient(
+            135deg,
+            #24344e,
+            #17243a
+        );
+
+    border:
+        1px solid
+        rgba(130, 155, 190, 0.28);
+}
+
+
+.game-button.new-maze {
+
+    background:
+        linear-gradient(
+            135deg,
+            #126fc1,
+            #5b3bc3
+        );
+
+    box-shadow:
+        0 7px 22px
+        rgba(20, 120, 255, 0.16);
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats-panel {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+
+    margin:
+        12px
+        0;
+}
+
+
+.stat-card {
+
+    min-height: 62px;
+
+    padding:
+        10px
+        14px;
+
+    border:
+        1px solid
+        rgba(120, 140, 170, 0.14);
+
+    border-radius: 13px;
+
+    background:
+        rgba(7, 15, 30, 0.76);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.stat-label {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.stat-card strong {
+
+    color: var(--gold-bright);
+
+    font-size: 17px;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   MAZE AREA
+========================================================= */
+
+.maze-area {
+
+    position: relative;
+
+    width: 100%;
+
+    /*
+       This is the important part.
+
+       The maze gets a large fixed visual area,
+       while JS calculates the largest possible
+       cell size that allows the ENTIRE maze to fit.
+    */
+
+    height:
+        clamp(
+            430px,
+            60vh,
+            760px
+        );
+
+    min-height: 430px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border:
+        1px solid
+        rgba(215, 168, 62, 0.32);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(20, 156, 255, 0.035),
+            transparent 65%
+        ),
+
+        #020711;
+
+    box-shadow:
+
+        inset 0 0 70px
+        rgba(0, 0, 0, 0.65),
+
+        0 20px 70px
+        rgba(0, 0, 0, 0.38);
+}
+
+
+.maze-area::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.018) 1px,
+            transparent 1px
+        );
+
+    background-size: 32px 32px;
+
+    opacity: 0.25;
+}
+
+
+#mazeCanvas {
+
+    position: absolute;
+
+    display: block;
+
+    image-rendering: pixelated;
+
+    image-rendering: crisp-edges;
+
+    max-width: none;
+
+    max-height: none;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.player {
+
+    position: absolute;
+
+    z-index: 10;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff 0%,
+            #ffffff 15%,
+            #7ce8ff 30%,
+            #149cff 62%,
+            #0757c7 100%
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.95);
+
+    box-shadow:
+
+        0 0 7px
+        #ffffff,
+
+        0 0 17px
+        #25b8ff,
+
+        0 0 30px
+        rgba(20,156,255,0.9);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        left 0.08s linear,
+        top 0.08s linear;
+
+    display: block;
+}
+
+
+.player::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.7);
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   MAZE LABELS
+========================================================= */
+
+.maze-label {
+
+    position: absolute;
+
+    z-index: 8;
+
+    padding:
+        4px
+        7px;
+
+    border-radius: 5px;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -100%);
+}
+
+
+.start-label {
+
+    color: #7dffbb;
+
+    background:
+        rgba(0, 110, 65, 0.85);
+
+    border:
+        1px solid
+        rgba(80,255,170,0.6);
+}
+
+
+.finish-label {
+
+    color: #ffd86c;
+
+    background:
+        rgba(105, 70, 0, 0.88);
+
+    border:
+        1px solid
+        rgba(255,210,80,0.65);
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.maze-message {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 14px;
+
+    z-index: 20;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        7px
+        15px;
+
+    border:
+        1px solid
+        rgba(215,168,62,0.3);
+
+    border-radius: 999px;
+
+    background:
+        rgba(3,8,18,0.85);
+
+    backdrop-filter: blur(10px);
+
+    color: var(--gold-bright);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MOVEMENT CONTROLS
+========================================================= */
+
+.movement-controls {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-top: 14px;
+}
+
+
+.movement-title {
+
+    margin-bottom: 8px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.arrow-pad {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 58px);
+
+    grid-template-rows:
+        repeat(2, 48px);
+
+    gap: 6px;
+}
+
+
+.arrow-button {
+
+    border:
+        1px solid
+        rgba(20,156,255,0.3);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14,32,58,0.95),
+            rgba(6,15,29,0.95)
+        );
+
+    color: #d9edff;
+
+    border-radius: 11px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.12s ease;
+
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+}
+
+
+.arrow-button:hover {
+
+    border-color:
+        var(--blue);
+
+    box-shadow:
+        0 0 15px
+        rgba(20,156,255,0.18);
+}
+
+
+.arrow-button:active {
+
+    transform: scale(0.92);
+
+    background:
+        rgba(20,156,255,0.22);
+}
+
+
+.arrow-button.up {
+
+    grid-column: 2;
+    grid-row: 1;
+}
+
+
+.arrow-button.left {
+
+    grid-column: 1;
+    grid-row: 2;
+}
+
+
+.arrow-button.down {
+
+    grid-column: 2;
+    grid-row: 2;
+}
+
+
+.arrow-button.right {
+
+    grid-column: 3;
+    grid-row: 2;
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.info-panel {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+
+.info-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 13px;
+
+    border:
+        1px solid
+        rgba(120,140,170,0.13);
+
+    border-radius: 13px;
+
+    background:
+        rgba(7,15,30,0.72);
+}
+
+
+.info-icon {
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(20,156,255,0.08);
+}
+
+
+.info-card strong {
+
+    display: block;
+
+    color: #dce6f7;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+.info-card p {
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   RESULT OVERLAY
+========================================================= */
+
+.result-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(1,4,10,0.82);
+
+    backdrop-filter: blur(10px);
+}
+
+
+.result-overlay.show {
+
+    display: flex;
+}
+
+
+.result-card {
+
+    width: min(
+        500px,
+        100%
+    );
+
+    padding:
+        32px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(215,168,62,0.42);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10,22,42,0.98),
+            rgba(3,9,19,0.98)
+        );
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.65),
+
+        0 0 40px
+        rgba(20,156,255,0.08);
+}
+
+
+.result-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 12px;
+}
+
+
+.result-card h2 {
+
+    font-size:
+        clamp(23px, 5vw, 32px);
+
+    letter-spacing: 2px;
+
+    color: var(--gold-bright);
+}
+
+
+.result-subtitle {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+.result-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    margin:
+        24px
+        0
+        15px;
+}
+
+
+.result-stats > div {
+
+    padding: 13px;
+
+    border:
+        1px solid
+        rgba(120,140,170,0.15);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+
+.result-stats span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 5px;
+}
+
+
+.result-stats strong {
+
+    color: white;
+
+    font-size: 15px;
+}
+
+
+.new-record {
+
+    display: none;
+
+    color: var(--gold-bright);
+
+    font-weight: 900;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+
+    animation:
+        recordPulse 1.2s infinite;
+}
+
+
+.new-record.show {
+
+    display: block;
+}
+
+
+@keyframes recordPulse {
+
+    0%,
+    100% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+.result-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 9px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .maze-header {
+
+        grid-template-columns:
+            auto
+            1fr
+            auto;
+
+        gap: 8px;
+    }
+
+
+    .header-center {
+
+        justify-content: flex-start;
+    }
+
+
+    .game-badge {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+    }
+
+
+    .header-center h1 {
+
+        font-size: 22px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .header-center p {
+
+        font-size: 10px;
+    }
+
+
+    .control-panel {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .difficulty-section {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .action-buttons {
+
+        width: 100%;
+    }
+
+
+    .game-button {
+
+        flex: 1;
+    }
+
+
+    .maze-area {
+
+        height: 55vh;
+
+        min-height: 380px;
+    }
+
+
+    .info-panel {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .maze-page {
+
+        padding:
+            10px
+            8px
+            25px;
+    }
+
+
+    .maze-header {
+
+        margin-bottom: 10px;
+    }
+
+
+    .back-button {
+
+        padding:
+            8px
+            9px;
+
+        font-size: 10px;
+    }
+
+
+    .sound-button {
+
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .header-center {
+
+        gap: 8px;
+    }
+
+
+    .game-badge {
+
+        display: none;
+    }
+
+
+    .header-center h1 {
+
+        font-size: 18px;
+    }
+
+
+    .header-center p {
+
+        display: none;
+    }
+
+
+    .stats-panel {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .stat-card {
+
+        min-height: 50px;
+    }
+
+
+    .maze-area {
+
+        height: 53vh;
+
+        min-height: 330px;
+
+        border-radius: 16px;
+    }
+
+
+    .arrow-pad {
+
+        grid-template-columns:
+            repeat(3, 52px);
+
+        grid-template-rows:
+            repeat(2, 45px);
+    }
+
+
+    .info-card {
+
+        padding: 10px;
+    }
+
+
+    .result-card {
+
+        padding: 24px 17px;
+    }
+
+
+    .result-actions {
+
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   VERY SHORT SCREENS
+========================================================= */
+
+@media (max-height: 700px) {
+
+    .maze-page {
+
+        padding-top: 8px;
+    }
+
+
+    .maze-header {
+
+        margin-bottom: 8px;
+    }
+
+
+    .stats-panel {
+
+        margin: 7px 0;
+    }
+
+
+    .maze-area {
+
+        height: 52vh;
+
+        min-height: 300px;
+    }
+
+
+    .movement-controls {
+
+        margin-top: 7px;
+    }
+
+
+    .info-panel {
+
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+a:focus-visible {
+
+    outline:
+        2px solid
+        var(--blue-bright);
+
+    outline-offset: 3px;
+}
